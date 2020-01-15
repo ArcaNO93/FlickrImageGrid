@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_control_navigation_graph"
+    app:startDestination="@id/logInAndSignUpFragment">
+
+    <fragment
+        android:id="@+id/logInAndSignUpFragment"
+        android:name="com.example.ilcarro.ui.fragments.userFlow.LogInAndSignUpFragment"
+        android:label="LogInAndSignUpFragment"
+        tools:layout="@layout/fragment_log_in_and_sign_up">
+        <action
+            android:id="@+id/action_to_logIn"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_to_SignUp"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.ilcarro.ui.fragments.userFlow.LogInFragment"
+        android:label="LogInFragment"
+        tools:layout="@layout/fragment_log_in"/>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.ilcarro.ui.fragments.userFlow.RegisterFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_register"/>
+</navigation>

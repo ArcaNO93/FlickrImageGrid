@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">ilCarro</string>
+    <string name="title_activity_user_control">User control</string>
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="title_search">Search</string>
+    <string name="title_trips">Trips</string>
+    <string name="title_host">Host</string>
+    <string name="title_profile">Profile</string>
+
+    <string name="profile_top_text">View Profile</string>
+    <string name="profile_text">Log in or sign up</string>
+
+    <string name="log_in_and_sign_up_welcome_text">Start your journey</string>
+    <string name="log_in_and_sign_up_sign_up_button_text">Sign up</string>
+    <string name="log_in_and_sign_up_log_in_button_text">Log in</string>
+
+    <string name="log_in_text">Log in</string>
+    <string name="log_in_text_bottom">Type your data and hit Yalla!</string>
+    <string name="log_in_email_hint">Email</string>
+    <string name="log_in_password_hint">Password</string>
+    <string name="log_in_button_text">Y\'alla!</string>
+
+    <string name="sign_up_text">Registration</string>
+
+</resources>

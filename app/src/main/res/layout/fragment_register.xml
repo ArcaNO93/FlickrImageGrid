@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="newUser"
+            type="com.example.ilcarro.data.dto.user.ui.RegisterUserUI" />
+        <variable
+            name="registerViewModel"
+            type="com.example.ilcarro.ui.viewModels.userFlow.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.userFlow.RegisterFragment">
+
+        <TextView
+            android:id="@+id/sign_up_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="140dp"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/sign_up_text"
+            android:textColor="@color/colorRed"
+            android:textSize="45sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sign_up_text_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/log_in_text_bottom"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_text"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
+
+        <EditText
+            android:id="@+id/sign_up_name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:autofillHints=""
+            android:background="@drawable/shape_with_border"
+            android:ems="10"
+            android:inputType="textAutoComplete"
+            android:padding="8dp"
+            android:text="@={newUser.firstName}"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_text_bottom"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_text_bottom" />
+
+        <EditText
+            android:id="@+id/sign_up_last_name"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/shape_with_border"
+            android:ems="10"
+            android:inputType="textAutoComplete"
+            android:padding="8dp"
+            android:text="@={newUser.secondName}"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_name"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_name" />
+
+        <EditText
+            android:id="@+id/sign_up_email"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/shape_with_border"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textColor="@color/colorWhite"
+            android:text="@={newUser.login}"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_last_name"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_last_name" />
+
+        <EditText
+            android:id="@+id/sign_up_password"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:autofillHints=""
+            android:background="@drawable/shape_with_border"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColor="@color/colorWhite"
+            android:text="@={newUser.password}"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_email"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_email" />
+
+        <Button
+            android:id="@+id/sign_up_button"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/log_in_button_text"
+            android:onClick="@{() -> registerViewModel.registerUser(newUser)}"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_password"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
