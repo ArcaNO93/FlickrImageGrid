@@ -29,7 +29,7 @@ data class AddCarRequest(
     @SerializedName("fuel_consumption")
     val fuelConsumption: Float,
     @SerializedName("features")
-    val features: ArrayList<String>,
+    val features: List<String>,
     @SerializedName("car_class")
     val carClass: String,
     @SerializedName("price_per_day")
@@ -41,5 +41,5 @@ data class AddCarRequest(
     @SerializedName("pick_up_place")
     val pickUpPlace: PickUpPlace,
     @SerializedName("image_url")
-    val images: ArrayList<String>
+    val images: List<String>
 )

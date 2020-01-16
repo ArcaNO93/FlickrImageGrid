@@ -9,4 +9,5 @@ interface UserProcessingUseCases {
     fun registerUser(registerUser: RegisterUserUI): Completable
     fun loginUser(user: LoginUserUI): Completable
     fun updateUser(user: UpdateUserUI): Completable
+    fun deleteUser(): Completable
 }

@@ -9,4 +9,5 @@ interface UserProcessingRepo {
     fun registerUser(user: RegisterUserUI): Completable
     fun loginUser(user: LoginUserUI): Completable
     fun updateUser(user:UpdateUserUI): Completable
+    fun deleteUser(): Completable
 }

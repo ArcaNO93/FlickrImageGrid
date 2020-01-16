@@ -3,10 +3,11 @@ package com.example.ilcarro.data.api
 import com.example.ilcarro.data.dto.user.RegisterUserRequest
 import com.example.ilcarro.data.dto.user.UpdateUserRequest
 import com.example.ilcarro.data.dto.user.User
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface IlCarroAPI {
+interface UserProcessingAPI {
 
     @POST("/registration")
     fun registerUser(
@@ -23,4 +24,7 @@ interface IlCarroAPI {
         @Header("X-New-Password") newPassword: String,
         @Body user: UpdateUserRequest
     ): Single<User>
+
+    @DELETE("/user")
+    fun deleteUser(@Header("Authorization") token: String?): Completable
 }

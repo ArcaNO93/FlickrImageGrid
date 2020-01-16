@@ -19,4 +19,6 @@ class UserProcessingUseCasesImpl @Inject constructor() : UserProcessingUseCases 
     override fun loginUser(user: LoginUserUI) = mUserProcessingRepo.loginUser(user)
 
     override fun updateUser(user: UpdateUserUI) = mUserProcessingRepo.updateUser(user)
+
+    override fun deleteUser() = mUserProcessingRepo.deleteUser()
 }
