@@ -1,15 +1,17 @@
-package com.example.ilcarro.business
+package com.example.ilcarro.business.implementations
 
+import com.example.ilcarro.business.interfaces.UserProcessingUseCases
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.dto.user.ui.LoginUserUI
 import com.example.ilcarro.data.dto.user.ui.RegisterUserUI
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
-import com.example.ilcarro.data.repos.UserProcessingRepoImpl
+import com.example.ilcarro.data.repos.implementations.UserProcessingRepoImpl
 import io.reactivex.Completable
 import javax.inject.Inject
 
 @FragmentScope
-class UserProcessingUseCasesImpl @Inject constructor() : UserProcessingUseCases {
+class UserProcessingUseCasesImpl @Inject constructor() :
+    UserProcessingUseCases {
 
     @Inject
     lateinit var mUserProcessingRepo: UserProcessingRepoImpl

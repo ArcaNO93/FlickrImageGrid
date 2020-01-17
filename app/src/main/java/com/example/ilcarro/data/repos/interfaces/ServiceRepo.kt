@@ -1,4 +1,4 @@
-package com.example.ilcarro.data.repos
+package com.example.ilcarro.data.repos.interfaces
 
 interface ServiceRepo {
     fun saveToken(token: String)

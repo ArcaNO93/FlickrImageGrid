@@ -1,15 +1,15 @@
-package com.example.ilcarro.data.repos
+package com.example.ilcarro.data.repos.implementations
 
 import android.content.SharedPreferences
 import android.util.Base64
-import android.util.Log
 import com.example.ilcarro.dagger.scopes.FragmentScope
+import com.example.ilcarro.data.repos.interfaces.ServiceRepo
 import okhttp3.Credentials
-import okio.ByteString
 import javax.inject.Inject
 
 @FragmentScope
-class ServiceRepoImpl @Inject constructor() : ServiceRepo {
+class ServiceRepoImpl @Inject constructor() :
+    ServiceRepo {
 
     @Inject
     lateinit var mService: SharedPreferences

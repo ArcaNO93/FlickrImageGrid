@@ -1,4 +1,4 @@
-package com.example.ilcarro.data.repos
+package com.example.ilcarro.data.repos.interfaces
 
 import com.example.ilcarro.data.dto.car.ui.CarUI
 import io.reactivex.Completable

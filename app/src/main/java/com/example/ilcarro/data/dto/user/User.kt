@@ -17,9 +17,9 @@ data class User(
         @SerializedName("comments")
         val comments: ArrayList<Comments>,
         @SerializedName("own_cars")
-        val ownedCars: ArrayList<Car>,
+        val ownedCars: List<Car>,
         @SerializedName("booked_cars")
-        val bookedCars: ArrayList<BookedCar>,
+        val bookedCars: List<BookedCar>,
         @SerializedName("history")
-        val history: ArrayList<BookedCar>
+        val history: List<BookedCar>
 )

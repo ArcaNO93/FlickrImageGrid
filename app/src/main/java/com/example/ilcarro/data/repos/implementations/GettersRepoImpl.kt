@@ -1,12 +1,15 @@
-package com.example.ilcarro.data.repos
+package com.example.ilcarro.data.repos.implementations
 
+import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.GettersAPI
-import com.example.ilcarro.data.api.UserProcessingAPI
 import com.example.ilcarro.data.dto.car.ui.CarUI
+import com.example.ilcarro.data.repos.interfaces.GettersRepo
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class GettersRepoImpl @Inject constructor(): GettersRepo {
+@FragmentScope
+class GettersRepoImpl @Inject constructor():
+    GettersRepo {
 
     @Inject
     lateinit var mServiceRepo: ServiceRepoImpl
@@ -27,5 +30,8 @@ class GettersRepoImpl @Inject constructor(): GettersRepo {
 
     override fun getOwnerCarBookedPeriodsById(car: CarUI) =
         service.getOwnerCarBookedPeriodsById(token, car.serialNumber)
+
+    override fun getBestBookedCars() =
+        service.getBestBookedCars()
 }
 

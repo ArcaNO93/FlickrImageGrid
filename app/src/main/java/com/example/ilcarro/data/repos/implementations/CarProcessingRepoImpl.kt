@@ -1,16 +1,17 @@
-package com.example.ilcarro.data.repos
+package com.example.ilcarro.data.repos.implementations
 
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.CarProcessingAPI
-import com.example.ilcarro.data.api.UserProcessingAPI
 import com.example.ilcarro.data.dto.car.ui.CarUI
+import com.example.ilcarro.data.repos.interfaces.CarProcessingRepo
 import com.example.ilcarro.utils.Mapper
 import io.reactivex.Completable
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 @FragmentScope
-class CarProcessingRepoImpl @Inject constructor(): CarProcessingRepo {
+class CarProcessingRepoImpl @Inject constructor():
+    CarProcessingRepo {
 
     @Inject
     lateinit var mServiceRepo: ServiceRepoImpl

@@ -1,10 +1,14 @@
-package com.example.ilcarro.business
+package com.example.ilcarro.business.implementations
 
+import com.example.ilcarro.business.interfaces.CarProcessingUseCases
+import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.dto.car.ui.CarUI
-import com.example.ilcarro.data.repos.CarProcessingRepoImpl
+import com.example.ilcarro.data.repos.implementations.CarProcessingRepoImpl
 import javax.inject.Inject
 
-class CarProcessingUseCasesImpl @Inject constructor(): CarProcessingUseCases {
+@FragmentScope
+class CarProcessingUseCasesImpl @Inject constructor():
+    CarProcessingUseCases {
 
     @Inject
     lateinit var mCarProcessingRepo: CarProcessingRepoImpl

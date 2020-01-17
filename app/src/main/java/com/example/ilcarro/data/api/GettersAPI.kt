@@ -31,4 +31,7 @@ interface GettersAPI {
         @Header("Authorization") token: String?,
         @Query("serial_number") serialNumber: String
     ): Single<List<BookedPeriod>>
+
+    @GET("/car/best")
+    fun getBestBookedCars(): Single<List<Car>>
 }

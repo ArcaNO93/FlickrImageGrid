@@ -1,4 +1,4 @@
-package com.example.ilcarro.business
+package com.example.ilcarro.business.interfaces
 
 import com.example.ilcarro.data.dto.car.ui.CarUI
 import io.reactivex.Completable
