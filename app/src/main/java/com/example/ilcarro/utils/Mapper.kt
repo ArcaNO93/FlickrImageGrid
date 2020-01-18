@@ -1,6 +1,8 @@
 package com.example.ilcarro.utils
 
 import com.example.ilcarro.data.dto.car.AddCarRequest
+import com.example.ilcarro.data.dto.car.ui.CarSearchByCoordinatesUI
+import com.example.ilcarro.data.dto.car.ui.CarSearchUI
 import com.example.ilcarro.data.dto.car.ui.CarUI
 import com.example.ilcarro.data.dto.general.PersonWhoBooked
 import com.example.ilcarro.data.dto.general.ReservationRequest
@@ -59,5 +61,30 @@ class Mapper {
                     phone = reservation.phone
                 )
             )
+
+        fun mapCarSearchUI(carSearch: CarSearchUI) =
+            mapOf(
+                "city" to carSearch.city,
+                "start_date" to carSearch.startDate,
+                "end_date" to carSearch.endDate,
+                "min_amount" to carSearch.minAmount,
+                "max_amount" to carSearch.maxAmount
+            )
+
+        fun mapCarSearchByCoordinatesUI(carSearch: CarSearchByCoordinatesUI) =
+            mapOf(
+                "latitude" to carSearch.latitude,
+                "longitude" to carSearch.longitude,
+                "radius" to carSearch.radius
+            )
+
+        inline fun <reified T: Any> map(carSearch: T, clazz: T): Map<String, Any> {
+            var res = emptyMap<String, Any>()
+            when(clazz::class) {
+                CarSearchUI::class -> res = mapCarSearchUI(carSearch as CarSearchUI)
+                CarSearchByCoordinatesUI::class -> res = mapCarSearchByCoordinatesUI(carSearch as CarSearchByCoordinatesUI)
+            }
+            return res
+        }
     }
 }

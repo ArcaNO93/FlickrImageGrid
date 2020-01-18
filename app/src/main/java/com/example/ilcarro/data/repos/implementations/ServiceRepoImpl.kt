@@ -8,8 +8,7 @@ import okhttp3.Credentials
 import javax.inject.Inject
 
 @FragmentScope
-class ServiceRepoImpl @Inject constructor() :
-    ServiceRepo {
+class ServiceRepoImpl @Inject constructor() : ServiceRepo {
 
     @Inject
     lateinit var mService: SharedPreferences

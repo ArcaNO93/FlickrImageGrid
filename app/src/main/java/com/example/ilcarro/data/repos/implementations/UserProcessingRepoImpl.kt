@@ -14,15 +14,16 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @FragmentScope
-class UserProcessingRepoImpl @Inject constructor() :
-    UserProcessingRepo {
+class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     @Inject
     lateinit var mServiceRepo: ServiceRepoImpl
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service = mRetrofit.create(UserProcessingAPI::class.java)
+    private val service: UserProcessingAPI by lazy {
+        mRetrofit.create(UserProcessingAPI::class.java)
+    }
 
     override fun registerUser(user: RegisterUserUI): Completable {
         val token = Credentials.basic(user.login, user.password)

@@ -2,7 +2,7 @@ package com.example.ilcarro.data.dto.car
 
 import com.google.gson.annotations.SerializedName
 
-data class SearchCarsResponce(
+data class SearchCarsResponse(
     @SerializedName("current_page")
     val currentPage: Int,
     @SerializedName("items_on_page")

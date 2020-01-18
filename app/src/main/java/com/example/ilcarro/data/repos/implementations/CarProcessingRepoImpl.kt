@@ -10,15 +10,17 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @FragmentScope
-class CarProcessingRepoImpl @Inject constructor():
-    CarProcessingRepo {
+class CarProcessingRepoImpl @Inject constructor(): CarProcessingRepo {
 
     @Inject
     lateinit var mServiceRepo: ServiceRepoImpl
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service = mRetrofit.create(CarProcessingAPI::class.java)
+    private val service: CarProcessingAPI by lazy {
+        mRetrofit.create(CarProcessingAPI::class.java)
+    }
+
     private val token = mServiceRepo.getToken()
 
     override fun addCar(newCar: CarUI) =

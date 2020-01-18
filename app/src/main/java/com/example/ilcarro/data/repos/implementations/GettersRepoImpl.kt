@@ -8,15 +8,17 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @FragmentScope
-class GettersRepoImpl @Inject constructor():
-    GettersRepo {
+class GettersRepoImpl @Inject constructor(): GettersRepo {
 
     @Inject
     lateinit var mServiceRepo: ServiceRepoImpl
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service = mRetrofit.create(GettersAPI::class.java)
+    private val service: GettersAPI by lazy {
+        mRetrofit.create(GettersAPI::class.java)
+    }
+
     private val token = mServiceRepo.getToken()
 
     override fun getCarById(car: CarUI) =

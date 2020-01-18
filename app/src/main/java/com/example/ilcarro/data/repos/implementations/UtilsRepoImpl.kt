@@ -17,7 +17,10 @@ class UtilsRepoImpl @Inject constructor(): UtilsRepo {
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service = mRetrofit.create(UtilsAPI::class.java)
+    private val service: UtilsAPI by lazy {
+        mRetrofit.create(UtilsAPI::class.java)
+    }
+
     private val token = mServiceRepo.getToken()
 
     override fun makeReservation(car: CarUI, reservation: ReservationUI) =

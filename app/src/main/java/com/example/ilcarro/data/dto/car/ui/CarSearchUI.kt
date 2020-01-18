@@ -1,6 +1,10 @@
 package com.example.ilcarro.data.dto.car.ui
 
-data class CarSearchUI (
+import com.example.ilcarro.dagger.scopes.FragmentScope
+import javax.inject.Inject
+
+@FragmentScope
+data class CarSearchUI @Inject constructor(
     var city: String,
     var startDate: String,
     var endDate: String,

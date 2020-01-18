@@ -7,8 +7,7 @@ import com.example.ilcarro.data.repos.implementations.CarProcessingRepoImpl
 import javax.inject.Inject
 
 @FragmentScope
-class CarProcessingUseCasesImpl @Inject constructor():
-    CarProcessingUseCases {
+class CarProcessingUseCasesImpl @Inject constructor(): CarProcessingUseCases {
 
     @Inject
     lateinit var mCarProcessingRepo: CarProcessingRepoImpl

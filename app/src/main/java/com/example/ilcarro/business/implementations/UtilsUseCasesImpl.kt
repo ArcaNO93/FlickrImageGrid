@@ -12,10 +12,7 @@ class UtilsUseCasesImpl @Inject constructor(): UtilsUseCases {
 
     @Inject
     lateinit var mUtilsRepo: UtilsRepoImpl
-    override fun makeReservation(
-        car: CarUI,
-        reservation: ReservationUI
-    ) =
+    override fun makeReservation(car: CarUI, reservation: ReservationUI) =
         mUtilsRepo.makeReservation(car, reservation)
 
     override fun latestComments() =

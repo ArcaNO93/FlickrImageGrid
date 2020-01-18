@@ -10,8 +10,7 @@ import io.reactivex.Completable
 import javax.inject.Inject
 
 @FragmentScope
-class UserProcessingUseCasesImpl @Inject constructor() :
-    UserProcessingUseCases {
+class UserProcessingUseCasesImpl @Inject constructor() : UserProcessingUseCases {
 
     @Inject
     lateinit var mUserProcessingRepo: UserProcessingRepoImpl

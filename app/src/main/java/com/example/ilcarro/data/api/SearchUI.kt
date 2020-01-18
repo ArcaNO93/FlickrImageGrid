@@ -1,23 +1,20 @@
 package com.example.ilcarro.data.api
 
-import com.example.ilcarro.data.dto.car.SearchCarsResponce
+import com.example.ilcarro.data.dto.car.SearchCarsResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.QueryMap
 
 interface SearchUI {
 
     @GET("/search")
     fun carsSearch(
-        @Query("city") city: String,
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-        @Query("min_amount") minAmount: String,
-        @Query("max_amount") maxAmount: String,
+        @QueryMap filters: Map<String, Any>,
         @Query("ascending") ascending: Boolean,
         @Query("items_on_page") itemsOnPage: Int,
         @Query("current_page") currentPage: Int
-    ) : Single<SearchCarsResponce>
+    ) : Single<SearchCarsResponse>
 
     @GET("/search/geo")
     fun carsSearchsByCoordinates(
@@ -26,7 +23,7 @@ interface SearchUI {
         @Query("radius") radius: Float,
         @Query("items_on_page") itemsOnPage: Int,
         @Query("current_page") currentPage: Int
-    ): Single<SearchCarsResponce>
+    ): Single<SearchCarsResponse>
 
     @GET("/search/filters")
     fun carsSearchByFilters(
@@ -39,7 +36,7 @@ interface SearchUI {
         @Query("wheels_drive") wheelsDrive: String,
         @Query("items_on_page") itemsOnPage: Int,
         @Query("current_page") currentPage: Int
-    ): Single<SearchCarsResponce>
+    ): Single<SearchCarsResponse>
 
     @GET("/search/all")
     fun bigSearch(
@@ -60,5 +57,5 @@ interface SearchUI {
         @Query("min_amount") min_amount: String,
         @Query("max_amount") max_amount: String,
         @Query("ascending") ascending: String
-    ): Single<SearchCarsResponce>
+    ): Single<SearchCarsResponse>
 }
