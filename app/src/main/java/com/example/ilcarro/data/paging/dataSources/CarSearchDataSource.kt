@@ -1,15 +1,15 @@
-package com.example.ilcarro.data.paging
+package com.example.ilcarro.data.paging.dataSources
 
 import androidx.paging.PageKeyedDataSource
 import com.example.ilcarro.data.api.SearchUI
 import com.example.ilcarro.data.dto.car.Car
+import com.example.ilcarro.data.dto.car.ui.CarSearchUI
 import com.example.ilcarro.utils.Mapper
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
-import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
 
-class CarSearchDataSource<T: Any> @Inject constructor(val mCarSearch: T): PageKeyedDataSource<Int, Car>() {
+class CarSearchDataSource @Inject constructor(val mCarSearch: CarSearchUI): PageKeyedDataSource<Int, Car>() {
 
     private val ITEMS_ON_PAGE = 10
     private val FIRST_PAGE = 1
@@ -25,7 +25,7 @@ class CarSearchDataSource<T: Any> @Inject constructor(val mCarSearch: T): PageKe
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Car>) {
         CompositeDisposable().add(
             service.carsSearch(
-                Mapper.map(mCarSearch, getCarSearchClass()),
+                Mapper.mapCarSearchUI(mCarSearch),
                 true,
                 ITEMS_ON_PAGE,
                 FIRST_PAGE
@@ -40,7 +40,7 @@ class CarSearchDataSource<T: Any> @Inject constructor(val mCarSearch: T): PageKe
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Car>) {
         CompositeDisposable().add(
             service.carsSearch(
-                Mapper.map(mCarSearch, getCarSearchClass()),
+                Mapper.mapCarSearchUI(mCarSearch),
                 true,
                 ITEMS_ON_PAGE,
                 params.key
@@ -55,11 +55,5 @@ class CarSearchDataSource<T: Any> @Inject constructor(val mCarSearch: T): PageKe
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Car>) {
         //TODO: will be realised if needed
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun getCarSearchClass(): Class<T> {
-        val type = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0]
-        return type as Class<T>
     }
 }

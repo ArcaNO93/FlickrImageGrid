@@ -1,9 +1,7 @@
 package com.example.ilcarro.utils
 
 import com.example.ilcarro.data.dto.car.AddCarRequest
-import com.example.ilcarro.data.dto.car.ui.CarSearchByCoordinatesUI
-import com.example.ilcarro.data.dto.car.ui.CarSearchUI
-import com.example.ilcarro.data.dto.car.ui.CarUI
+import com.example.ilcarro.data.dto.car.ui.*
 import com.example.ilcarro.data.dto.general.PersonWhoBooked
 import com.example.ilcarro.data.dto.general.ReservationRequest
 import com.example.ilcarro.data.dto.general.ReservationUI
@@ -78,13 +76,32 @@ class Mapper {
                 "radius" to carSearch.radius
             )
 
-        inline fun <reified T: Any> map(carSearch: T, clazz: T): Map<String, Any> {
-            var res = emptyMap<String, Any>()
-            when(clazz::class) {
-                CarSearchUI::class -> res = mapCarSearchUI(carSearch as CarSearchUI)
-                CarSearchByCoordinatesUI::class -> res = mapCarSearchByCoordinatesUI(carSearch as CarSearchByCoordinatesUI)
-            }
-            return res
-        }
+        fun mapCarSearchByFiltersUI(carSearch: CarSearchByFiltersUI) =
+            mapOf(
+                "make" to carSearch.make,
+                "model" to carSearch.model,
+                "year" to carSearch.year,
+                "engine" to carSearch.engine,
+                "fuel" to carSearch.fuel,
+                "gear" to carSearch.gear,
+                "wheels_drive" to carSearch.wheelsDrive
+            )
+
+        fun mapCarBigSearch(carSearch: CarBigSearchUI) =
+            mapOf(
+                "make" to carSearch.make,
+                "model" to carSearch.model,
+                "wheels_drive" to carSearch.wheelsDrive,
+                "fuel" to carSearch.fuel,
+                "gear" to carSearch.gear,
+                "engine" to carSearch.engine,
+                "latitude" to carSearch.latitude,
+                "longitude" to carSearch.longitude,
+                "radius" to carSearch.radius,
+                "startDate" to carSearch.startDate,
+                "endDate" to carSearch.endDate,
+                "minAmount" to carSearch.minAmount,
+                "maxAmount" to carSearch.maxAmount
+            )
     }
 }
