@@ -1,5 +1,6 @@
 package com.example.ilcarro.data.paging.factories
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.example.ilcarro.dagger.scopes.FragmentScope
@@ -18,4 +19,6 @@ class CarBigSearchFactory @Inject constructor(val mCarSearch: CarBigSearchUI): D
         dataSourceLive.postValue(dataSource)
         return dataSource
     }
+
+    fun getDataSourceLive() = dataSourceLive as LiveData<CarBigSearchDataSource>
 }

@@ -1,13 +1,14 @@
 package com.example.ilcarro.utils
 
 class Event<out T>(private val content: T) {
+
     var isHandled = false
         private set
 
     fun getContentIfNotHandled(): T? {
-        return if(isHandled) {
+        return if(isHandled)
             null
-        } else {
+         else {
             isHandled = true
             content
         }

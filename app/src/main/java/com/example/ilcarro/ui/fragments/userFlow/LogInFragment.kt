@@ -25,7 +25,6 @@ class LogInFragment @Inject constructor() : BaseFragment<LogInViewModel, Fragmen
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        activity?.actionBar?.hide()
         mBinding.logInViewModel = mViewModel
         mBinding.loginUser = LoginUserUI("", "")
 

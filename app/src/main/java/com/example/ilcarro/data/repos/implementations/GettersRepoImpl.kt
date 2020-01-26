@@ -15,25 +15,25 @@ class GettersRepoImpl @Inject constructor(): GettersRepo {
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service: GettersAPI by lazy {
+    private val mService by lazy {
         mRetrofit.create(GettersAPI::class.java)
     }
 
     private val token = mServiceRepo.getToken()
 
     override fun getCarById(car: CarUI) =
-        service.getCarById(token, car.serialNumber)
+        mService.getCarById(token, car.serialNumber)
 
     override fun getOwnerCars() =
-        service.getOwnerCars(token)
+        mService.getOwnerCars(token)
 
     override fun getOwnerCarById(car: CarUI) =
-        service.getOwnerCarById(token, car.serialNumber)
+        mService.getOwnerCarById(token, car.serialNumber)
 
     override fun getOwnerCarBookedPeriodsById(car: CarUI) =
-        service.getOwnerCarBookedPeriodsById(token, car.serialNumber)
+        mService.getOwnerCarBookedPeriodsById(token, car.serialNumber)
 
     override fun getBestBookedCars() =
-        service.getBestBookedCars()
+        mService.getBestBookedCars()
 }
 

@@ -21,7 +21,7 @@ class RegisterFragment @Inject constructor() : BaseFragment<RegisterViewModel, F
         mBinding.registerViewModel = mViewModel
         mBinding.newUser = RegisterUserUI("", "", "", "")
 
-        mViewModel.mRegisterComplete.observe(this, Observer{
+        mViewModel.mRegisterComplete.observe(this, Observer {
             showToast(it.toString())
         })
 

@@ -17,18 +17,18 @@ class CarProcessingRepoImpl @Inject constructor(): CarProcessingRepo {
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service: CarProcessingAPI by lazy {
+    private val mService by lazy {
         mRetrofit.create(CarProcessingAPI::class.java)
     }
 
     private val token = mServiceRepo.getToken()
 
     override fun addCar(newCar: CarUI) =
-        Completable.fromSingle(service.addCar(token, Mapper.toAddCarRequest(newCar)))
+        Completable.fromSingle(mService.addCar(token, Mapper.toAddCarRequest(newCar)))
 
     override fun updateCar(car: CarUI) =
-        Completable.fromSingle(service.updateCar(token, car.serialNumber, Mapper.toAddCarRequest(car)))
+        Completable.fromSingle(mService.updateCar(token, car.serialNumber, Mapper.toAddCarRequest(car)))
 
     override fun deleteCar(car: CarUI) =
-        service.deleteCar(token, car.serialNumber)
+        mService.deleteCar(token, car.serialNumber)
 }

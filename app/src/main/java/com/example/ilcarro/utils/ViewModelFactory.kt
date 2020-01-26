@@ -2,15 +2,12 @@ package com.example.ilcarro.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.ilcarro.dagger.scopes.FragmentScope
-import com.example.ilcarro.dagger.scopes.GlobalScope
 import java.lang.Exception
 import java.lang.IllegalArgumentException
 import java.lang.RuntimeException
 
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory @Inject constructor (

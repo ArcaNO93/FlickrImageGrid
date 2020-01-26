@@ -26,7 +26,7 @@ class AppModule {
     fun provideRetrofit() : Retrofit =
         Retrofit
             .Builder()
-            .baseUrl("https://rent-cars-app.herokuapp.com")
+            .baseUrl("https://java-3-ilcarro-team-a.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(OkHttpClient()

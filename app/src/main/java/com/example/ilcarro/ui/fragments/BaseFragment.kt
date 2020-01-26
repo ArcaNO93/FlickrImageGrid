@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
-import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import java.lang.reflect.ParameterizedType

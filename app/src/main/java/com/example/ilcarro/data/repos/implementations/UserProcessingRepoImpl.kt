@@ -21,13 +21,13 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     @Inject
     lateinit var mRetrofit: Retrofit
-    private val service: UserProcessingAPI by lazy {
+    private val mService by lazy {
         mRetrofit.create(UserProcessingAPI::class.java)
     }
 
     override fun registerUser(user: RegisterUserUI): Completable {
         val token = Credentials.basic(user.login, user.password)
-        return Completable.fromSingle(service.registerUser(token, Mapper.toRegisterUserRequest(user))
+        return Completable.fromSingle(mService.registerUser(token, Mapper.toRegisterUserRequest(user))
             .doOnSuccess {
                 mServiceRepo.saveToken(token)
             })
@@ -35,7 +35,7 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     override fun loginUser(user: LoginUserUI): Completable {
         val token = Credentials.basic(user.login, user.password)
-        return Completable.fromSingle(service.loginUser(token)
+        return Completable.fromSingle(mService.loginUser(token)
             .doOnSuccess {
                 mServiceRepo.saveToken(token)
                 mServiceRepo.saveIsLogged(true)
@@ -44,7 +44,7 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     override fun updateUser(user: UpdateUserUI) =
         Completable.fromSingle(
-            service.updateUser(
+            mService.updateUser(
                 mServiceRepo.getToken(),
                 Base64.encodeToString(user.newPassword.toByteArray(), Base64.NO_WRAP),
                 Mapper.toUpdateUserRequest(user)
@@ -53,5 +53,5 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
             }
         )
 
-    override fun deleteUser() = service.deleteUser(mServiceRepo.getToken())
+    override fun deleteUser() = mService.deleteUser(mServiceRepo.getToken())
 }

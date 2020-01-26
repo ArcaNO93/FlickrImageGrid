@@ -21,6 +21,6 @@ import dagger.android.support.AndroidSupportInjectionModule
 @GlobalScope
 interface AppComponent : AndroidInjector<ComponentProvider> {
 
-    @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<ComponentProvider>()
+    @Component.Factory
+    abstract class Builder : AndroidInjector.Factory<ComponentProvider>
 }

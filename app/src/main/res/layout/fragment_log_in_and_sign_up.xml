@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/sign_up_button"
             style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="0dp"
@@ -43,7 +43,7 @@
             app:layout_constraintStart_toStartOf="@+id/log_in_and_sign_up_welcome_text"
             app:layout_constraintTop_toBottomOf="@+id/log_in_and_sign_up_welcome_text" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/log_in_button"
             style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="0dp"

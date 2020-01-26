@@ -1,10 +1,14 @@
 package com.example.ilcarro.data.paging.dataSources
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.example.ilcarro.data.api.SearchUI
 import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.CarSearchByCoordinatesUI
 import com.example.ilcarro.utils.Mapper
+import com.example.ilcarro.utils.NetworkState
+import com.example.ilcarro.utils.ResponseHandler
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -20,9 +24,12 @@ class CarSearchByCoordinatesDataSource @Inject constructor(val mCarSearch: CarSe
         mRetrofit.create(SearchUI::class.java)
     }
 
-    //TODO networkState
+    private val networkState = MutableLiveData<NetworkState>()
+
+    fun getNetworkState(): LiveData<NetworkState> = networkState
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Car>) {
+        networkState.postValue(NetworkState.LOADING)
         CompositeDisposable().add(
             service.carsSearchByCoordinates(
                 Mapper.mapCarSearchByCoordinatesUI(mCarSearch),
@@ -30,13 +37,15 @@ class CarSearchByCoordinatesDataSource @Inject constructor(val mCarSearch: CarSe
                 FIRST_PAGE
             ).subscribe({
                 callback.onResult(it.cars, null, FIRST_PAGE + 1)
+                networkState.postValue(NetworkState.LOADED)
             }, {
-                //TODO error handle
+                handleError(it)
             })
         )
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Car>) {
+        networkState.postValue(NetworkState.LOADING)
         CompositeDisposable().add(
             service.carsSearchByCoordinates(
                 Mapper.mapCarSearchByCoordinatesUI(mCarSearch),
@@ -44,14 +53,17 @@ class CarSearchByCoordinatesDataSource @Inject constructor(val mCarSearch: CarSe
                 params.key
             ).subscribe({
                 callback.onResult(it.cars, params.key + 1)
+                networkState.postValue(NetworkState.LOADED)
             }, {
-                //TODO handle error
-            }
-            )
+                handleError(it)
+            })
         )
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Car>) {
         //TODO: will be realised if needed
     }
+
+    private fun handleError(exception: Throwable) =
+        networkState.postValue(NetworkState.fail(ResponseHandler.parseException(exception)))
 }
