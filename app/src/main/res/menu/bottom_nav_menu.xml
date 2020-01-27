@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_icon_home"
+        android:title="@string/title_home" />
+
+    <item
         android:id="@+id/searchFragment"
-        android:icon="@drawable/ic_search_24dp"
+        android:icon="@drawable/ic_icon_search"
         android:title="@string/title_search" />
 
     <item
-        android:id="@+id/tripsFragment"
-        android:icon="@drawable/ic_trips_24dp"
-        android:title="@string/title_trips" />
-
-    <item
-        android:id="@+id/hostFragment"
-        android:icon="@drawable/ic_host_24dp"
-        android:title="@string/title_host" />
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/ic_icon_favorites"
+        android:title="@string/title_favorites" />
 
     <item
         android:id="@+id/profileFragment"
-        android:icon="@drawable/ic_profile_24dp"
+        android:icon="@drawable/ic_icon_profile"
         android:title="@string/title_profile" />
 
 </menu>

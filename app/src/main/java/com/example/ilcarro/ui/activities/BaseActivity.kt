@@ -1,12 +1,11 @@
 package com.example.ilcarro.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ilcarro.utils.ViewModelFactory
 import dagger.android.support.DaggerAppCompatActivity
 import java.lang.reflect.ParameterizedType
@@ -24,7 +23,7 @@ abstract class BaseActivity<VM : ViewModel, DB: ViewDataBinding> : DaggerAppComp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(getViewModelClass())
+        mViewModel = ViewModelProvider(this, mViewModelFactory).get(getViewModelClass())
         mBinding = DataBindingUtil.setContentView(this, getLayoutResID())
     }
 

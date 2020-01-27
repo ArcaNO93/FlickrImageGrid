@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @FragmentScope
-class HostViewModel @Inject constructor() : ViewModel() {
+class FavoritesViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var mUserProcessingUseCases: UserProcessingUseCasesImpl

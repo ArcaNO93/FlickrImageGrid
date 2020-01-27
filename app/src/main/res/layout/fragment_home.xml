@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.mainFlow.SearchFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/home_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/find_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/find_form_main_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="@string/find_form_text_main"
+                        android:textColor="@color/colorRed"
+                        android:textSize="35sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/find_form_text_below"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/find_form_text_below"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="@+id/find_form_main_text"
+                        app:layout_constraintTop_toBottomOf="@+id/find_form_main_text" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/find_form_location_input_layout"
+                        style="@style/CustomOutlinedMaterialBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="@string/find_form_location_hint_text"
+                        app:layout_constraintStart_toStartOf="@id/find_form_text_below"
+                        app:layout_constraintTop_toBottomOf="@+id/find_form_text_below">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/location_enter"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/find_form_from_input_layout"
+                        style="@style/CustomOutlinedMaterialBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="@string/find_form_from_hint_text"
+                        app:layout_constraintStart_toStartOf="@id/find_form_location_input_layout"
+                        app:layout_constraintTop_toBottomOf="@+id/find_form_location_input_layout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/from_enter"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/find_till_from_input_layout"
+                        style="@style/CustomOutlinedMaterialBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="@string/find_form_till_hint_text"
+                        app:layout_constraintStart_toStartOf="@id/find_form_from_input_layout"
+                        app:layout_constraintTop_toBottomOf="@+id/find_form_from_input_layout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/till_enter"
+                            android:layout_width="match_parent"
+                            android:layout_height="65dp"
+                            android:inputType="text"
+                            android:imeOptions="actionDone"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/CustomMaterialButton"
+                        android:layout_width="250dp"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/yalla_button_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/find_till_from_input_layout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/top_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:nestedScrollingEnabled="true"/>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

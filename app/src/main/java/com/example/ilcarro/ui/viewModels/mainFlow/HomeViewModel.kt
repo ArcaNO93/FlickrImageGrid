@@ -5,4 +5,4 @@ import com.example.ilcarro.dagger.scopes.FragmentScope
 import javax.inject.Inject
 
 @FragmentScope
-class SearchViewModel @Inject constructor() : ViewModel()
+class HomeViewModel @Inject constructor() : ViewModel()

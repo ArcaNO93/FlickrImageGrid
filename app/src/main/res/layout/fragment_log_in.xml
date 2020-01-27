@@ -72,11 +72,10 @@
 
         <Button
             android:id="@+id/log_in_button"
-            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/log_in_button_text"
+            android:text="@string/yalla_button_text"
             android:onClick="@{() -> logInViewModel.loginUser(loginUser)}"
             app:layout_constraintStart_toStartOf="@+id/log_in_password"
             app:layout_constraintTop_toBottomOf="@+id/log_in_password" />
