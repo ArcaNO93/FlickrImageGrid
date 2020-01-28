@@ -32,4 +32,6 @@
     <string name="find_form_from_hint_text">From</string>
     <string name="find_form_till_hint_text">Till</string>
 
+    <string name="most_popular_choices">MOST POPULAR CHOICES\nIN YOUR AREA</string>
+
 </resources>

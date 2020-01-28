@@ -20,7 +20,7 @@ class ProfileFragment :BaseFragment<ProfileViewModel, FragmentProfileBinding>() 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        context?.theme?.applyStyle(R.style.colorControlHighlight_white, true)
+        //context?.theme?.applyStyle(R.style.colorControlHighlight_white, true)
         activity?.actionBar?.hide()
 
         mBinding.viewModel = mViewModel
