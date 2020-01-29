@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.ilcarro.dagger.scopes.GlobalScope
 import com.example.ilcarro.utils.ComponentProvider
+import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -23,7 +24,7 @@ class AppModule {
 
     @Provides
     @GlobalScope
-    fun provideRetrofit() : Retrofit =
+    fun provideRetrofit(): Retrofit =
         Retrofit
             .Builder()
             .baseUrl("https://java-3-ilcarro-team-a.herokuapp.com/")

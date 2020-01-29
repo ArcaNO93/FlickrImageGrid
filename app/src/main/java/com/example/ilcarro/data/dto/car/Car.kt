@@ -1,9 +1,6 @@
 package com.example.ilcarro.data.dto.car
 
-import com.example.ilcarro.data.dto.general.BookedPeriod
-import com.example.ilcarro.data.dto.general.CarOwner
-import com.example.ilcarro.data.dto.general.PickUpPlace
-import com.example.ilcarro.data.dto.general.Statistics
+import com.example.ilcarro.data.dto.general.*
 import com.google.gson.annotations.SerializedName
 
 data class Car(
@@ -34,11 +31,11 @@ data class Car(
     @SerializedName("fuel_consumption")
     val fuelConsumption: Float,
     @SerializedName("features")
-    val features: List<String>,
+    val features: List<Features>,
     @SerializedName("car_class")
     val carClass: String,
     @SerializedName("price_per_day")
-    val pricePerDay: Float,
+    val pricePerDay: PricePerDay,
     @SerializedName("distance_included")
     val distanceIncluded: Float,
     @SerializedName("about")

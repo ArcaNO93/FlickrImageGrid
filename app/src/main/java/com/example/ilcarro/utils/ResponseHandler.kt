@@ -8,7 +8,7 @@ object ResponseHandler {
         when (exception) {
             is HttpException -> parseHttpResponse(exception.code())
             is IOException -> "Network error"
-            else -> "Unknown error"
+            else -> exception.message
         }
 
     private fun parseHttpResponse(response: Int) =
@@ -18,6 +18,6 @@ object ResponseHandler {
             403 -> "Forbidden"
             404 -> "Not found"
             409 -> "Conflict"
-            else -> "Unknown error"
+            else -> response.toString()
         }
 }

@@ -34,4 +34,6 @@
 
     <string name="most_popular_choices">MOST POPULAR CHOICES\nIN YOUR AREA</string>
 
+    <string name="price_additional_text">\u20AA\\day</string>
+
 </resources>

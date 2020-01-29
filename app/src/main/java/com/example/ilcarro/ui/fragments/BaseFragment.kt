@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -42,4 +43,12 @@ abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment
     }
 
     fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
+    fun showProgressBar(progressBar: ProgressBar) {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    fun hideProgressBar(progressBar: ProgressBar) {
+        progressBar.visibility = View.GONE
+    }
 }

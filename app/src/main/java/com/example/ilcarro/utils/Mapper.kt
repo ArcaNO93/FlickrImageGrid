@@ -1,6 +1,7 @@
 package com.example.ilcarro.utils
 
 import com.example.ilcarro.data.dto.car.AddCarRequest
+import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.*
 import com.example.ilcarro.data.dto.general.PersonWhoBooked
 import com.example.ilcarro.data.dto.general.ReservationRequest
@@ -36,6 +37,7 @@ object Mapper {
             wheelsDrive = car.wheelsDrive,
             horsePower = car.horsePower,
             torque = car.torque,
+            doors = car.doors,
             seats = car.seats,
             fuelConsumption = car.fuelConsumption,
             features = car.features,
@@ -58,6 +60,16 @@ object Mapper {
                 phone = reservation.phone
             )
         )
+
+    fun toTopCarUI(car: Car) = TopCarUI(
+        serialNumber = car.serialNumber,
+        image = car.images[0],
+        carFullName = "${car.make} ${car.model} ${car.year}",
+        pricePerDay = car.pricePerDay.value,
+        seats = car.seats,
+        doors = car.doors,
+        gear = car.gear
+    )
 
     fun mapCarSearchUI(carSearch: CarSearchUI) =
         mapOf(

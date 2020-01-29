@@ -24,6 +24,8 @@ data class AddCarRequest(
     val horsePower: Int,
     @SerializedName("torque")
     val torque: Int,
+    @SerializedName("doors")
+    val doors: Int,
     @SerializedName("seats")
     val seats: Int,
     @SerializedName("fuel_consumption")

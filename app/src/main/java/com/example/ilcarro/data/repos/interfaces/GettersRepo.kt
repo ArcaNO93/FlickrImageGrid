@@ -2,6 +2,7 @@ package com.example.ilcarro.data.repos.interfaces
 
 import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.CarUI
+import com.example.ilcarro.data.dto.car.ui.TopCarUI
 import com.example.ilcarro.data.dto.general.BookedPeriod
 import io.reactivex.Single
 
@@ -10,5 +11,5 @@ interface GettersRepo {
     fun getOwnerCars(): Single<List<Car>>
     fun getOwnerCarById(car: CarUI): Single<Car>
     fun getOwnerCarBookedPeriodsById(car: CarUI): Single<List<BookedPeriod>>
-    fun getBestBookedCars(): Single<List<Car>>
+    fun getBestBookedCars(): Single<List<TopCarUI>>
 }

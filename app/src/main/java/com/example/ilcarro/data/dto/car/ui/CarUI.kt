@@ -13,6 +13,7 @@ data class CarUI(
     var wheelsDrive: String,
     var horsePower: Int,
     var torque: Int,
+    val doors: Int,
     var seats: Int,
     var fuelConsumption: Float,
     var features: List<String>,

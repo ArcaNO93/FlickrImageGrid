@@ -2,8 +2,12 @@ package com.example.ilcarro.data.repos.implementations
 
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.GettersAPI
+import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.CarUI
+import com.example.ilcarro.data.dto.car.ui.TopCarUI
 import com.example.ilcarro.data.repos.interfaces.GettersRepo
+import com.example.ilcarro.utils.Mapper
+import io.reactivex.Single
 import retrofit2.Retrofit
 import javax.inject.Inject
 
@@ -19,7 +23,9 @@ class GettersRepoImpl @Inject constructor(): GettersRepo {
         mRetrofit.create(GettersAPI::class.java)
     }
 
-    private val token = mServiceRepo.getToken()
+    private val token by lazy {
+        mServiceRepo.getToken()
+    }
 
     override fun getCarById(car: CarUI) =
         mService.getCarById(token, car.serialNumber)
@@ -34,6 +40,8 @@ class GettersRepoImpl @Inject constructor(): GettersRepo {
         mService.getOwnerCarBookedPeriodsById(token, car.serialNumber)
 
     override fun getBestBookedCars() =
-        mService.getBestBookedCars()
+        mService.getBestBookedCars().map { it ->
+            it.map { Mapper.toTopCarUI(it) }
+        }
 }
 
