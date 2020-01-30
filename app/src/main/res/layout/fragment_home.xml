@@ -138,7 +138,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/separator"/>
+                    android:background="@drawable/separator" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -156,14 +156,18 @@
                     android:layout_height="350dp"
                     android:layout_marginTop="24dp">
 
-                    <include
-                        android:id="@+id/fragment_home_progress_bar"
-                        layout="@layout/progress_bar"/>
-
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/top_three_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"/>
+
+                    <include
+                        android:id="@+id/progress_bar"
+                        layout="@layout/progress_bar"/>
+
+                    <include
+                        android:id="@+id/error_message_layout"
+                        layout="@layout/error_message" />
                 </FrameLayout>
 
             </LinearLayout>

@@ -40,5 +40,11 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/backAlpha50</item>
     </style>
+    
+    <style name="NavDrawer">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
 
 </resources>

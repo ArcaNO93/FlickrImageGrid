@@ -1,6 +1,5 @@
 package com.example.ilcarro.ui.fragments.mainFlow
 
-import ZoomOutPageTransformer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import com.example.ilcarro.adapters.TopThreeBookedCarsAdapter
 import com.example.ilcarro.databinding.FragmentHomeBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.HomeViewModel
+import com.example.ilcarro.utils.pageTransformers.DepthPageTransformer
 import com.example.ilcarro.utils.STATUS
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
@@ -18,22 +18,27 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val adapter = TopThreeBookedCarsAdapter()
-        mViewModel.getTopCars()
+        mViewModel.getTopCars() //TODO: call through liveData
         mBinding.topThreeList.adapter = adapter
-        mBinding.topThreeList.setPageTransformer(ZoomOutPageTransformer())
-        showProgressBar(mBinding.fragmentHomeProgressBar.progressBar)
+        mBinding.errorMessageLayout.viewModel = mViewModel
+        mBinding.topThreeList.setPageTransformer(DepthPageTransformer())
 
         mViewModel.mLoadingStatus.observe(viewLifecycleOwner, Observer {
-            mBinding.fragmentHomeProgressBar.progressBar.visibility = when(it.status) {
-                STATUS.LOADING -> View.VISIBLE
-                STATUS.LOADED -> View.GONE
-                STATUS.FAIL -> View.GONE
+            when(it.status) {
+                STATUS.LOADING -> showHideView(mBinding.progressBar.progressBarIcon, true)
+                STATUS.LOADED -> showHideView(mBinding.progressBar.progressBarIcon, false)
+                STATUS.FAIL -> showHideView(mBinding.progressBar.progressBarIcon, false)
             }
+        })
+
+        mViewModel.mErrorMessageShown.observe(viewLifecycleOwner, Observer {
+            showHideView(mBinding.errorMessageLayout.errorMessage, it)
         })
 
         mViewModel.mTopCars.observe(viewLifecycleOwner, Observer {
             adapter.setCars(it)
         })
+
         return mBinding.root
     }
 

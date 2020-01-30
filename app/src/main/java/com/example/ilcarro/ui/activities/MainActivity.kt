@@ -2,6 +2,7 @@ package com.example.ilcarro.ui.activities
 
 import android.os.Bundle
 import android.view.Menu
+import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -31,8 +32,6 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    override fun getLayoutResID(): Int = R.layout.activity_main
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search, menu)
         return super.onCreateOptionsMenu(menu)
@@ -41,4 +40,13 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    override fun onBackPressed() {
+        if(mBinding.drawer.isDrawerOpen(GravityCompat.START))
+            mBinding.drawer.closeDrawer(GravityCompat.START)
+        else
+            super.onBackPressed()
+    }
+
+    override fun getLayoutResID(): Int = R.layout.activity_main
 }

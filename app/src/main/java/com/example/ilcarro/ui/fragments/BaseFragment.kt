@@ -44,11 +44,10 @@ abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment
 
     fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 
-    fun showProgressBar(progressBar: ProgressBar) {
-        progressBar.visibility = View.VISIBLE
-    }
-
-    fun hideProgressBar(progressBar: ProgressBar) {
-        progressBar.visibility = View.GONE
+    fun <V : View> showHideView(view: V, visibility: Boolean) {
+        view.visibility = when (visibility) {
+            true -> View.VISIBLE
+            false -> View.GONE
+        }
     }
 }

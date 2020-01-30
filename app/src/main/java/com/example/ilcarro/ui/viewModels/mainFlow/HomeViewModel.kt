@@ -28,8 +28,18 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     val mTopCars: LiveData<List<TopCarUI>>
         get() = _mTopCars
 
+    private val _mErrorMessageShown = MutableLiveData<Boolean>()
+    val mErrorMessageShown: LiveData<Boolean>
+        get() = _mErrorMessageShown
+
+    init {
+        _mErrorMessageShown.postValue(false)
+    }
+
     @SuppressLint("CheckResult")
     fun getTopCars() {
+        if(_mErrorMessageShown.value == true)
+            _mErrorMessageShown.postValue(false)
         _mLoadingStatus.postValue(NetworkState.LOADING)
         mGettersUseCases.getBestBookedCars().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -39,6 +49,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             }, {
                 Log.d("tag", it.message)
                 _mLoadingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
+                _mErrorMessageShown.postValue(true)
         })
     }
 }

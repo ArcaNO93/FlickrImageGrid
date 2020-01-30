@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/searchFragment"
+        android:title="@string/menu_title_search"/>
+
+    <item
+        android:id="@+id/letTheCarWorkFragment"
+        android:title="@string/menu_title_let_the_car_work" />
+
+    <item
+        android:id="@+id/logInFragment"
+        android:title="@string/menu_title_log_in" />
+
+    <item
+        android:id="@+id/signUpFragment"
+        android:title="@string/menu_title_sign_up" />
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:title="@string/menu_title_favorites" />
+
+    <item
+        android:id="@+id/termsOfUseFragment"
+        android:title="@string/menu_title_terms_of_use" />
+
+</menu>

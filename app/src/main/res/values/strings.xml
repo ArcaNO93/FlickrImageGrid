@@ -5,10 +5,15 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="title_home">Home</string>
-    <string name="title_search">Search</string>
-    <string name="title_favorites">Favorites</string>
-    <string name="title_profile">Profile</string>
+    <string name="error_message">Error while downloading the data\nPress retry to try again</string>
+    <string name="retry_button_text">RETRY</string>
+    
+    <string name="menu_title_search">Search</string>
+    <string name="menu_title_let_the_car_work">Let the car work</string>
+    <string name="menu_title_log_in">Log in</string>
+    <string name="menu_title_sign_up">Sign up</string>
+    <string name="menu_title_favorites">Favorites</string>
+    <string name="menu_title_terms_of_use">Terms of use</string>
 
     <string name="profile_top_text">View Profile</string>
     <string name="profile_text">Log in or sign up</string>

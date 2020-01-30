@@ -18,11 +18,12 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
+            app:itemTextAppearance="@style/NavDrawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:menu="@menu/bottom_nav_menu"/>
+            app:menu="@menu/main_menu"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
