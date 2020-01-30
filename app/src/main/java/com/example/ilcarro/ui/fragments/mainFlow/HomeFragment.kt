@@ -1,7 +1,7 @@
 package com.example.ilcarro.ui.fragments.mainFlow
 
+import ZoomOutPageTransformer
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +20,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         val adapter = TopThreeBookedCarsAdapter()
         mViewModel.getTopCars()
         mBinding.topThreeList.adapter = adapter
+        mBinding.topThreeList.setPageTransformer(ZoomOutPageTransformer())
         showProgressBar(mBinding.fragmentHomeProgressBar.progressBar)
 
         mViewModel.mLoadingStatus.observe(viewLifecycleOwner, Observer {
