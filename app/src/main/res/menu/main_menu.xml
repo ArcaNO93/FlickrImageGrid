@@ -11,12 +11,8 @@
         android:title="@string/menu_title_let_the_car_work" />
 
     <item
-        android:id="@+id/logInFragment"
-        android:title="@string/menu_title_log_in" />
-
-    <item
-        android:id="@+id/signUpFragment"
-        android:title="@string/menu_title_sign_up" />
+        android:id="@+id/userControlActivity"
+        android:title="@string/get_started_welcome_text" />
 
     <item
         android:id="@+id/favoritesFragment"

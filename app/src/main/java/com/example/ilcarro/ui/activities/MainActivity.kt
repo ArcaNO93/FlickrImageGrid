@@ -27,7 +27,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
         supportActionBar?.setDisplayShowTitleEnabled(false)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment, R.id.searchFragment, R.id.favoritesFragment, R.id.profileFragment
+                R.id.homeFragment, R.id.searchFragment, R.id.favoritesFragment
             ), mBinding.drawer)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }

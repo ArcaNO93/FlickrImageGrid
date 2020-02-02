@@ -2,7 +2,7 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -24,9 +24,10 @@
         <item name="android:fontFamily">@font/raleway_medium</item>
     </style>
 
-    <style name="CustomOutlinedMaterialBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
-        <item name="boxStrokeColor">@color/colorBlack</item>
-        <item name="boxStrokeWidth">1dp</item>
+    <style name="CustomWhiteOutlinedMaterialTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/colorWhite</item>
+        <item name="android:textColorHint">#FFFFFF</item>
+        <item name="hintTextColor">@color/colorWhite</item>
     </style>
 
     <style name="FullscreenTheme" parent="AppTheme">
@@ -42,7 +43,7 @@
     </style>
     
     <style name="NavDrawer">
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:fontFamily">@font/raleway_medium</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>

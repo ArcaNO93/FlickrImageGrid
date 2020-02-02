@@ -23,20 +23,6 @@
         android:label="@string/menu_title_favorites"
         tools:layout="@layout/fragment_favorites"/>
 
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.ilcarro.ui.fragments.mainFlow.ProfileFragment"
-        android:label="@string/menu_title_terms_of_use"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_to_user_control_activity"
-            app:destination="@id/userControlActivity"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-
     <activity
         android:id="@+id/userControlActivity"
         android:name="com.example.ilcarro.ui.activities.UserControlActivity"

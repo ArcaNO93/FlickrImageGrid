@@ -42,5 +42,5 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         return mBinding.root
     }
 
-    override fun getLayoutID(): Int  = R.layout.fragment_home
+    override fun getLayoutID()  = R.layout.fragment_home
 }

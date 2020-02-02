@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @FragmentScope
-class RegisterViewModel @Inject constructor() : ViewModel() {
+class SIgnUpViewModel @Inject constructor() : ViewModel() {
 
     @Inject
     lateinit var userProcessingUseCases: UserProcessingUseCasesImpl

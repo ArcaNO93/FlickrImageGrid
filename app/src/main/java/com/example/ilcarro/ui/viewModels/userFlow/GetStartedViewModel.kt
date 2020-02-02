@@ -8,10 +8,12 @@ import com.example.ilcarro.utils.Event
 import javax.inject.Inject
 
 @FragmentScope
-class LogInAndSignUpViewModel @Inject constructor() : ViewModel() {
-    private val destination = MutableLiveData<Event<Int>>()
-    fun getDestination(): LiveData<Event<Int>> = destination
+class GetStartedViewModel @Inject constructor() : ViewModel() {
+    private val _mNavigation = MutableLiveData<Event<Int>>()
+    val mNavigation: LiveData<Event<Int>>
+        get() = _mNavigation
+
     fun setNewDestination(destinationId: Int) {
-        destination.value = Event(destinationId)
+        _mNavigation.value = Event(destinationId)
     }
 }

@@ -10,17 +10,15 @@
     
     <string name="menu_title_search">Search</string>
     <string name="menu_title_let_the_car_work">Let the car work</string>
-    <string name="menu_title_log_in">Log in</string>
-    <string name="menu_title_sign_up">Sign up</string>
     <string name="menu_title_favorites">Favorites</string>
     <string name="menu_title_terms_of_use">Terms of use</string>
 
     <string name="profile_top_text">View Profile</string>
     <string name="profile_text">Log in or sign up</string>
 
-    <string name="log_in_and_sign_up_welcome_text">Start your journey</string>
-    <string name="log_in_and_sign_up_sign_up_button_text">Sign up</string>
-    <string name="log_in_and_sign_up_log_in_button_text">Log in</string>
+    <string name="get_started_welcome_text">Let\'s get started!</string>
+    <string name="to_sign_up_button_text">Sign up</string>
+    <string name="to_log_in_button_text">Log in</string>
 
     <string name="log_in_text">Log in</string>
     <string name="log_in_text_bottom">Type your data and hit Yalla!</string>

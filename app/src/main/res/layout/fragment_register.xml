@@ -7,14 +7,15 @@
             name="newUser"
             type="com.example.ilcarro.data.dto.user.ui.RegisterUserUI" />
         <variable
-            name="registerViewModel"
-            type="com.example.ilcarro.ui.viewModels.userFlow.RegisterViewModel" />
+            name="viewModel"
+            type="com.example.ilcarro.ui.viewModels.userFlow.SIgnUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.userFlow.RegisterFragment">
+        android:background="@color/colorPrimary"
+        tools:context=".ui.fragments.userFlow.SignUpFragment">
 
         <TextView
             android:id="@+id/sign_up_text"
@@ -22,10 +23,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="100dp"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="@font/raleway_black"
             android:text="@string/sign_up_text"
             android:textColor="@color/colorRed"
-            android:textSize="45sp"
+            android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,75 +41,111 @@
             app:layout_constraintStart_toStartOf="@+id/sign_up_text"
             app:layout_constraintTop_toBottomOf="@+id/sign_up_text" />
 
-        <EditText
-            android:id="@+id/sign_up_name"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:autofillHints=""
-            android:background="@drawable/rounded_white_shape"
-            android:ems="10"
-            android:inputType="textAutoComplete"
-            android:padding="8dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_name_field"
+            style="@style/CustomWhiteOutlinedMaterialTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/log_in_email_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_text_bottom">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_name_enter"
             android:text="@={newUser.firstName}"
             android:textColor="@color/colorWhite"
-            app:layout_constraintStart_toStartOf="@+id/sign_up_text_bottom"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_text_bottom" />
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:imeOptions="actionDone"
+            android:inputType="textWebEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/sign_up_last_name"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/rounded_white_shape"
-            android:ems="10"
-            android:inputType="textAutoComplete"
-            android:padding="8dp"
-            android:text="@={newUser.secondName}"
-            android:textColor="@color/colorWhite"
-            app:layout_constraintStart_toStartOf="@+id/sign_up_name"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_name" />
-
-        <EditText
-            android:id="@+id/sign_up_email"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/rounded_white_shape"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:padding="8dp"
-            android:textColor="@color/colorWhite"
-            android:text="@={newUser.login}"
-            app:layout_constraintStart_toStartOf="@+id/sign_up_last_name"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_last_name" />
-
-        <EditText
-            android:id="@+id/sign_up_password"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints=""
-            android:background="@drawable/rounded_white_shape"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textColor="@color/colorWhite"
-            android:text="@={newUser.password}"
-            app:layout_constraintStart_toStartOf="@+id/sign_up_email"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_email" />
-
-        <Button
-            android:id="@+id/sign_up_button"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_last_name_field"
+            style="@style/CustomWhiteOutlinedMaterialTextInput"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/log_in_email_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_name_field">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_last_name_enter"
+                android:text="@={newUser.secondName}"
+                android:textColor="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:imeOptions="actionDone"
+                android:inputType="textWebEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_login_field"
+            style="@style/CustomWhiteOutlinedMaterialTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/log_in_email_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_last_name_field">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_login_enter"
+                android:text="@={newUser.login}"
+                android:textColor="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:imeOptions="actionDone"
+                android:inputType="textWebEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_password_field"
+            style="@style/CustomWhiteOutlinedMaterialTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/log_in_email_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_login_field">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_password_enter"
+                android:text="@={newUser.password}"
+                android:textColor="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:imeOptions="actionDone"
+                android:inputType="textWebEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sign_up_button"
+            style="@style/CustomMaterialButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_marginTop="32dp"
             android:text="@string/yalla_button_text"
-            android:onClick="@{() -> registerViewModel.registerUser(newUser)}"
-            app:layout_constraintStart_toStartOf="@+id/sign_up_password"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_password" />
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> viewModel.registerUser(newUser)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_password_field" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

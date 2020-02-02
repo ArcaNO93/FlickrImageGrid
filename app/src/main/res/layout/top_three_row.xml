@@ -12,18 +12,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-                android:id="@+id/car_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_gravity="top"
-                android:outlineProvider="background"
-                android:scaleType="fitXY"
-                android:src="@{car.image}"
-                app:errorImage="@{@drawable/rounded_shape}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/car_info"/>
+        android:id="@+id/car_image"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="top"
+        android:outlineProvider="background"
+        android:scaleType="fitXY"
+        android:src="@{car.image}"
+        app:errorImage="@{@drawable/no_car_picture}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/car_info"/>
     <LinearLayout
         android:id="@+id/car_info"
         android:layout_width="match_parent"
