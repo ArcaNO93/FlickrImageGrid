@@ -12,9 +12,8 @@ import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.databinding.FragmentHomeBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.HomeViewModel
-import com.example.ilcarro.utils.pageTransformers.DepthPageTransformer
 import com.example.ilcarro.utils.STATUS
-import javax.inject.Inject
+import com.example.ilcarro.utils.pageTransformers.DepthPageTransformer
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 

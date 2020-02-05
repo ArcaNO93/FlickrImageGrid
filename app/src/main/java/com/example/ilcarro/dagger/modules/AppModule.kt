@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.ilcarro.dagger.scopes.GlobalScope
 import com.example.ilcarro.utils.ComponentProvider
-import com.squareup.picasso.Picasso
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

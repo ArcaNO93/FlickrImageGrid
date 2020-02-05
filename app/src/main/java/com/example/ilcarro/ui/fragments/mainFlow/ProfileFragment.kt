@@ -4,18 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment
 import com.example.ilcarro.R
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.databinding.FragmentProfileBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.ProfileViewModel
-import com.example.ilcarro.utils.ViewModelFactory
-import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 @FragmentScope
 class ProfileFragment @Inject constructor() : BaseFragment<ProfileViewModel, FragmentProfileBinding>() {

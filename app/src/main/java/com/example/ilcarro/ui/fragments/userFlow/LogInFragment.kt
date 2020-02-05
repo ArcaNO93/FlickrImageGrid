@@ -1,8 +1,9 @@
 package com.example.ilcarro.ui.fragments.userFlow
 
 import android.os.Bundle
+import android.text.TextWatcher
+import android.text.Editable
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

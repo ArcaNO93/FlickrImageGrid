@@ -1,7 +1,7 @@
 package com.example.ilcarro.dagger.components
 
-import com.example.ilcarro.dagger.modules.providers.ActivityProvider
 import com.example.ilcarro.dagger.modules.AppModule
+import com.example.ilcarro.dagger.modules.providers.ActivityProvider
 import com.example.ilcarro.dagger.modules.providers.MainActivityFragmentsProvider
 import com.example.ilcarro.dagger.modules.providers.UserControlActivityFragmentsProvider
 import com.example.ilcarro.dagger.scopes.GlobalScope

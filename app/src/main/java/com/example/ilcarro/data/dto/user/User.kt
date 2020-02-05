@@ -1,8 +1,8 @@
 package com.example.ilcarro.data.dto.user
 
 import com.example.ilcarro.data.dto.car.BookedCar
-import com.example.ilcarro.data.dto.general.Comments
 import com.example.ilcarro.data.dto.car.Car
+import com.example.ilcarro.data.dto.general.Comments
 import com.google.gson.annotations.SerializedName
 
 data class User(

@@ -2,7 +2,9 @@ package com.example.ilcarro.utils;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+
 import androidx.databinding.BindingAdapter;
+
 import com.squareup.picasso.Picasso;
 
 public class ImageLoader {

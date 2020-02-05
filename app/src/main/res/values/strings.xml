@@ -7,7 +7,7 @@
 
     <string name="error_message">Error while downloading the data\nPress retry to try again</string>
     <string name="retry_button_text">RETRY</string>
-    
+
     <string name="menu_title_search">Search</string>
     <string name="menu_title_let_the_car_work">Let the car work</string>
     <string name="menu_title_profile">My profile</string>
@@ -48,5 +48,6 @@
     <string name="most_popular_choices">MOST POPULAR CHOICES\nIN YOUR AREA</string>
 
     <string name="price_additional_text">\u20AA\\day</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

@@ -22,6 +22,18 @@
         <item name="android:fontFamily">@font/raleway_medium</item>
     </style>
 
+    <style name="CustomButton.Left">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">25dp</item>
+        <item name="cornerSizeBottomLeft">25dp</item>
+    </style>
+
+    <style name="CustomButton.Right">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">25dp</item>
+        <item name="cornerSizeBottomRight">25dp</item>
+    </style>
+
     <style name="CustomWhiteOutlinedMaterialTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/colorWhite</item>
         <item name="android:textColorHint">#FFFFFF</item>
@@ -46,5 +58,9 @@
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:layout_marginTop">32dp</item>
     </style>
+
+    <style name="Corner">Corner</style>
+
+    <style name="CustomButton">CustomButton</style>
 
 </resources>

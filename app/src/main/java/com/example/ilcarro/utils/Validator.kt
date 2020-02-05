@@ -1,7 +1,5 @@
 package com.example.ilcarro.utils
 
-import java.lang.StringBuilder
-
 object Validator {
 
     var error: Throwable? = null

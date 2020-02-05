@@ -3,7 +3,6 @@ package com.example.ilcarro.data.api
 import com.example.ilcarro.data.dto.general.Comments
 import com.example.ilcarro.data.dto.general.ReservationRequest
 import com.example.ilcarro.data.dto.general.ReservationResponse
-import com.example.ilcarro.data.dto.general.ReservationUI
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*

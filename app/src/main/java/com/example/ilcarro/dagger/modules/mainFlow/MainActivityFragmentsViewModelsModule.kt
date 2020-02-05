@@ -4,10 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.dagger.scopes.ViewModelKeys
-import com.example.ilcarro.ui.viewModels.mainFlow.FavoritesViewModel
-import com.example.ilcarro.ui.viewModels.mainFlow.ProfileViewModel
-import com.example.ilcarro.ui.viewModels.mainFlow.HomeViewModel
-import com.example.ilcarro.ui.viewModels.mainFlow.SearchViewModel
+import com.example.ilcarro.ui.viewModels.mainFlow.*
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -38,4 +35,10 @@ abstract class MainActivityFragmentsViewModelsModule {
     @IntoMap
     @ViewModelKeys(SearchViewModel::class)
     internal abstract fun provideTripsViewModel(searchViewModel: SearchViewModel): ViewModel
+
+    @FragmentScope
+    @Binds
+    @IntoMap
+    @ViewModelKeys(MapsViewModel::class)
+    internal abstract fun provideMapsViewModel(mapsViewModel: MapsViewModel): ViewModel
 }
