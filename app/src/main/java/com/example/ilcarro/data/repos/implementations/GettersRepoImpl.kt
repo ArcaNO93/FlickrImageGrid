@@ -38,7 +38,7 @@ class GettersRepoImpl @Inject constructor(): GettersRepo {
 
     override fun getBestBookedCars() =
         mService.getBestBookedCars().map { it ->
-            it.map { Mapper.toTopCarUI(it) }
+            it.map { Mapper.toShowCarUI(it) }
         }
 }
 

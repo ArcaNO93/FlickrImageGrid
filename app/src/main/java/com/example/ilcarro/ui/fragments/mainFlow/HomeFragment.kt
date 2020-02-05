@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.example.ilcarro.R
-import com.example.ilcarro.adapters.TopThreeBookedCarsAdapter
+import com.example.ilcarro.adapters.CarsUIAdapter
 import com.example.ilcarro.databinding.FragmentHomeBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.HomeViewModel
@@ -17,7 +17,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val adapter = TopThreeBookedCarsAdapter()
+        val adapter = CarsUIAdapter()
         mViewModel.getTopCars()
         mBinding.topThreeList.adapter = adapter
         mBinding.errorMessageLayout.viewModel = mViewModel

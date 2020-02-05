@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.example.ilcarro.R
+import com.example.ilcarro.adapters.CarsUIAdapter
 import com.example.ilcarro.databinding.FragmentProfileBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.ProfileViewModel
@@ -19,8 +20,9 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
+        val adapter = CarsUIAdapter()
+        mBinding.ownedCars.adapter = adapter
         mBinding.viewModel = mViewModel
-
         mViewModel.getUserData()
 
         mViewModel.mUserDataLoadingStatus.observe(viewLifecycleOwner, Observer {
@@ -49,6 +51,10 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
 
         mViewModel.mUserData.observe(viewLifecycleOwner, Observer {
             mBinding.user = it
+            if(it.ownedCars.isEmpty())
+                showHideView(mBinding.noCarLayout.noCarsText, true)
+            else
+                adapter.setCars(it.ownedCars)
         })
 
         mViewModel.getDestination().observe(viewLifecycleOwner, Observer { it ->

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ilcarro.data.dto.car.ui.ShowCarUI
 import com.example.ilcarro.databinding.TopThreeRowBinding
 
-class TopThreeBookedCarsAdapter : RecyclerView.Adapter<TopThreeBookedCarsAdapter.TopThreeCarsViewHolder>() {
+class CarsUIAdapter : RecyclerView.Adapter<CarsUIAdapter.TopThreeCarsViewHolder>() {
 
     private var mCars: List<ShowCarUI> = listOf()
 

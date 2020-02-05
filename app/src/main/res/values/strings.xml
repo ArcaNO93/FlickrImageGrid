@@ -16,8 +16,12 @@
 
     <string name="profile_top_text">About you</string>
     <string name="profile_edit_info_button_text">Edit info</string>
+    <string name="profile_try_it_now_button_text">Try it now!</string>
     <string name="profile_log_out_button_text">Logout</string>
     <string name="profile_own_cars_text">Your cars</string>
+    <string name="profile_no_cars_text">You have no cars here yet\nAdd one!</string>
+    <string name="profile_rent_car_text_head">Want to rent your car?</string>
+    <string name="profile_rent_car_text_body">You can add your car to our website and start earning. You’ll earn up to 90% of the trip price.</string>
 
     <string name="get_started_welcome_text">Let\'s get started!</string>
     <string name="to_sign_up_button_text">Sign up</string>

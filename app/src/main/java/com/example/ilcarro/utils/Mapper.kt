@@ -63,7 +63,7 @@ object Mapper {
             )
         )
 
-    fun toTopCarUI(car: Car) = ShowCarUI(
+    fun toShowCarUI(car: Car) = ShowCarUI(
         serialNumber = car.serialNumber,
         image = car.images[0],
         carFullName = "${car.make} ${car.model} ${car.year}",
@@ -78,7 +78,9 @@ object Mapper {
         registrationDate = user.registrationDate,
         photo = user.photo,
         comments = user.comments,
-        ownedCars = user.ownedCars,
+        ownedCars = user.ownedCars.map {
+            toShowCarUI(it)
+        },
         bookedCars = user.bookedCars,
         history = user.history
     )
