@@ -1,6 +1,9 @@
 package com.example.ilcarro.ui.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.ViewTreeObserver
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -31,5 +34,9 @@ abstract class BaseActivity<VM : ViewModel, DB: ViewDataBinding> : DaggerAppComp
     private fun getViewModelClass(): Class<VM> {
         val type = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0]
         return type as Class<VM>
+    }
+
+    fun showHideMenuItems(menu: Menu, menuItem: Int, visible: Boolean) {
+        menu.findItem(menuItem).isVisible = visible
     }
 }

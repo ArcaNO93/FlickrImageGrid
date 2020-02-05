@@ -3,16 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
     <item
-        android:id="@+id/searchFragment"
-        android:title="@string/menu_title_search"/>
-
-    <item
         android:id="@+id/letTheCarWorkFragment"
         android:title="@string/menu_title_let_the_car_work" />
 
-    <item
-        android:id="@+id/userControlActivity"
-        android:title="@string/get_started_welcome_text" />
+    <item android:id="@+id/profileFragment"
+        android:title="@string/menu_title_profile" />
 
     <item
         android:id="@+id/favoritesFragment"

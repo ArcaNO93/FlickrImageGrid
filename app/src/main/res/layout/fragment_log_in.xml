@@ -11,97 +11,137 @@
             type="com.example.ilcarro.ui.viewModels.userFlow.LogInViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:focusable="true"
-        tools:context=".ui.fragments.userFlow.LogInFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/log_in_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/raleway_black"
-            android:text="@string/log_in_text"
-            android:textColor="@color/colorRed"
-            android:textSize="30sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/log_in_text_bottom"/>
-
-        <TextView
-            android:id="@+id/log_in_text_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway_medium"
-            android:text="@string/log_in_text_bottom"
-            android:textSize="14sp"
-            android:textColor="@color/colorWhite"
-            app:layout_constraintStart_toStartOf="@+id/log_in_text"
-            app:layout_constraintTop_toBottomOf="@+id/log_in_text" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/logIn_email_field"
-            style="@style/CustomWhiteOutlinedMaterialTextInput"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/log_in_email_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/log_in_text_bottom">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:focusable="true"
+            tools:context=".ui.fragments.userFlow.LogInFragment">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/logIn_email_enter"
-                android:text="@={loginUser.login}"
+            <TextView
+                android:id="@+id/log_in_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/raleway_black"
+                android:text="@string/log_in_text"
+                android:textColor="@color/colorRed"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/log_in_text_bottom"/>
+
+            <TextView
+                android:id="@+id/log_in_text_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_medium"
+                android:text="@string/log_in_text_bottom"
+                android:textSize="14sp"
                 android:textColor="@color/colorWhite"
+                app:layout_constraintStart_toStartOf="@+id/log_in_text"
+                app:layout_constraintTop_toBottomOf="@+id/log_in_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/logIn_email_field"
+                style="@style/CustomWhiteOutlinedMaterialTextInput"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:imeOptions="actionDone"
-                android:inputType="textWebEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/log_in_email_hint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/log_in_text_bottom">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/logIn_password_field"
-            style="@style/CustomWhiteOutlinedMaterialTextInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/log_in_password_hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logIn_email_field">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/logIn_email_enter"
+                    android:text="@={loginUser.login}"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:inputType="textWebEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/logIn_password_enter"
-                android:text="@={loginUser.password}"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/logIn_password_field"
+                style="@style/CustomWhiteOutlinedMaterialTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/log_in_password_hint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logIn_email_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/logIn_password_enter"
+                    android:text="@={loginUser.password}"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:imeOptions="actionDone"
+                    android:inputType="textWebPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_log_in"
+                style="@style/CustomMaterialButton"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/yalla_button_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/logIn_password_field"
+                app:layout_constraintTop_toBottomOf="@id/logIn_password_field"
+                android:onClick="@{() -> viewModel.loginUser(loginUser)}"/>
+
+            <TextView
+                android:id="@+id/log_in_forgot_pass_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/log_in_forgot_pass_text"
+                android:textSize="14sp"
+                android:fontFamily="@font/raleway"
                 android:textColor="@color/colorWhite"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:imeOptions="actionDone"
-                android:inputType="textWebPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintStart_toStartOf="@id/button_log_in"
+                app:layout_constraintTop_toBottomOf="@id/button_log_in"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_log_in"
-            style="@style/CustomMaterialButton"
+            <TextView
+                android:id="@+id/forgot_password_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/log_in_forgot_pass_link"
+                android:textColor="@color/colorWhite"
+                android:textColorLink="@color/colorWhite"
+                android:fontFamily="@font/raleway"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toEndOf="@id/log_in_forgot_pass_text"
+                app:layout_constraintTop_toBottomOf="@id/button_log_in" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/progress_bar"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/yalla_button_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/logIn_password_field"
-            app:layout_constraintTop_toBottomOf="@id/logIn_password_field"
-            android:onClick="@{() -> viewModel.loginUser(loginUser)}"/>
+            android:layout_gravity="center"
+            layout="@layout/progress_bar"
+            android:visibility="gone"/>
+    </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

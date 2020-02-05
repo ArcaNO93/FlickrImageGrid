@@ -16,16 +16,15 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="com.example.ilcarro.ui.activities.UserControlActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:name="com.example.ilcarro.ui.activities.UserActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:label="@string/title_activity_user_control"
             android:theme="@style/FullscreenTheme"/>
 
         <activity
             android:name="com.example.ilcarro.ui.activities.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

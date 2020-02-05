@@ -25,8 +25,14 @@
 
     <activity
         android:id="@+id/userControlActivity"
-        android:name="com.example.ilcarro.ui.activities.UserControlActivity"
+        android:name="com.example.ilcarro.ui.activities.UserActivity"
         android:label="activity_user_control"
-        tools:layout="@layout/activity_user_control" />
+        tools:layout="@layout/activity_user" />
+
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.example.ilcarro.ui.fragments.mainFlow.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
 
 </navigation>

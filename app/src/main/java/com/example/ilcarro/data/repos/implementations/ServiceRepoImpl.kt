@@ -2,12 +2,14 @@ package com.example.ilcarro.data.repos.implementations
 
 import android.content.SharedPreferences
 import android.util.Base64
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.repos.interfaces.ServiceRepo
+import io.reactivex.Single
 import okhttp3.Credentials
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class ServiceRepoImpl @Inject constructor() : ServiceRepo {
 
     @Inject
@@ -22,7 +24,7 @@ class ServiceRepoImpl @Inject constructor() : ServiceRepo {
     override fun saveIsLogged(isLogged: Boolean) =
         mService.edit().putBoolean("isLogged", isLogged).apply()
 
-    override fun getIsLogged(): Boolean =
+    override fun getIsLogged() =
         mService.getBoolean("isLogged", false)
 
     override fun updateToken(newPassword: String) =

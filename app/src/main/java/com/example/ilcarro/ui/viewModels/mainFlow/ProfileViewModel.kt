@@ -8,7 +8,7 @@ import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.utils.Event
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class ProfileViewModel @Inject constructor() : ViewModel() {
     private val destination = MutableLiveData<Event<Int>>()
 

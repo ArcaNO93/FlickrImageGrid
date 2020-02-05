@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lets_text"
-            android:onClick="@{() -> viewModel.setNewDestination(R.id.logInFragment)}"/>
+            android:onClick="@{() -> viewModel.setNewDestination(R.id.action_to_log_in)}"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/to_sign_up_button"
@@ -65,7 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/to_log_in_button"
-            android:onClick="@{() -> viewModel.setNewDestination(R.id.signUpFragment)}"/>
+            android:onClick="@{() -> viewModel.setNewDestination(R.id.action_to_sign_up)}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

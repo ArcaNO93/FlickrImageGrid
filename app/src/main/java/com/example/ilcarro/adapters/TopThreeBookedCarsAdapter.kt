@@ -24,8 +24,7 @@ class TopThreeBookedCarsAdapter : RecyclerView.Adapter<TopThreeBookedCarsAdapter
         notifyDataSetChanged()
     }
 
-    override fun getItemCount() =
-        mCars.size
+    override fun getItemCount() = mCars.size
 
     inner class TopThreeCarsViewHolder(val binding: TopThreeRowBinding) : RecyclerView.ViewHolder(binding.root)
 }

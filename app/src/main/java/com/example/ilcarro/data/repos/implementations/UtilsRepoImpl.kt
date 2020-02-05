@@ -1,5 +1,6 @@
 package com.example.ilcarro.data.repos.implementations
 
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.UtilsAPI
 import com.example.ilcarro.data.dto.car.ui.CarUI
@@ -9,7 +10,7 @@ import com.example.ilcarro.utils.Mapper
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class UtilsRepoImpl @Inject constructor(): UtilsRepo {
 
     @Inject

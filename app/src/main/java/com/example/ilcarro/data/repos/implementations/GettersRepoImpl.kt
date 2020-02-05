@@ -1,17 +1,14 @@
 package com.example.ilcarro.data.repos.implementations
 
-import com.example.ilcarro.dagger.scopes.FragmentScope
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.api.GettersAPI
-import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.CarUI
-import com.example.ilcarro.data.dto.car.ui.TopCarUI
 import com.example.ilcarro.data.repos.interfaces.GettersRepo
 import com.example.ilcarro.utils.Mapper
-import io.reactivex.Single
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class GettersRepoImpl @Inject constructor(): GettersRepo {
 
     @Inject

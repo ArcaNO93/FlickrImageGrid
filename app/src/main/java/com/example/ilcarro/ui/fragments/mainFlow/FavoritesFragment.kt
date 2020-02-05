@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.example.ilcarro.R
+import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
 import com.example.ilcarro.databinding.FragmentFavoritesBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.FavoritesViewModel
+import javax.inject.Inject
 
 class FavoritesFragment : BaseFragment<FavoritesViewModel, FragmentFavoritesBinding>() {
 
@@ -18,7 +20,7 @@ class FavoritesFragment : BaseFragment<FavoritesViewModel, FragmentFavoritesBind
         mBinding.hostViewModel = mViewModel
         mBinding.updatedUser = UpdateUserUI("", "", "", "")
 
-        mViewModel.mUpdateComplete.observe(this, Observer {
+        mViewModel.mUpdateComplete.observe(viewLifecycleOwner, Observer {
             showToast(it.toString())
         })
 

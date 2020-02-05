@@ -6,7 +6,8 @@
     <color name="colorAccent">#008577</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorWhiteHalfTransparent">#B3FFFFFF</color>
+    <color name="colorBlackHalfTransparent">#80FFFFFF</color>
+    <color name="colorPrimaryHalfTransparent">#80062639</color>
     <color name="backAlpha50">#80000000</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 </resources>

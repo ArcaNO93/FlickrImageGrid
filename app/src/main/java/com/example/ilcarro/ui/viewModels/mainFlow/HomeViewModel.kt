@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ilcarro.business.implementations.GettersUseCasesImpl
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.dto.car.ui.TopCarUI
 import com.example.ilcarro.utils.NetworkState
@@ -14,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class HomeViewModel @Inject constructor() : ViewModel() {
 
     @Inject
@@ -47,7 +48,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
                 _mLoadingStatus.postValue(NetworkState.LOADED)
                 _mTopCars.postValue(it)
             }, {
-                Log.d("tag", it.message)
                 _mLoadingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
                 _mErrorMessageShown.postValue(true)
         })

@@ -1,20 +1,24 @@
 package com.example.ilcarro.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.ilcarro.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
+
 
 abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment() {
 
@@ -28,7 +32,7 @@ abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(getViewModelClass())
+        mViewModel = ViewModelProvider(this, mViewModelFactory).get(getViewModelClass())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,12 +46,29 @@ abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment
         return type as Class<VM>
     }
 
-    fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    fun showToast(message: String) {
+        val toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+        val view = toast.view.findViewById<TextView>(android.R.id.message)
+        view?.let {
+            view.gravity = Gravity.CENTER
+        }
+        toast.show()
+    }
 
     fun <V : View> showHideView(view: V, visibility: Boolean) {
         view.visibility = when (visibility) {
             true -> View.VISIBLE
             false -> View.GONE
         }
+    }
+
+    fun hideKeyboardIfOpened() {
+        val imm by lazy {
+            context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        }
+        val windowHeightMethod = InputMethodManager::class.java.getMethod("getInputMethodWindowVisibleHeight")
+        val height = windowHeightMethod.invoke(imm) as Int
+        if(height > 0)
+            imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
 }

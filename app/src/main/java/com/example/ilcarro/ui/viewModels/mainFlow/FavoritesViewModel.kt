@@ -5,13 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ilcarro.business.implementations.UserProcessingUseCasesImpl
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class FavoritesViewModel @Inject constructor() : ViewModel() {
 
     @Inject

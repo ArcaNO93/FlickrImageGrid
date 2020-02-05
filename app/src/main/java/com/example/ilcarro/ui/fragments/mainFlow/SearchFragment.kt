@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.ilcarro.R
+import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.databinding.FragmentSearchBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.SearchViewModel
+import javax.inject.Inject
 
 class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
 
@@ -16,5 +18,5 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         return mBinding.root
     }
 
-    override fun getLayoutID(): Int = R.layout.fragment_search
+    override fun getLayoutID() = R.layout.fragment_search
 }

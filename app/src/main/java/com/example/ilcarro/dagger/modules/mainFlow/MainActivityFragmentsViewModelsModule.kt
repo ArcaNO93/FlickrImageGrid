@@ -1,6 +1,7 @@
 package com.example.ilcarro.dagger.modules.mainFlow
 
 import androidx.lifecycle.ViewModel
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.dagger.scopes.ViewModelKeys
 import com.example.ilcarro.ui.viewModels.mainFlow.FavoritesViewModel
@@ -14,25 +15,25 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class MainActivityFragmentsViewModelsModule {
 
-    @FragmentScope
+    @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(FavoritesViewModel::class)
     internal abstract fun provideHostViewModel(favoritesViewModel: FavoritesViewModel): ViewModel
 
-    @FragmentScope
+    @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(ProfileViewModel::class)
     internal abstract fun provideProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
 
-    @FragmentScope
+    @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(HomeViewModel::class)
     internal abstract fun provideSearchViewModel(homeViewModel: HomeViewModel): ViewModel
 
-    @FragmentScope
+    @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(SearchViewModel::class)

@@ -11,6 +11,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/car_image"
         android:layout_width="match_parent"
@@ -24,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/car_info"/>
+
     <LinearLayout
         android:id="@+id/car_info"
         android:layout_width="match_parent"
@@ -67,7 +69,7 @@
 
                             <ImageView
                                 android:id="@+id/car_seat_image"
-                                android:layout_width="24dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_icon_seat"
                                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -99,7 +101,7 @@
 
                             <ImageView
                                 android:id="@+id/car_doors_image"
-                                android:layout_width="24dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_icon_doors"
                                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -132,7 +134,7 @@
 
                             <ImageView
                                 android:id="@+id/car_transmission_image"
-                                android:layout_width="24dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:src="@drawable/ic_icon_transmission"
                                 app:layout_constraintHorizontal_chainStyle="packed"

@@ -8,9 +8,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 
 import com.example.ilcarro.R
+import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.databinding.FragmentGetStartedBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.userFlow.GetStartedViewModel
+import javax.inject.Inject
 
 class GetStartedFragment : BaseFragment<GetStartedViewModel, FragmentGetStartedBinding>() {
 

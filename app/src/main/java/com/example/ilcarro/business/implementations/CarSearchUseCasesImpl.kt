@@ -1,6 +1,7 @@
 package com.example.ilcarro.business.implementations
 
 import com.example.ilcarro.business.interfaces.CarSearchUseCases
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.car.ui.CarBigSearchUI
 import com.example.ilcarro.data.dto.car.ui.CarSearchByCoordinatesUI
 import com.example.ilcarro.data.dto.car.ui.CarSearchByFiltersUI
@@ -11,6 +12,7 @@ import com.example.ilcarro.data.paging.factories.CarSearchByFilersFactory
 import com.example.ilcarro.data.paging.factories.CarSearchFactory
 import javax.inject.Inject
 
+@ActivityScope
 class CarSearchUseCasesImpl : CarSearchUseCases {
 
     @Inject

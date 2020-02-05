@@ -1,5 +1,6 @@
 package com.example.ilcarro.data.repos.implementations
 
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.CarProcessingAPI
 import com.example.ilcarro.data.dto.car.ui.CarUI
@@ -9,7 +10,7 @@ import io.reactivex.Completable
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class CarProcessingRepoImpl @Inject constructor(): CarProcessingRepo {
 
     @Inject

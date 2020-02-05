@@ -2,6 +2,7 @@ package com.example.ilcarro.dagger.modules.providers
 
 import com.example.ilcarro.dagger.modules.BaseFragmentModule
 import com.example.ilcarro.dagger.modules.mainFlow.MainActivityFragmentsViewModelsModule
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.ui.fragments.mainFlow.FavoritesFragment
 import com.example.ilcarro.ui.fragments.mainFlow.ProfileFragment
@@ -13,19 +14,19 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class MainActivityFragmentsProvider {
 
-    @FragmentScope
+    @ActivityScope
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
-    abstract fun provideHostFragment(): FavoritesFragment
+    abstract fun provideFavoritesFragment(): FavoritesFragment
 
-    @FragmentScope
+    @ActivityScope
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
     abstract fun provideProfileFragment() : ProfileFragment
 
-    @FragmentScope
+    @ActivityScope
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
     abstract fun provideSearchFragment(): HomeFragment
 
-    @FragmentScope
+    @ActivityScope
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
     abstract fun provideTripsFragment(): SearchFragment
 }

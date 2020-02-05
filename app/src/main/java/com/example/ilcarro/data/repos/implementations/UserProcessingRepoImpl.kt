@@ -1,6 +1,7 @@
 package com.example.ilcarro.data.repos.implementations
 
 import android.util.Base64
+import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.UserProcessingAPI
 import com.example.ilcarro.data.dto.user.ui.LoginUserUI
@@ -9,11 +10,12 @@ import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
 import com.example.ilcarro.data.repos.interfaces.UserProcessingRepo
 import com.example.ilcarro.utils.Mapper
 import io.reactivex.Completable
+import io.reactivex.Single
 import okhttp3.Credentials
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-@FragmentScope
+@ActivityScope
 class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     @Inject
@@ -54,4 +56,6 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
         )
 
     override fun deleteUser() = mService.deleteUser(mServiceRepo.getToken())
+
+    fun getIsLogged() = mServiceRepo.getIsLogged()
 }

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.ilcarro.ui.fragments.userFlow.SignUpFragment"
+        android:name="com.example.ilcarro.ui.fragments.userFlow.RegisterFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_register"/>
     <fragment
@@ -24,15 +24,15 @@
         <action
             android:id="@+id/action_to_log_in"
             app:destination="@id/logInFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_to_sign_up"
             app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>

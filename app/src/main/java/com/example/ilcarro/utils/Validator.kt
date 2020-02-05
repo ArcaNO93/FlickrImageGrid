@@ -12,6 +12,7 @@ object Validator {
         Pair(Regex("^.*(?!\\S+\$).*$"), "Password must not contain spaces"),
         Pair(Regex("^.{8,}\$"), "Password should be at least 8 characters long")
     )
+    private val fullNameRegex = Regex("^[a-zA-Z]+\$")
 
     fun validateEmail(email: String): Boolean {
         if(email.isEmpty()) {
@@ -36,6 +37,21 @@ object Validator {
             }
         }
         error = IllegalArgumentException(errorText.toString())
+
         return result
     }
+
+    fun validateFullName(fullName: String): Boolean {
+        if(fullName.isEmpty()) {
+            error = IllegalArgumentException("Field can\'t be empty")
+            return false
+        }
+        if(!fullName.matches(fullNameRegex)) {
+            error = IllegalArgumentException("Field can include only letters")
+            return false
+        }
+
+        return true
+    }
+
 }
