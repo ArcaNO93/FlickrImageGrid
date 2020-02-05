@@ -138,7 +138,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:imeOptions="actionDone"
-                        android:inputType="textWebEmailAddress" />
+                        android:inputType="textWebPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <CheckBox

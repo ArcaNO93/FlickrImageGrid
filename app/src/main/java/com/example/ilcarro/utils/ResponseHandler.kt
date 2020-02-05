@@ -8,7 +8,7 @@ object ResponseHandler {
         when (exception) {
             is HttpException -> parseResponse(exception.code())
             is IOException -> "Network error\nPlease check internet connection"
-            else -> exception.message
+            else -> "Unknown error. Please contact support"
         }
 
     private fun parseResponse(response: Int) =

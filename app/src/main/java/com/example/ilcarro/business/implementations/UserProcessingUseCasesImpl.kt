@@ -26,6 +26,12 @@ class UserProcessingUseCasesImpl @Inject constructor() : UserProcessingUseCases 
     override fun loginUser(user: LoginUserUI) =
         mUserProcessingRepo.loginUser(user)
 
+    override fun logOut() =
+        mUserProcessingRepo.logOut()
+
+    override fun getUserData() =
+        mUserProcessingRepo.getUserData()
+
     override fun updateUser(user: UpdateUserUI) =
         mUserProcessingRepo.updateUser(user)
 

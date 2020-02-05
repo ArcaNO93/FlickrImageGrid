@@ -1,14 +1,12 @@
 package com.example.ilcarro.ui.viewModels.mainFlow
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ilcarro.business.implementations.GettersUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
-import com.example.ilcarro.dagger.scopes.FragmentScope
-import com.example.ilcarro.data.dto.car.ui.TopCarUI
+import com.example.ilcarro.data.dto.car.ui.ShowCarUI
 import com.example.ilcarro.utils.NetworkState
 import com.example.ilcarro.utils.ResponseHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,8 +23,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     val mLoadingStatus: LiveData<NetworkState>
         get() = _mLoadingStatus
 
-    private val _mTopCars = MutableLiveData<List<TopCarUI>>()
-    val mTopCars: LiveData<List<TopCarUI>>
+    private val _mTopCars = MutableLiveData<List<ShowCarUI>>()
+    val mShowCars: LiveData<List<ShowCarUI>>
         get() = _mTopCars
 
     private val _mErrorMessageShown = MutableLiveData<Boolean>()

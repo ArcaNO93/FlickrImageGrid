@@ -16,7 +16,7 @@ interface UserProcessingAPI {
     ): Single<User>
 
     @GET("/user/login")
-    fun loginUser(@Header("Authorization") token: String): Single<User>
+    fun loginUser(@Header("Authorization") token: String?): Single<User>
 
     @PUT("/user")
     fun updateUser(

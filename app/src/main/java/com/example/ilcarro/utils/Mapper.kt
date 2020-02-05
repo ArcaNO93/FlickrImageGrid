@@ -8,8 +8,10 @@ import com.example.ilcarro.data.dto.general.ReservationRequest
 import com.example.ilcarro.data.dto.general.ReservationUI
 import com.example.ilcarro.data.dto.user.RegisterUserRequest
 import com.example.ilcarro.data.dto.user.UpdateUserRequest
+import com.example.ilcarro.data.dto.user.User
 import com.example.ilcarro.data.dto.user.ui.RegisterUserUI
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
+import com.example.ilcarro.data.dto.user.ui.UserUI
 
 object Mapper {
     fun toRegisterUserRequest(user: RegisterUserUI) =
@@ -61,7 +63,7 @@ object Mapper {
             )
         )
 
-    fun toTopCarUI(car: Car) = TopCarUI(
+    fun toTopCarUI(car: Car) = ShowCarUI(
         serialNumber = car.serialNumber,
         image = car.images[0],
         carFullName = "${car.make} ${car.model} ${car.year}",
@@ -69,6 +71,16 @@ object Mapper {
         seats = car.seats,
         doors = car.doors,
         gear = car.gear
+    )
+
+    fun toUserUI(user: User) = UserUI(
+        fullName = user.firstName + " " + user.secondName,
+        registrationDate = user.registrationDate,
+        photo = user.photo,
+        comments = user.comments,
+        ownedCars = user.ownedCars,
+        bookedCars = user.bookedCars,
+        history = user.history
     )
 
     fun mapCarSearchUI(carSearch: CarSearchUI) =

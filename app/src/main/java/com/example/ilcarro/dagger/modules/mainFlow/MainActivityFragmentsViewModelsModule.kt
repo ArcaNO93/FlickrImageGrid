@@ -2,7 +2,6 @@ package com.example.ilcarro.dagger.modules.mainFlow
 
 import androidx.lifecycle.ViewModel
 import com.example.ilcarro.dagger.scopes.ActivityScope
-import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.dagger.scopes.ViewModelKeys
 import com.example.ilcarro.ui.viewModels.mainFlow.*
 import dagger.Binds
@@ -36,7 +35,7 @@ abstract class MainActivityFragmentsViewModelsModule {
     @ViewModelKeys(SearchViewModel::class)
     internal abstract fun provideTripsViewModel(searchViewModel: SearchViewModel): ViewModel
 
-    @FragmentScope
+    @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(MapsViewModel::class)

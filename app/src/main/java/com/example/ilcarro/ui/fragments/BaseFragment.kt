@@ -19,7 +19,6 @@ import dagger.android.support.DaggerFragment
 import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
 
-
 abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment() {
 
     @Inject

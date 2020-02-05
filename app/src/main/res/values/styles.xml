@@ -22,6 +22,12 @@
         <item name="android:fontFamily">@font/raleway_medium</item>
     </style>
 
+    <style name="CustomOutlinedMaterialButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorRed</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
+    </style>
+
     <style name="CustomButton.Left">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopLeft">25dp</item>

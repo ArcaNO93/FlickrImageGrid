@@ -1,14 +1,12 @@
 package com.example.ilcarro.ui.fragments.mainFlow
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.example.ilcarro.R
 import com.example.ilcarro.adapters.TopThreeBookedCarsAdapter
-import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.databinding.FragmentHomeBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.HomeViewModel
@@ -37,7 +35,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
             showHideView(mBinding.errorMessageLayout.errorMessage, it)
         })
 
-        mViewModel.mTopCars.observe(viewLifecycleOwner, Observer {
+        mViewModel.mShowCars.observe(viewLifecycleOwner, Observer {
             adapter.setCars(it)
         })
 

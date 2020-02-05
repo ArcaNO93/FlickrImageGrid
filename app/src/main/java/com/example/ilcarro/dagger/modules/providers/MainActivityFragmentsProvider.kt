@@ -3,7 +3,6 @@ package com.example.ilcarro.dagger.modules.providers
 import com.example.ilcarro.dagger.modules.BaseFragmentModule
 import com.example.ilcarro.dagger.modules.mainFlow.MainActivityFragmentsViewModelsModule
 import com.example.ilcarro.dagger.scopes.ActivityScope
-import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.ui.fragments.mainFlow.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -27,7 +26,7 @@ abstract class MainActivityFragmentsProvider {
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
     abstract fun provideTripsFragment(): SearchFragment
 
-    @FragmentScope
+    @ActivityScope
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
     abstract fun provideMapsFragment(): MapsFragment
 }

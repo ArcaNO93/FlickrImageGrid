@@ -44,6 +44,16 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
             })
     }
 
+    override fun logOut() {
+        mServiceRepo.saveToken("")
+        mServiceRepo.saveIsLogged(false)
+    }
+
+    override fun getUserData() =
+        mService.loginUser(mServiceRepo.getToken()).map {
+            Mapper.toUserUI(it)
+        }
+
     override fun updateUser(user: UpdateUserUI) =
         Completable.fromSingle(
             mService.updateUser(

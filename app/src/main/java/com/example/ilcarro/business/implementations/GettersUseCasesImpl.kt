@@ -3,7 +3,7 @@ package com.example.ilcarro.business.implementations
 import com.example.ilcarro.business.interfaces.GettersUseCases
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.car.ui.CarUI
-import com.example.ilcarro.data.dto.car.ui.TopCarUI
+import com.example.ilcarro.data.dto.car.ui.ShowCarUI
 import com.example.ilcarro.data.repos.implementations.GettersRepoImpl
 import io.reactivex.Single
 import javax.inject.Inject
@@ -26,6 +26,6 @@ class GettersUseCasesImpl @Inject constructor(): GettersUseCases {
     override fun getOwnerCarBookedPeriodsById(car: CarUI) =
         mGettersRepo.getOwnerCarBookedPeriodsById(car)
 
-    override fun getBestBookedCars(): Single<List<TopCarUI>> =
+    override fun getBestBookedCars(): Single<List<ShowCarUI>> =
         mGettersRepo.getBestBookedCars()
 }

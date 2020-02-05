@@ -1,6 +1,6 @@
 package com.example.ilcarro.data.dto.car.ui
 
-data class TopCarUI(
+data class ShowCarUI(
     var serialNumber: String,
     var image: String,
     var carFullName: String,
