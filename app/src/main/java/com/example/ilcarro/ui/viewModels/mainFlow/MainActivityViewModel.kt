@@ -12,5 +12,4 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
     lateinit var mUserProcessingUseCases: UserProcessingUseCasesImpl
 
     fun isLogged() = mUserProcessingUseCases.getIsLogged()
-
 }

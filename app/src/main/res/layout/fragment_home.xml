@@ -161,8 +161,8 @@
                         android:layout_height="match_parent"/>
 
                     <include
-                        android:id="@+id/error_message_layout"
-                        layout="@layout/error_message" />
+                        android:id="@+id/error_message_home"
+                        layout="@layout/error_message_home" />
 
                     <include
                         android:id="@+id/progress_bar"

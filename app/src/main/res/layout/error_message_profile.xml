@@ -4,8 +4,9 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.ilcarro.ui.viewModels.mainFlow.HomeViewModel" />
+            type="com.example.ilcarro.ui.viewModels.mainFlow.ProfileViewModel" />
     </data>
+
     <FrameLayout
         android:id="@+id/error_message"
         android:layout_width="match_parent"
@@ -39,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="16dp"
                 android:text="@string/retry_button_text"
-                android:onClick="@{() -> viewModel.getTopCars()}"
+                android:onClick="@{() -> viewModel.getUserData()}"
                 style="@style/CustomMaterialButton"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

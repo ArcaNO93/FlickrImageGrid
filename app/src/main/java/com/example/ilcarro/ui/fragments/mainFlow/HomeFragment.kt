@@ -18,10 +18,10 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val adapter = CarsUIAdapter()
-        mViewModel.getTopCars()
         mBinding.topThreeList.adapter = adapter
-        mBinding.errorMessageLayout.viewModel = mViewModel
+        mBinding.errorMessageHome.viewModel = mViewModel
         mBinding.topThreeList.setPageTransformer(DepthPageTransformer())
+        mViewModel.getTopCars()
 
         mViewModel.mLoadingStatus.observe(viewLifecycleOwner, Observer {
             when(it.status) {
@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         })
 
         mViewModel.mErrorMessageShown.observe(viewLifecycleOwner, Observer {
-            showHideView(mBinding.errorMessageLayout.errorMessage, it)
+            showHideView(mBinding.errorMessageHome.errorMessage, it)
         })
 
         mViewModel.mShowCars.observe(viewLifecycleOwner, Observer {

@@ -31,6 +31,10 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
     val mUserDataLoadingStatus: LiveData<NetworkState>
         get() = _mUserDataLoadingStatus
 
+    private val _mErrorMessageShown = MutableLiveData<Boolean>()
+    val mErrorMessageShown: LiveData<Boolean>
+        get() = _mErrorMessageShown
+
     private val _mLogOut = MutableLiveData<Boolean>()
     val mLogOut: LiveData<Boolean>
         get() = _mLogOut
@@ -43,6 +47,8 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun getUserData() {
+        if(_mErrorMessageShown.value == true)
+            _mErrorMessageShown.postValue(false)
         _mUserDataLoadingStatus.postValue(NetworkState.LOADING)
         mUserProcessingUseCases.getUserData()
             .subscribeOn(Schedulers.io())
@@ -52,6 +58,7 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
                 _mUserData.postValue(it)
             }, {
                 _mUserDataLoadingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
+                _mErrorMessageShown.postValue(true)
             })
     }
 

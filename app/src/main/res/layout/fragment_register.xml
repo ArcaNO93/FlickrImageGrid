@@ -182,8 +182,8 @@
         </ScrollView>
 
     <include
-        android:id="@+id/error_message_layout"
-        layout="@layout/error_message"
+        android:id="@+id/error_message_home_layout"
+        layout="@layout/error_message_home"
         android:visibility="gone"/>
 
     <include

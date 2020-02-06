@@ -332,8 +332,8 @@
         </androidx.core.widget.NestedScrollView>
 
         <include
-            android:id="@+id/error_message_layout"
-            layout="@layout/error_message"
+            android:id="@+id/error_message_profile"
+            layout="@layout/error_message_profile"
             android:visibility="gone"/>
 
         <include
