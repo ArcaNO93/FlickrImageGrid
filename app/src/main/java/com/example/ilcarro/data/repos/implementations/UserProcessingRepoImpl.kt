@@ -1,6 +1,9 @@
 package com.example.ilcarro.data.repos.implementations
 
 import android.util.Base64
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.api.UserProcessingAPI
@@ -10,6 +13,8 @@ import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
 import com.example.ilcarro.data.repos.interfaces.UserProcessingRepo
 import com.example.ilcarro.utils.Mapper
 import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.ObservableSource
 import io.reactivex.Single
 import okhttp3.Credentials
 import retrofit2.Retrofit
@@ -20,6 +25,10 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     @Inject
     lateinit var mServiceRepo: ServiceRepoImpl
+    var mIsLogged=
+        Observable.defer {
+            Observable.just(mServiceRepo.getIsLogged())
+        }
 
     @Inject
     lateinit var mRetrofit: Retrofit
@@ -41,12 +50,14 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
             .doOnSuccess {
                 mServiceRepo.saveToken(token)
                 mServiceRepo.saveIsLogged(true)
+                mIsLogged = Observable.just(true)
             })
     }
 
     override fun logOut() {
         mServiceRepo.saveToken("")
         mServiceRepo.saveIsLogged(false)
+        mIsLogged = Observable.just(false)
     }
 
     override fun getUserData() =
@@ -67,5 +78,5 @@ class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
 
     override fun deleteUser() = mService.deleteUser(mServiceRepo.getToken())
 
-    fun getIsLogged() = mServiceRepo.getIsLogged()
+    override fun getIsLogged() = mIsLogged
 }

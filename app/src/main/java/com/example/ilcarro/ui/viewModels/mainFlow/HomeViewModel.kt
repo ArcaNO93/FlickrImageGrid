@@ -31,10 +31,6 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     val mErrorMessageShown: LiveData<Boolean>
         get() = _mErrorMessageShown
 
-    init {
-        _mErrorMessageShown.postValue(false)
-    }
-
     @SuppressLint("CheckResult")
     fun getTopCars() {
         if(_mErrorMessageShown.value == true)

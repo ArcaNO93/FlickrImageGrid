@@ -2,9 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group
-        android:id="@+id/logged_in">
-
         <item
             android:id="@+id/letTheCarWorkFragment"
             android:title="@string/menu_title_let_the_car_work" />
@@ -16,17 +13,7 @@
             android:id="@+id/termsOfUseFragment"
             android:title="@string/menu_title_terms_of_use" />
 
-    </group>
-
-    <group
-        android:id="@+id/logged_out">
-
         <item
-            android:id="@+id/userControlActivity"
-            android:title="@string/get_started_welcome_text" />
-
-        <item
-            android:id="@+id/favoritesFragment"
-            android:title="@string/menu_title_favorites" />
-    </group>
+            android:id="@+id/logOutFragment"
+            android:title="@string/menu_title_logout" />
 </menu>

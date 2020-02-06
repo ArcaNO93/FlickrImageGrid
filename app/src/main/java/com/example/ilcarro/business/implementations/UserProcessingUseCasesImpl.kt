@@ -2,16 +2,12 @@ package com.example.ilcarro.business.implementations
 
 import com.example.ilcarro.business.interfaces.UserProcessingUseCases
 import com.example.ilcarro.dagger.scopes.ActivityScope
-import com.example.ilcarro.dagger.scopes.FragmentScope
 import com.example.ilcarro.data.dto.user.ui.LoginUserUI
 import com.example.ilcarro.data.dto.user.ui.RegisterUserUI
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
 import com.example.ilcarro.data.repos.implementations.UserProcessingRepoImpl
 import com.example.ilcarro.utils.Validator
 import io.reactivex.Completable
-import io.reactivex.Single
-import java.lang.StringBuilder
-import java.security.cert.CertPathValidator
 import javax.inject.Inject
 
 @ActivityScope
