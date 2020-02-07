@@ -10,10 +10,14 @@
             android:title="@string/menu_title_profile" />
 
         <item
+            android:id="@+id/favoritesFragment"
+            android:title="@string/menu_title_favorites" />
+
+        <item
             android:id="@+id/termsOfUseFragment"
             android:title="@string/menu_title_terms_of_use" />
 
         <item
-            android:id="@+id/logOutFragment"
+            android:id="@+id/logout"
             android:title="@string/menu_title_logout" />
 </menu>

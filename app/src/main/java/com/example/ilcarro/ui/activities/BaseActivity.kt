@@ -1,9 +1,12 @@
 package com.example.ilcarro.ui.activities
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewTreeObserver
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -38,5 +41,14 @@ abstract class BaseActivity<VM : ViewModel, DB: ViewDataBinding> : DaggerAppComp
 
     fun showHideMenuItems(menu: Menu, menuItem: Int, visible: Boolean) {
         menu.findItem(menuItem).isVisible = visible
+    }
+
+    fun showToast(message: String) {
+        val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        val view = toast.view.findViewById<TextView>(android.R.id.message)
+        view?.let {
+            view.gravity = Gravity.CENTER
+        }
+        toast.show()
     }
 }

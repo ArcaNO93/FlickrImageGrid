@@ -1,7 +1,5 @@
 package com.example.ilcarro.ui.fragments.mainFlow
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,19 +33,6 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
 
         mViewModel.mErrorMessageShown.observe(viewLifecycleOwner, Observer {
             showHideView(mBinding.errorMessageProfile.errorMessage, it)
-        })
-
-        mViewModel.mLogOut.observe(viewLifecycleOwner, Observer {
-            if(it)
-                AlertDialog.Builder(context)
-                    .setMessage("Are you sure you want to log out?")
-                    .setPositiveButton("Yes") { _, _ ->
-                        NavHostFragment.findNavController(this).navigateUp()
-                    }
-                    .setNegativeButton("No") {dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
         })
 
         mViewModel.mUserData.observe(viewLifecycleOwner, Observer {

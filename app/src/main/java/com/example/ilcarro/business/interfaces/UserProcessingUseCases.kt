@@ -1,6 +1,5 @@
 package com.example.ilcarro.business.interfaces
 
-import androidx.lifecycle.LiveData
 import com.example.ilcarro.data.dto.user.ui.LoginUserUI
 import com.example.ilcarro.data.dto.user.ui.RegisterUserUI
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI

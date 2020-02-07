@@ -14,7 +14,7 @@ object ResponseHandler {
     private fun parseResponse(response: Int) =
         when (response) {
             400 -> "Bad request"
-            401 -> "Wrong data\n Try again"
+            401 -> "Wrong data. Try again"
             403 -> "Forbidden"
             404 -> "Not found"
             409 -> "Field already exist"

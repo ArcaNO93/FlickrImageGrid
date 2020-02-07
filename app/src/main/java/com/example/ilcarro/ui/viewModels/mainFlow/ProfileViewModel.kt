@@ -35,14 +35,10 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
     val mErrorMessageShown: LiveData<Boolean>
         get() = _mErrorMessageShown
 
-    private val _mLogOut = MutableLiveData<Boolean>()
-    val mLogOut: LiveData<Boolean>
-        get() = _mLogOut
-
     fun getDestination(): LiveData<Event<Int>> = destination
 
     fun setNewDestination(destinationId: Int) {
-        destination.value = Event(destinationId)
+        destination.postValue(Event(destinationId))
     }
 
     @SuppressLint("CheckResult")
@@ -60,10 +56,5 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
                 _mUserDataLoadingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
                 _mErrorMessageShown.postValue(true)
             })
-    }
-
-    fun logOut() {
-        mUserProcessingUseCases.logOut()
-        _mLogOut.postValue(true)
     }
 }
