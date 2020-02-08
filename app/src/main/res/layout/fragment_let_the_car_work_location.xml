@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.example.ilcarro.R"/>
+        <variable
+            name="viewModel"
+            type="com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        tools:context=".ui.fragments.mainFlow.LetTheCarWorkLocationFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/colorRed"
+                android:textSize="24sp"
+                android:fontFamily="@font/raleway_black"
+                android:text="@string/let_the_car_work_title"
+                android:layout_margin="16dp" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/raleway"
+                android:text="@string/let_the_car_work_text"/>
+
+            <TextView
+                android:id="@+id/location_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="16dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"
+                android:fontFamily="@font/raleway"
+                android:text="Location:"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/country_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:hint="@string/let_the_car_work_country_hint_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/country_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="textAutoComplete" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/city_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/country_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:hint="@string/let_the_car_work_city_hint_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/city_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="textAutoComplete" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/street_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/city_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:hint="@string/let_the_car_work_street_hint_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/street_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="textAutoComplete" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ZIP_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/street_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:hint="@string/let_the_car_work_ZIP_hint_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ZIP_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="numberSigned" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/CustomMaterialButton"
+                android:layout_width="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ZIP_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:onClick="@{() -> viewModel.setNewDestination(R.id.action_to_car_details_first)}"
+                tools:ignore="HardcodedText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

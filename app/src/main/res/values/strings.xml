@@ -4,6 +4,7 @@
 
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="submit">Submit</string>
 
     <string name="error_message">Error while downloading the data\nPress retry to try again</string>
     <string name="retry_button_text">RETRY</string>
@@ -57,5 +58,26 @@
 
     <string name="price_additional_text">\u20AA\\day</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="let_the_car_work_title">Let the car work</string>
+    <string name="let_the_car_work_text">You can add your car to our website and start earning. You’ll earn 65% to 85% of the trip price, depending on the vehicle protection package you choose. If you have commercial rental insurance to cover you, your car, and your customers and would like to waive vehicle protection you earn 90% of the trip price.</string>
+    <string name="let_the_car_work_country_hint_text">Country</string>
+    <string name="let_the_car_work_city_hint_text">City</string>
+    <string name="let_the_car_work_street_hint_text">Street</string>
+    <string name="let_the_car_work_ZIP_hint_text">ZIP</string>
+    <string name="let_the_car_work_make_hint_text">Make</string>
+    <string name="let_the_car_work_model_hint_text">Model</string>
+    <string name="let_the_car_work_year_hint_text">Year</string>
+    <string name="let_the_car_work_engine_hint_text">Engine</string>
+    <string name="let_the_car_work_fuel_hint_text">Fuel</string>
+    <string name="let_the_car_work_transmission_hint_text">Transmission</string>
+    <string name="let_the_car_work_WD_hint_text">WD</string>
+    <string name="let_the_car_work_horse_power_hint_text">Horse power</string>
+    <string name="let_the_car_work_fuel_consumption_hint_text">Fuel consumption</string>
+    <string name="let_the_car_work_doors_hint_text">Doors</string>
+    <string name="let_the_car_work_seats_hint_text">Seats</string>
+    <string name="let_the_car_work_class_hint_text">Class</string>
+    <string name="let_the_car_work_about_hint_text">About (max 500 characters)</string>
+    <string name="let_the_car_work_price_hint_text">Price</string>
 
 </resources>

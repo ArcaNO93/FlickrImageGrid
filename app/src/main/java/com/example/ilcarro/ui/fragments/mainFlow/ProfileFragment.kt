@@ -15,14 +15,30 @@ import com.example.ilcarro.utils.STATUS
 
 class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>() {
 
+    private lateinit var mAdapter: CarsUIAdapter
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initView()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        val adapter = CarsUIAdapter()
-        mBinding.ownedCars.adapter = adapter
+        initListeners()
+        return mBinding.root
+    }
+
+    override fun getLayoutID(): Int = R.layout.fragment_profile
+
+    override fun initView() {
+        mAdapter = CarsUIAdapter()
+        mBinding.ownedCars.adapter = mAdapter
         mBinding.viewModel = mViewModel
         mBinding.errorMessageProfile.viewModel = mViewModel
         mViewModel.getUserData()
+    }
 
+    override fun initListeners() {
         mViewModel.mUserDataLoadingStatus.observe(viewLifecycleOwner, Observer {
             when(it.status) {
                 STATUS.LOADING -> showHideView(mBinding.progressBar.progressBarFrame, true)
@@ -40,7 +56,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
             if(it.ownedCars.isEmpty())
                 showHideView(mBinding.noCarLayout.noCarsText, true)
             else
-                adapter.setCars(it.ownedCars)
+                mAdapter.setCars(it.ownedCars)
         })
 
         mViewModel.getDestination().observe(viewLifecycleOwner, Observer { it ->
@@ -48,9 +64,5 @@ class ProfileFragment : BaseFragment<ProfileViewModel, FragmentProfileBinding>()
                 NavHostFragment.findNavController(this@ProfileFragment).navigate(it)
             }
         })
-
-        return mBinding.root
     }
-
-    override fun getLayoutID(): Int = R.layout.fragment_profile
 }

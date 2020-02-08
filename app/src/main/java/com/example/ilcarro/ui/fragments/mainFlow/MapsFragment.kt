@@ -22,7 +22,7 @@ class MapsFragment @Inject constructor() : BaseFragment<MapsViewModel, FragmentM
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        mBinding.viewModel = mViewModel
+        initView()
 
         mBinding.mapView.onCreate(savedInstanceState)
         mBinding.mapView.onResume()
@@ -39,5 +39,13 @@ class MapsFragment @Inject constructor() : BaseFragment<MapsViewModel, FragmentM
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
+    override fun initView() {
+        mBinding.viewModel = mViewModel
+    }
+
+    override fun initListeners() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

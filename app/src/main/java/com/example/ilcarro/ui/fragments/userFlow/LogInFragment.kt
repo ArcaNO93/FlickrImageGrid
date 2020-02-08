@@ -20,9 +20,21 @@ class LogInFragment : BaseFragment<LogInViewModel, FragmentLogInBinding>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-
         initView()
+        initListeners()
+        return mBinding.root
+    }
 
+    override fun getLayoutID(): Int = R.layout.fragment_log_in
+
+    override fun initView() {
+        mBinding.viewModel = mViewModel
+        mBinding.loginUser = LoginUserUI("", "")
+        mBinding.forgotPasswordLink.movementMethod = LinkMovementMethod.getInstance()
+        mBinding.progressBar.progressBarFrame.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimaryHalfTransparent))
+    }
+
+    override fun initListeners() {
         mViewModel.mLoginStatus.observe(viewLifecycleOwner, Observer {
             when(it.status) {
                 STATUS.LOADING -> {
@@ -40,16 +52,5 @@ class LogInFragment : BaseFragment<LogInViewModel, FragmentLogInBinding>() {
                 }
             }
         })
-
-        return mBinding.root
-    }
-
-    override fun getLayoutID(): Int = R.layout.fragment_log_in
-
-    private fun initView() {
-        mBinding.viewModel = mViewModel
-        mBinding.loginUser = LoginUserUI("", "")
-        mBinding.forgotPasswordLink.movementMethod = LinkMovementMethod.getInstance()
-        mBinding.progressBar.progressBarFrame.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimaryHalfTransparent))
     }
 }

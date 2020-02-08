@@ -41,4 +41,48 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+        android:id="@+id/letTheCarWorkFragment"
+        android:name="com.example.ilcarro.ui.fragments.mainFlow.LetTheCarWorkLocationFragment"
+        android:label="LetTheCarWorkFragment"
+        tools:layout="@layout/fragment_let_the_car_work_car_details_second">
+        <action
+            android:id="@+id/action_to_car_details_first"
+            app:destination="@id/letTheCarWorkCarDetailsFirstFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/letTheCarWorkCarDetailsFirstFragment"
+        android:name="com.example.ilcarro.ui.fragments.mainFlow.LetTheCarWorkCarDetailsFirstFragment"
+        android:label="LetTheCarWorkCarDetailsFirstFragment" >
+        <action
+            android:id="@+id/action_to_car_details_second"
+            app:destination="@id/letTheCarWorkCarDetailsSecondFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/letTheCarWorkCarDetailsSecondFragment"
+        android:name="com.example.ilcarro.ui.fragments.mainFlow.LetTheCarWorkCarDetailsSecondFragment"
+        android:label="LetTheCarWorkCarDetailsSecondFragment" >
+        <action
+            android:id="@+id/action_to_car_details_last"
+            app:destination="@id/letTheCarWorkCarDetailsLastFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/letTheCarWorkCarDetailsLastFragment"
+        android:name="com.example.ilcarro.ui.fragments.mainFlow.LetTheCarWorkCarDetailsLastFragment"
+        android:label="LetTheCarWorkCarDetailsLastFragment" />
+
 </navigation>

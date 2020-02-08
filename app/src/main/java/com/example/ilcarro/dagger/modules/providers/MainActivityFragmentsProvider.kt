@@ -29,5 +29,21 @@ abstract class MainActivityFragmentsProvider {
     @ActivityScope
     @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
     abstract fun provideMapsFragment(): MapsFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
+    abstract fun provideLetTheCarWorkLocationFragment(): LetTheCarWorkLocationFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
+    abstract fun provideLetTheCarWorkCarDetailsFirstFragment(): LetTheCarWorkCarDetailsFirstFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
+    abstract fun provideLetTheCarWorkCarDetailsSecondFragment(): LetTheCarWorkCarDetailsSecondFragment
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [BaseFragmentModule::class, MainActivityFragmentsViewModelsModule::class])
+    abstract fun provideLetTheCarWorkCarDetailsLastFragment(): LetTheCarWorkCarDetailsLastFragment
 }
 

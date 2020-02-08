@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +21,20 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         initView()
-        initValidation()
+        initListeners()
+        return mBinding.root
+    }
+
+    override fun getLayoutID(): Int = R.layout.fragment_register
+
+    override fun initView() {
+        mBinding.viewModel = mViewModel
+        mBinding.newUser = RegisterUserUI("", "", "", "")
+        mBinding.progressBar.progressBarFrame.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimaryHalfTransparent))
+        mBinding.agreeCheckboxText.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    override fun initListeners() {
 
         mViewModel.mRegisterComplete.observe(viewLifecycleOwner, Observer {
             when(it.status) {
@@ -55,20 +67,6 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
                 }
             }
         })
-
-        return mBinding.root
-    }
-
-    override fun getLayoutID(): Int = R.layout.fragment_register
-
-    private fun initView() {
-        mBinding.viewModel = mViewModel
-        mBinding.newUser = RegisterUserUI("", "", "", "")
-        mBinding.progressBar.progressBarFrame.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimaryHalfTransparent))
-        mBinding.agreeCheckboxText.movementMethod = LinkMovementMethod.getInstance()
-    }
-
-    private fun initValidation() {
 
         mViewModel.mFirstNameValid.observe(viewLifecycleOwner, Observer {
             when(it.first) {

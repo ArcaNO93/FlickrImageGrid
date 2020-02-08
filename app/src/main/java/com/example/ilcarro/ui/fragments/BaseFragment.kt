@@ -70,4 +70,7 @@ abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment
         if(height > 0)
             imm.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
+
+    abstract fun initView()
+    abstract fun initListeners()
 }

@@ -2,7 +2,6 @@ package com.example.ilcarro.ui.activities
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import androidx.core.view.GravityCompat
@@ -54,7 +53,7 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment, R.id.searchFragment, R.id.favoritesFragment, R.id.profileFragment
+                R.id.homeFragment, R.id.letTheCarWorkFragment
             ), mBinding.drawer
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -75,15 +74,23 @@ class MainActivity : BaseActivity<MainActivityViewModel, ActivityMainBinding>() 
                 true -> mBinding.navView.inflateMenu(R.menu.menu_logged_in)
                 false -> mBinding.navView.inflateMenu(R.menu.menu_logged_out)
             }
+
         })
         mViewModel.mLogOut.observe(this, Observer {
-            showToast("Successfully logged out")
             mAlertDialog.dismiss()
+            if(navController.currentDestination?.id != R.id.homeFragment)
+                navController.navigateUp()
+            if(it == true)
+                showToast("Successfully logged out")
         })
+
         mBinding.navView.setNavigationItemSelectedListener {
             when (it) {
                 mBinding.navView.menu.findItem(R.id.logout) -> mAlertDialog.show()
-                else -> NavigationUI.onNavDestinationSelected(it, navController)
+                else -> {
+                    hideKeyboardIfOpened()
+                    NavigationUI.onNavDestinationSelected(it, navController)
+                }
             }
             mBinding.drawer.closeDrawer(GravityCompat.START)
             true

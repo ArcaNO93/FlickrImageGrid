@@ -40,4 +40,10 @@ abstract class MainActivityFragmentsViewModelsModule {
     @IntoMap
     @ViewModelKeys(MapsViewModel::class)
     internal abstract fun provideMapsViewModel(mapsViewModel: MapsViewModel): ViewModel
+
+    @ActivityScope
+    @Binds
+    @IntoMap
+    @ViewModelKeys(LetTheCarWorkViewModel::class)
+    internal abstract fun provideLetTheCarWorkViewModel(letTheCarWorkViewModel: LetTheCarWorkViewModel): ViewModel
 }

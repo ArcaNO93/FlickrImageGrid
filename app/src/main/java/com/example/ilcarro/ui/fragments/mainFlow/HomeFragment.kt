@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.ilcarro.R
 import com.example.ilcarro.adapters.CarsUIAdapter
 import com.example.ilcarro.databinding.FragmentHomeBinding
@@ -19,9 +17,9 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     private lateinit var mAdapter: CarsUIAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        init()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initView()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,7 +30,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
 
     override fun getLayoutID()  = R.layout.fragment_home
 
-    private fun init() {
+    override fun initView() {
         mAdapter = CarsUIAdapter()
         mBinding.topThreeList.adapter = mAdapter
         mBinding.errorMessageHome.viewModel = mViewModel
@@ -40,7 +38,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         mViewModel.getTopCars()
     }
 
-    private fun initListeners() {
+    override fun initListeners() {
         mViewModel.mLoadingStatus.observe(viewLifecycleOwner, Observer {
             when(it.status) {
                 STATUS.LOADING -> showHideView(mBinding.progressBar.progressBarFrame, true)

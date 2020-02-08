@@ -19,4 +19,12 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
     }
 
     override fun getLayoutID() = R.layout.fragment_search
+
+    override fun initView() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun initListeners() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
