@@ -33,7 +33,7 @@ class CarStorageUseCasesImpl @Inject constructor(
     override fun getAddCarUI() =
         mCarStorageRepo.getAddCarUI()
 
-    fun addFeature(feature: String): Single<MutableList<String>> {
+    override fun addFeature(feature: String): Single<MutableList<String>> {
         return if (Validator.validateList(feature, mFeatureList)) {
             mFeatureList.add(feature)
             Single.just(mFeatureList)
@@ -41,8 +41,11 @@ class CarStorageUseCasesImpl @Inject constructor(
             Single.error(Validator.error)
     }
 
-    fun removeFeature(feature: String): MutableList<String> {
+    override fun removeFeature(feature: String): MutableList<String> {
         mFeatureList.remove(feature)
         return mFeatureList
     }
+
+    override fun clearRepo() =
+        mCarStorageRepo.clearRepo()
 }

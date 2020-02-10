@@ -82,6 +82,7 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
             .subscribe({
                 _mCarAddingStatus.postValue(NetworkState.LOADED)
                 mDestination.postValue(Event(R.id.profileFragment))
+                mCarStorageUseCases.clearRepo()
             }, {
                 _mCarAddingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
             })

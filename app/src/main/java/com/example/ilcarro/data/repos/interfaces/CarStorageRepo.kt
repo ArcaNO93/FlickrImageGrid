@@ -8,4 +8,5 @@ interface CarStorageRepo {
     fun addCarUIDetailsSecondChunk(carDetailsSecondChunk: AddCarUICarDetailsSecondChunk)
     fun addCarUIDetailsLastChunk(carDetailsLastChunk: AddCarUICarDetailsLastChunk)
     fun getAddCarUI(): AddCarUI
+    fun clearRepo()
 }

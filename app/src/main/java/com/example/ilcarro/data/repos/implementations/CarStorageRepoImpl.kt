@@ -49,5 +49,9 @@ class CarStorageRepoImpl @Inject constructor(
         Log.d("tag", newCar.toString())
     }
 
+    override fun clearRepo() {
+        newCar = AddCarUI()
+    }
+
     override fun getAddCarUI() = newCar
 }
