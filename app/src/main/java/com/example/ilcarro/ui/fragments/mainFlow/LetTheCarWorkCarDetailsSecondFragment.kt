@@ -15,7 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 
 import com.example.ilcarro.R
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUICarDetailsSecondChunk
 import com.example.ilcarro.databinding.FragmentLetTheCarWorkCarDetailsSecondBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkCarDetailsSecondViewModel
@@ -34,8 +33,8 @@ class LetTheCarWorkCarDetailsSecondFragment : BaseFragment<LetTheCarWorkCarDetai
 
     override fun initView() {
         mBinding.viewModel = mViewModel
-        mBinding.WDEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_menu_popup_item, SpinnerLists.wheelsDriveList))
-        mBinding.classEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_menu_popup_item, SpinnerLists.carClassesList))
+        mBinding.WDEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_list_row, SpinnerLists.wheelsDriveList))
+        mBinding.classEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_list_row, SpinnerLists.carClassesList))
     }
 
     override fun initListeners() {
@@ -47,7 +46,7 @@ class LetTheCarWorkCarDetailsSecondFragment : BaseFragment<LetTheCarWorkCarDetai
         })
 
         mViewModel.mButtonClickability.observe(viewLifecycleOwner, Observer {
-            val clickability = it[0] && it[1] && it[2] && it[3] && it[4] && it[5]
+            val clickability = it[0] && it[1] && it[2] && it[3] && it[4] && it[5] && it[6] && it[7]
             mBinding.buttonNext.backgroundTintList = when(clickability) {
                 true -> ContextCompat.getColorStateList(requireContext(), R.color.colorRed)
                 false -> ContextCompat.getColorStateList(requireContext(), R.color.colorPrimaryDark)

@@ -13,15 +13,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.ilcarro.R
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUICarDetailsLastChunk
+import com.example.ilcarro.adapters.FeatureAdapter
+import com.example.ilcarro.data.dto.general.Features
 import com.example.ilcarro.databinding.FragmentLetTheCarWorkCarDetailsLastBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkCarDetailsLastViewModel
 import com.example.ilcarro.utils.STATUS
 
 class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetailsLastViewModel, FragmentLetTheCarWorkCarDetailsLastBinding>() {
+
+    private lateinit var mAdapter: FeatureAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAdapter = FeatureAdapter(mViewModel)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
@@ -35,9 +44,16 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
     override fun initView() {
         mBinding.viewModel = mViewModel
         mBinding.progressBar.progressBarFrame.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.colorPrimaryHalfTransparent))
+        mBinding.featuresList.layoutManager = LinearLayoutManager(requireActivity())
+        mBinding.featuresList.adapter = mAdapter
+        mBinding.feature = ""
     }
 
     override fun initListeners() {
+        mViewModel.mFeatureLiveList.observe(viewLifecycleOwner, Observer {
+            mAdapter.setFeatures(it)
+        })
+
         mViewModel.getDestination().observe(viewLifecycleOwner, Observer { it ->
             it.getContentIfNotHandled()?.let {
                 hideKeyboardIfOpened()
@@ -46,7 +62,11 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
             }
         })
 
-        mViewModel.mButtonClickability.observe(viewLifecycleOwner, Observer {
+        mViewModel.mListValidationError.observe(viewLifecycleOwner, Observer {
+            showToast(it)
+        })
+
+        mViewModel.mSubmitButtonClickability.observe(viewLifecycleOwner, Observer {
             val clickability = it[0] && it[1]
             mBinding.buttonNext.backgroundTintList = when(clickability) {
                 true -> ContextCompat.getColorStateList(requireContext(), R.color.colorRed)
@@ -70,7 +90,7 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
                 }
                 STATUS.LOADED -> {
                     showHideView(mBinding.progressBar.progressBarFrame, false)
-                    showToast("CarAdded")
+                    showToast("Car added, check your profile")
                     Navigation.findNavController(mBinding.root).navigate(R.id.profileFragment)
                 }
                 STATUS.FAIL -> {

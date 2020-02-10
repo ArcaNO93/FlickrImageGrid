@@ -1,5 +1,7 @@
 package com.example.ilcarro.utils
 
+import android.util.Log
+
 object Validator {
 
     var error: Throwable? = null
@@ -84,6 +86,20 @@ object Validator {
         else {
             error = IllegalArgumentException("Field can\'t be empty")
             false
+        }
+    }
+
+    fun validateList(element: String, list: List<String>): Boolean {
+        return when {
+            element.isEmpty() -> {
+                error = IllegalArgumentException("Can\'t add an empty field")
+                false
+            }
+            list.contains(element) -> {
+                error = IllegalArgumentException("No duplicated fields allowed")
+                false
+            }
+            else -> true
         }
     }
 }

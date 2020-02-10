@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Features(
     @SerializedName("feature")
-    val feature: String
+    var feature: String
 )

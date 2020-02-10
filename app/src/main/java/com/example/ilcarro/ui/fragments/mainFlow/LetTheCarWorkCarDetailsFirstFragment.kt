@@ -33,8 +33,8 @@ class LetTheCarWorkCarDetailsFirstFragment : BaseFragment<LetTheCarWorkCarDetail
 
     override fun initView() {
         mBinding.viewModel = mViewModel
-        mBinding.transmissionEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_menu_popup_item, SpinnerLists.transmissionList))
-        mBinding.fuelEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_menu_popup_item, SpinnerLists.fuelList))
+        mBinding.transmissionEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_list_row, SpinnerLists.transmissionList))
+        mBinding.fuelEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_list_row, SpinnerLists.fuelList))
     }
 
     override fun initListeners() {

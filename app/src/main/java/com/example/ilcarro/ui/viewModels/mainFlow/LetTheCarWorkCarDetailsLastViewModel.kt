@@ -1,6 +1,7 @@
 package com.example.ilcarro.ui.viewModels.mainFlow
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +11,9 @@ import com.example.ilcarro.business.implementations.CarProcessingUseCasesImpl
 import com.example.ilcarro.business.implementations.CarStorageUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUICarDetailsLastChunk
+import com.example.ilcarro.data.dto.general.Features
 import com.example.ilcarro.utils.Event
+import com.example.ilcarro.utils.Mapper
 import com.example.ilcarro.utils.NetworkState
 import com.example.ilcarro.utils.ResponseHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,17 +30,25 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
         false
     }
 
-    var mCarInfoLastChunk = AddCarUICarDetailsLastChunk()
+    var mCarInfoLastChunk = Mapper.toAddCarUICarDetailsLastChunk(mCarStorageUseCases.getAddCarUI())
+
+    private val mDestination = MutableLiveData<Event<Int>>()
+
+    private val _mFeatureLiveList = MutableLiveData<MutableList<String>>()
+    val mFeatureLiveList: LiveData<MutableList<String>>
+        get() = _mFeatureLiveList
+
+    private val _mListValidationError = MutableLiveData<String>()
+    val mListValidationError: LiveData<String>
+        get() = _mListValidationError
 
     private val _mCarAddingStatus = MutableLiveData<NetworkState>()
     val mCarAddingStatus: LiveData<NetworkState>
         get() = _mCarAddingStatus
 
-    private val mDestination = MutableLiveData<Event<Int>>()
-
-    private val _mButtonClickability = MediatorLiveData<MutableList<Boolean>>()
-    val mButtonClickability: LiveData<MutableList<Boolean>>
-        get() = _mButtonClickability
+    private val _mSubmitButtonClickability = MediatorLiveData<MutableList<Boolean>>()
+    val mSubmitButtonClickability: LiveData<MutableList<Boolean>>
+        get() = _mSubmitButtonClickability
 
     private val _mAboutValid = MutableLiveData<Pair<Boolean, String?>>()
     val mAboutValid: LiveData<Pair<Boolean, String?>>
@@ -48,14 +59,14 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
         get() = _mPricePerDayValid
 
     init {
-        _mButtonClickability.postValue(mCheckList)
-        _mButtonClickability.addSource(_mAboutValid) {
+        _mSubmitButtonClickability.postValue(mCheckList)
+        _mSubmitButtonClickability.addSource(_mAboutValid) {
             mCheckList[0] = it.first
-            _mButtonClickability.postValue(mCheckList)
+            _mSubmitButtonClickability.postValue(mCheckList)
         }
-        _mButtonClickability.addSource(_mPricePerDayValid) {
+        _mSubmitButtonClickability.addSource(_mPricePerDayValid) {
             mCheckList[1] = it.first
-            _mButtonClickability.postValue(mCheckList)
+            _mSubmitButtonClickability.postValue(mCheckList)
         }
     }
 
@@ -74,6 +85,20 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
             }, {
                 _mCarAddingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
             })
+    }
+
+    @SuppressLint("CheckResult")
+    fun addFeature(feature: String) {
+        mCarStorageUseCases.addFeature(feature).subscribe({
+            _mFeatureLiveList.postValue(it)
+        },{
+            _mListValidationError.postValue(it.message)
+        })
+    }
+
+    @SuppressLint("CheckResult")
+    fun removeFeature(feature: String) {
+        _mFeatureLiveList.postValue(mCarStorageUseCases.removeFeature(feature))
     }
 
     fun validateIfEmpty(string: String, liveData: MutableLiveData<Pair<Boolean, String?>>) =

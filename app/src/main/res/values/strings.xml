@@ -2,9 +2,10 @@
     <string name="app_name">ilCarro</string>
     <string name="title_activity_user_control">User control</string>
 
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="submit">Submit</string>
+    <string name="button_text_next">Next</string>
+    <string name="button_text_previous">Previous</string>
+    <string name="button_text_submit">Submit</string>
+    <string name="button_text_plus">+</string>
 
     <string name="error_message">Error while downloading the data\nPress retry to try again</string>
     <string name="retry_button_text">RETRY</string>
@@ -81,5 +82,6 @@
     <string name="let_the_car_work_class_hint_text">Class</string>
     <string name="let_the_car_work_about_hint_text">About (max 500 characters)</string>
     <string name="let_the_car_work_price_hint_text">Price</string>
+    <string name="let_the_car_work_feature_hint_text">Feature</string>
 
 </resources>

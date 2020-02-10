@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkLocationViewModel
 import com.example.ilcarro.R
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUILocationChunk
 import com.example.ilcarro.databinding.FragmentLetTheCarWorkLocationBinding
 import com.example.ilcarro.ui.fragments.BaseFragment
 import com.example.ilcarro.utils.SpinnerLists
@@ -30,7 +29,7 @@ class LetTheCarWorkLocationFragment : BaseFragment<LetTheCarWorkLocationViewMode
 
     override fun initView() {
         mBinding.viewModel = mViewModel
-        mBinding.countryEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_menu_popup_item, SpinnerLists.getCountriesList()))
+        mBinding.countryEnter.setAdapter(ArrayAdapter<String>(requireActivity(), R.layout.dropdown_list_row, SpinnerLists.getCountriesList()))
     }
 
     override fun initListeners() {

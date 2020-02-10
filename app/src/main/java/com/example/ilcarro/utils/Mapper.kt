@@ -4,7 +4,7 @@ import com.example.ilcarro.dagger.scopes.GlobalScope
 import com.example.ilcarro.data.dto.car.AddCarRequest
 import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.*
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUI
+import com.example.ilcarro.data.dto.car.ui.addCarUI.*
 import com.example.ilcarro.data.dto.general.PersonWhoBooked
 import com.example.ilcarro.data.dto.general.PickUpPlace
 import com.example.ilcarro.data.dto.general.ReservationRequest
@@ -93,6 +93,39 @@ class Mapper @Inject constructor(
             },
             bookedCars = user.bookedCars,
             history = user.history
+        )
+
+        fun toAddCarUILocationChunk(car: AddCarUI) = AddCarUILocationChunk(
+            country = car.country,
+            city = car.city,
+            street = car.street
+        )
+
+        fun toAddCarUICarDetailsFirstChunk(car: AddCarUI) = AddCarUICarDetailsFirstChunk(
+            make = car.make,
+            model = car.model,
+            year = car.year,
+            engine = car.engine,
+            fuel = car.fuel,
+            gear = car.gear
+        )
+
+        fun toAddCarUICarDetailsSecondChunk(car: AddCarUI) = AddCarUICarDetailsSecondChunk(
+            wheelsDrive = car.wheelsDrive,
+            horsePower = car.horsePower,
+            torque = car.torque,
+            fuelConsumption = car.fuelConsumption,
+            distanceIncluded = car.distanceIncluded,
+            doors = car.doors,
+            seats = car.seats,
+            carClass = car.carClass
+        )
+
+        fun toAddCarUICarDetailsLastChunk(car: AddCarUI) = AddCarUICarDetailsLastChunk(
+            about = car.about,
+            features = car.features.map { it.feature } as MutableList<String>,
+            pricePerDay = car.pricePerDay,
+            images = car.images
         )
 
         fun mapCarSearchUI(carSearch: CarSearchUI) =

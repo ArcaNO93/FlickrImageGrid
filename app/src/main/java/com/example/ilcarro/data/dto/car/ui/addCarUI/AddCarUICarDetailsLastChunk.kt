@@ -1,8 +1,8 @@
 package com.example.ilcarro.data.dto.car.ui.addCarUI
 
-class AddCarUICarDetailsLastChunk(
+data class AddCarUICarDetailsLastChunk(
     var about: String = "",
-    var features: List<String> = listOf(),
+    var features: MutableList<String> = mutableListOf(),
     var pricePerDay: String = "",
-    var images: List<String> = listOf()
+    var images: MutableList<String> = mutableListOf()
 )

@@ -1,5 +1,6 @@
 package com.example.ilcarro.data.dto.car
 
+import com.example.ilcarro.data.dto.general.Features
 import com.example.ilcarro.data.dto.general.PickUpPlace
 import com.google.gson.annotations.SerializedName
 
@@ -29,7 +30,7 @@ data class AddCarRequest(
     @SerializedName("fuel_consumption")
     val fuelConsumption: Double,
     @SerializedName("features")
-    val features: List<String>,
+    val features: List<Features>,
     @SerializedName("car_class")
     val carClass: String,
     @SerializedName("price_per_day")

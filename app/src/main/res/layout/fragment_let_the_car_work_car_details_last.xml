@@ -4,6 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
+            name="feature"
+            type="String" />
+        <variable
             name="viewModel"
             type="com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkCarDetailsLastViewModel" />
     </data>
@@ -48,7 +51,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/about_text"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:counterMaxLength="500"
+                    app:counterMaxLength="400"
                     app:counterEnabled="true"
                     android:hint="@string/let_the_car_work_about_hint_text">
 
@@ -63,11 +66,92 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/price_text"
+                    android:id="@+id/features_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/about_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_margin="16dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBlack"
+                    android:fontFamily="@font/raleway"
+                    android:text="Features (optional)"
+                    tools:ignore="HardcodedText" />
+
+                <LinearLayout
+                    android:id="@+id/features"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/features_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:weightSum="4"
+                    android:baselineAligned="false">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/feature_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_weight="3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/let_the_car_work_feature_hint_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/feature_enter"
+                            android:text="@={feature}"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_gravity="center"
+                            android:id="@+id/button_add_feature"
+                            style="@style/CustomMaterialButton"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:text="@string/button_text_plus"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/photos_layout"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:onClick="@{() -> viewModel.addFeature(feature)}"
+                            tools:ignore="HardcodedText" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/features_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/features" />
+
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/features_list"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_margin="16dp"
                     android:textSize="18sp"
@@ -140,7 +224,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="24dp"
-                    android:text="@string/submit"
+                    android:text="@string/button_text_submit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/photos_layout"
