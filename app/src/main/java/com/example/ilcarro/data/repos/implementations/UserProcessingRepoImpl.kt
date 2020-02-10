@@ -14,13 +14,11 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @ActivityScope
-class UserProcessingRepoImpl @Inject constructor() : UserProcessingRepo {
+class UserProcessingRepoImpl @Inject constructor(
+    private val mServiceRepo: ServiceRepoImpl,
+    val mRetrofit: Retrofit
+) : UserProcessingRepo {
 
-    @Inject
-    lateinit var mServiceRepo: ServiceRepoImpl
-
-    @Inject
-    lateinit var mRetrofit: Retrofit
     private val mService by lazy {
         mRetrofit.create(UserProcessingAPI::class.java)
     }

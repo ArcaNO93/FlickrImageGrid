@@ -10,7 +10,9 @@ object Validator {
         Pair(Regex("^.*(?!\\S+\$).*$"), "Password must not contain spaces"),
         Pair(Regex("^.{8,}\$"), "Password should be at least 8 characters long")
     )
-    private val fullNameRegex = Regex("^[a-zA-Z]+\$")
+    private val stringOnlyLettersRegex = Regex("^[a-zA-Z]+\$")
+    private val stringOnlyLettersAndNumbersRegex = Regex("^[a-zA-Z0-9]+\$")
+    private val stringWithoutSpecialSymbols = Regex("^[a-zA-Z0-9][,.][\\S]+\$")
 
     fun validateEmail(email: String): Boolean {
         if(email.isEmpty()) {
@@ -39,12 +41,12 @@ object Validator {
         return result
     }
 
-    fun validateFullName(fullName: String): Boolean {
+    fun validateIfLettersOnly(fullName: String): Boolean {
         if(fullName.isEmpty()) {
             error = IllegalArgumentException("Field can\'t be empty")
             return false
         }
-        if(!fullName.matches(fullNameRegex)) {
+        if(!fullName.matches(stringOnlyLettersRegex)) {
             error = IllegalArgumentException("Field can include only letters")
             return false
         }
@@ -52,4 +54,36 @@ object Validator {
         return true
     }
 
+    fun validateLettersAndNumbersOnly(fullName: String): Boolean {
+        if(fullName.isEmpty()) {
+            error = IllegalArgumentException("Field can\'t be empty")
+            return false
+        }
+        if(!fullName.matches(stringOnlyLettersAndNumbersRegex)) {
+            error = IllegalArgumentException("Field can include only letters and numbers")
+            return false
+        }
+        return true
+    }
+
+    fun validateNoSpecialSymbols(fullName: String): Boolean {
+        if(fullName.isEmpty()) {
+            error = IllegalArgumentException("Field can\'t be empty")
+            return false
+        }
+        if(!fullName.matches(stringWithoutSpecialSymbols)) {
+            error = IllegalArgumentException("Field should not contain special symbols")
+            return false
+        }
+        return true
+    }
+
+    fun validateIfEmpty(string: String): Boolean {
+        return if(string.isNotEmpty())
+            true
+        else {
+            error = IllegalArgumentException("Field can\'t be empty")
+            false
+        }
+    }
 }

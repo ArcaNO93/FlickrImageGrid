@@ -35,7 +35,6 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
     }
 
     override fun initListeners() {
-
         mViewModel.mRegisterComplete.observe(viewLifecycleOwner, Observer {
             when(it.status) {
                 STATUS.LOADING -> {
@@ -52,7 +51,6 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
                 }
             }
         })
-
         mViewModel.mLoginComplete.observe(viewLifecycleOwner, Observer {
             when(it.status) {
                 STATUS.LOADING -> showHideView(mBinding.progressBar.progressBarFrame, true)
@@ -67,35 +65,6 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
                 }
             }
         })
-
-        mViewModel.mFirstNameValid.observe(viewLifecycleOwner, Observer {
-            when(it.first) {
-                true -> mBinding.registerFirstNameEnter.error = null
-                false -> mBinding.registerFirstNameEnter.error = it.second
-            }
-        })
-
-        mViewModel.mSecondNameValid.observe(viewLifecycleOwner, Observer {
-            when(it.first) {
-                true -> mBinding.registerLastNameEnter.error = null
-                false -> mBinding.registerLastNameEnter.error = it.second
-            }
-        })
-
-        mViewModel.mLoginValid.observe(viewLifecycleOwner, Observer {
-            when(it.first) {
-                true -> mBinding.registerEmailEnter.error = null
-                false -> mBinding.registerEmailEnter.error = it.second
-            }
-        })
-
-        mViewModel.mPasswordValid.observe(viewLifecycleOwner, Observer {
-            when(it.first) {
-                true -> mBinding.registerPasswordEnter.error = null
-                false -> mBinding.registerPasswordEnter.error = it.second
-            }
-        })
-
         mViewModel.mButtonClickability.observe(viewLifecycleOwner, Observer {
             val clickability = it[0] && it[1] && it[2] && it[3] && it[4]
             mBinding.signUpButton.backgroundTintList = when(clickability) {
@@ -105,63 +74,45 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
             mBinding.signUpButton.isEnabled = clickability
         })
 
-        mBinding.registerFirstNameEnter.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && mBinding.registerFirstNameEnter.text!!.isEmpty())
-                mBinding.registerFirstNameEnter.error = null
-        }
+        addValidListener(mViewModel.mFirstNameValid, mBinding.registerFirstNameEnter)
+        addValidListener(mViewModel.mSecondNameValid, mBinding.registerLastNameEnter)
+        addValidListener(mViewModel.mLoginValid, mBinding.registerEmailEnter)
+        addValidListener(mViewModel.mPasswordValid, mBinding.registerPasswordEnter)
 
-        mBinding.registerLastNameEnter.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && mBinding.registerLastNameEnter.text!!.isEmpty())
-                mBinding.registerLastNameEnter.error = null
-        }
-
-        mBinding.registerEmailEnter.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && mBinding.registerEmailEnter.text!!.isEmpty())
-                mBinding.registerEmailEnter.error = null
-        }
-
-        mBinding.registerPasswordEnter.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus && mBinding.registerPasswordEnter.text!!.isEmpty())
-                mBinding.registerPasswordEnter.error = null
-        }
+        addOnFocusChangeListener(mBinding.registerFirstNameEnter)
+        addOnFocusChangeListener(mBinding.registerLastNameEnter)
+        addOnFocusChangeListener(mBinding.registerEmailEnter)
+        addOnFocusChangeListener(mBinding.registerPasswordEnter)
 
         mBinding.registerFirstNameEnter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 mViewModel.validateUserFirstName(s.toString())
             }
-
             override fun afterTextChanged(s: Editable) {}
         })
 
         mBinding.registerLastNameEnter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 mViewModel.validateUserLastName(s.toString())
             }
-
             override fun afterTextChanged(s: Editable) {}
         })
 
         mBinding.registerEmailEnter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 mViewModel.validateUserEmail(s.toString())
             }
-
             override fun afterTextChanged(s: Editable) {}
         })
 
         mBinding.registerPasswordEnter.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 mViewModel.validateUserPassword(s.toString())
             }
-
             override fun afterTextChanged(s: Editable) {}
         })
     }

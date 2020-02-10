@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="com.example.ilcarro.R"/>
         <variable
             name="viewModel"
-            type="com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkViewModel" />
+            type="com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkCarDetailsSecondViewModel" />
     </data>
 
     <ScrollView
+        android:id="@+id/car_details_second"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -35,7 +35,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/WD_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -46,10 +46,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:hint="@string/let_the_car_work_WD_hint_text">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/WD_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.wheelsDrive}"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:imeOptions="actionNext"
                     android:inputType="textAutoComplete" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -69,9 +71,32 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/horsepower_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.horsePower}"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="numberSigned" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/torque_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horsepower_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:hint="@string/let_the_car_work_torque_hint_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/torque_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.horsePower}"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="numberDecimal" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,12 +109,35 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horsepower_layout"
+                app:layout_constraintTop_toBottomOf="@+id/torque_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:hint="@string/let_the_car_work_fuel_consumption_hint_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fuel_consumption_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.fuelConsumption}"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/distance_included_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fuel_consumption_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:hint="@string/let_the_car_work_distance_included_hint_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/distance_included_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.fuelConsumption}"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="numberDecimal" />
@@ -105,12 +153,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fuel_consumption_layout"
+                app:layout_constraintTop_toBottomOf="@+id/distance_included_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:hint="@string/let_the_car_work_doors_hint_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/doors_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.doors}"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="numberSigned" />
@@ -132,6 +181,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/seats_enter"
+                android:text="@={viewModel.mCarInfoSecondChunk.seats}"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:inputType="numberSigned" />
@@ -140,7 +190,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/class_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -151,15 +201,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:hint="@string/let_the_car_work_class_hint_text">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/class_enter"
+                    android:text="@={viewModel.mCarInfoSecondChunk.carClass}"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:imeOptions="actionDone"
                     android:inputType="textAutoComplete" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_next"
                 style="@style/CustomMaterialButton"
                 android:layout_width="match_parent"
                 android:layout_marginStart="16dp"
@@ -171,7 +224,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/class_layout"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:onClick="@{() -> viewModel.setNewDestination(R.id.action_to_car_details_last)}"
+                android:onClick="@{() -> viewModel.addCarUIDetailsSecondChunk()}"
                 tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

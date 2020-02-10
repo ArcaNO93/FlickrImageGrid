@@ -11,10 +11,9 @@ import io.reactivex.Completable
 import javax.inject.Inject
 
 @ActivityScope
-class UserProcessingUseCasesImpl @Inject constructor() : UserProcessingUseCases {
-
-    @Inject
-    lateinit var mUserProcessingRepo: UserProcessingRepoImpl
+class UserProcessingUseCasesImpl @Inject constructor(
+    private val mUserProcessingRepo: UserProcessingRepoImpl
+) : UserProcessingUseCases {
 
     override fun registerUser(registerUser: RegisterUserUI) =
         mUserProcessingRepo.registerUser(registerUser)
@@ -38,7 +37,7 @@ class UserProcessingUseCasesImpl @Inject constructor() : UserProcessingUseCases 
         mUserProcessingRepo.getIsLogged()
 
     fun validateUserFullName(userFullName: String): Completable {
-        return if(Validator.validateFullName(userFullName))
+        return if(Validator.validateIfLettersOnly(userFullName))
             Completable.complete()
         else
             Completable.error(Validator.error)

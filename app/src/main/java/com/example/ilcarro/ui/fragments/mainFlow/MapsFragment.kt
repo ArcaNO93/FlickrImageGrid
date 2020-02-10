@@ -34,7 +34,6 @@ class MapsFragment @Inject constructor() : BaseFragment<MapsViewModel, FragmentM
     override fun getLayoutID(): Int = R.layout.fragment_maps
 
     private val callback = OnMapReadyCallback { googleMap ->
-
         Log.d("MY_", "callback")
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))

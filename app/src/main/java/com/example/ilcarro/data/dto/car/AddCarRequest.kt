@@ -4,8 +4,6 @@ import com.example.ilcarro.data.dto.general.PickUpPlace
 import com.google.gson.annotations.SerializedName
 
 data class AddCarRequest(
-    @SerializedName("serial_number")
-    val serialNumber: String,
     @SerializedName("make")
     val make: String,
     @SerializedName("model")
@@ -23,21 +21,21 @@ data class AddCarRequest(
     @SerializedName("horsepower")
     val horsePower: Int,
     @SerializedName("torque")
-    val torque: Int,
+    val torque: Double,
     @SerializedName("doors")
     val doors: Int,
     @SerializedName("seats")
     val seats: Int,
     @SerializedName("fuel_consumption")
-    val fuelConsumption: Float,
+    val fuelConsumption: Double,
     @SerializedName("features")
     val features: List<String>,
     @SerializedName("car_class")
     val carClass: String,
     @SerializedName("price_per_day")
-    val pricePerDay: Float,
+    val pricePerDay: Double,
     @SerializedName("distance_included")
-    val distanceIncluded: Float,
+    val distanceIncluded: Double,
     @SerializedName("about")
     val about: String,
     @SerializedName("pick_up_place")

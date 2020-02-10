@@ -6,7 +6,7 @@ data class PickUpPlace(
     @SerializedName("place_id")
     val placeId: String,
     @SerializedName("latitude")
-    val latitude: Float,
+    val latitude: Double,
     @SerializedName("longitude")
-    val longitude: Float
+    val longitude: Double
 )

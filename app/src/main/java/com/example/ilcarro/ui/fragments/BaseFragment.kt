@@ -7,15 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.ilcarro.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_let_the_car_work_location.view.*
 import java.lang.reflect.ParameterizedType
 import javax.inject.Inject
 
@@ -73,4 +77,20 @@ abstract class BaseFragment<VM: ViewModel, DB: ViewDataBinding> : DaggerFragment
 
     abstract fun initView()
     abstract fun initListeners()
+
+    fun <T: EditText> addValidListener(liveData: LiveData<Pair<Boolean, String?>>, editTextField: T) {
+        liveData.observe(viewLifecycleOwner, Observer {
+            when(it.first) {
+                true -> editTextField.error = null
+                false -> editTextField.error = it.second
+            }
+        })
+    }
+
+    fun addOnFocusChangeListener(view: EditText) {
+        view.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && view.text!!.isEmpty())
+                view.error = null
+        }
+    }
 }

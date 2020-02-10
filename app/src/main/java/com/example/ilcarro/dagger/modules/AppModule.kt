@@ -2,7 +2,9 @@ package com.example.ilcarro.dagger.modules
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.Geocoder
 import com.example.ilcarro.dagger.scopes.GlobalScope
+import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUI
 import com.example.ilcarro.utils.ComponentProvider
 import dagger.Module
 import dagger.Provides
@@ -11,6 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 @Module
@@ -38,4 +41,10 @@ class AppModule {
                 .build()
             )
             .build()
+
+    @Provides
+    @GlobalScope
+    fun provideGeocoder(application: ComponentProvider): Geocoder =
+        Geocoder(application, Locale.getDefault())
+
 }

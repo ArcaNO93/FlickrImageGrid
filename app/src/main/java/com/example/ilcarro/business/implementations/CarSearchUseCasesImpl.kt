@@ -13,20 +13,12 @@ import com.example.ilcarro.data.paging.factories.CarSearchFactory
 import javax.inject.Inject
 
 @ActivityScope
-class CarSearchUseCasesImpl : CarSearchUseCases {
-
-    @Inject
-    lateinit var mCarSearchFactory: CarSearchFactory
-
-    @Inject
-    lateinit var mCarSearchByFilersFactory: CarSearchByFilersFactory
-
-    @Inject
-    lateinit var mCarSearchByCoordinatesFactory: CarSearchByCoordinatesFactory
-
-    @Inject
-    lateinit var mCarBigSearchFactory: CarBigSearchFactory
-
+class CarSearchUseCasesImpl @Inject constructor(
+    private val mCarSearchFactory: CarSearchFactory,
+    private val mCarSearchByFilersFactory: CarSearchByFilersFactory,
+    private val mCarSearchByCoordinatesFactory: CarSearchByCoordinatesFactory,
+    private val mCarBigSearchFactory: CarBigSearchFactory
+) : CarSearchUseCases {
 
     override fun carSearch(carSearch: CarSearchUI) =
         mCarSearchFactory

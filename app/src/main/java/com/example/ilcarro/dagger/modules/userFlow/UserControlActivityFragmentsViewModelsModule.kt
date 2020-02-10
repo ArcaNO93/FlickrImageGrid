@@ -17,17 +17,17 @@ abstract class UserControlActivityFragmentsViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKeys(LogInViewModel::class)
-    internal abstract fun provideLogInViewModel(logInViewModel: LogInViewModel): ViewModel
+    internal abstract fun provideLogInViewModel(viewModel: LogInViewModel): ViewModel
 
     @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(RegisterViewModel::class)
-    internal abstract fun provideSignUpViewModel(signUpViewModel: RegisterViewModel): ViewModel
+    internal abstract fun provideSignUpViewModel(viewModel: RegisterViewModel): ViewModel
 
     @ActivityScope
     @Binds
     @IntoMap
     @ViewModelKeys(GetStartedViewModel::class)
-    internal abstract fun provideGetStartedViewModel(getStartedViewModel: GetStartedViewModel): ViewModel
+    internal abstract fun provideGetStartedViewModel(viewModel: GetStartedViewModel): ViewModel
 }
