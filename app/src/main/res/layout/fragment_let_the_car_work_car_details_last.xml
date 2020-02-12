@@ -212,15 +212,15 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3">
 
-                        <include
-                            android:id="@+id/progress_bar_photos"
-                            layout="@layout/progress_bar"
-                            android:visibility="gone"/>
-
                         <androidx.viewpager2.widget.ViewPager2
                             android:id="@+id/photos_list"
                             android:layout_width="match_parent"
                             android:layout_height="200dp" />
+
+                        <include
+                            android:id="@+id/progress_bar_photos"
+                            layout="@layout/progress_bar"
+                            android:visibility="gone"/>
 
                     </FrameLayout>
 

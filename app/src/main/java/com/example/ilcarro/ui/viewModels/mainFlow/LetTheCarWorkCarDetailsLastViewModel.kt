@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ilcarro.business.implementations.CarProcessingUseCasesImpl
 import com.example.ilcarro.business.implementations.CarStorageUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
+import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUI
 import com.example.ilcarro.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -21,22 +22,22 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
     private val mCarStorageUseCases: CarStorageUseCasesImpl
 ) : ViewModel() {
 
-    lateinit var mImageUri: Uri
+    lateinit var mImage: String
 
     private var mCheckList: MutableList<Boolean> = MutableList(2) {
         false
     }
 
-    var mCarInfoLastChunk = Mapper.toAddCarUICarDetailsLastChunk(mCarStorageUseCases.fetchDataFromRepo())
+    var mCarInfoLastChunk = AddCarUI()
 
     private val mDestination = MutableLiveData<Event<Int>>()
 
     private val _mImageUploadProcess = MutableLiveData<State>()
-    val mImagesUrlsGettingProcess: LiveData<State>
+    val mImageUploadProcess: LiveData<State>
         get() = _mImageUploadProcess
 
-    private val _mImageUrl = MutableLiveData<Uri>()
-    val mImageUrl: LiveData<Uri>
+    private val _mImageUrl = MutableLiveData<String>()
+    val mImageUrl: LiveData<String>
         get() = _mImageUrl
 
     private val _mFeatureLiveList = MutableLiveData<MutableList<String>>()
@@ -102,8 +103,7 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
         })
     }
 
-    fun addPhoto(image: String, imageUri: Uri) {
-        mImageUri = imageUri
+    fun addPhoto(image: String) {
         _mImageUploadProcess.postValue(State.LOADING)
         mCarStorageUseCases.uploadImage(image)
     }
@@ -122,15 +122,12 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
                 liveData.postValue(Pair(false, it.message))
             })
 
-    fun saveChunk() {
-        mCarStorageUseCases.addCarUIDetailsLastChunk(mCarInfoLastChunk)
-    }
-
     @SuppressLint("CheckResult")
     private fun initUploadImageResult() {
         mCarStorageUseCases.fetchImageUploadResult().subscribe({
             mCarInfoLastChunk.images.add(it)
-            _mImageUrl.postValue(mImageUri)
+            mImage = it
+            _mImageUrl.postValue(it)
             _mImageUploadProcess.postValue(State.LOADED)
         },{
             _mImageUploadProcess.postValue(State.fail(ResponseHandler.parseException(it)))

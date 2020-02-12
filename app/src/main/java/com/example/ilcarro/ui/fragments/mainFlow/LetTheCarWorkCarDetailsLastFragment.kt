@@ -37,7 +37,7 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mFeatureAdapter = FeatureAdapter(mViewModel)
-        mPhotosAdapter = PhotosListAdapter()
+        mPhotosAdapter = PhotosListAdapter(mViewModel)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -63,7 +63,6 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
     override fun initListeners() {
 
         mViewModel.mImageUrl.observe(viewLifecycleOwner, Observer {
-            Log.d("tag", it.toString())
             mPhotosAdapter.addImage(it)
         })
 
@@ -99,7 +98,7 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
         addTextChangeListener(mBinding.aboutEnter, mViewModel.mAboutValid)
         addTextChangeListener(mBinding.priceEnter, mViewModel.mPricePerDayValid)
 
-        mViewModel.mImagesUrlsGettingProcess.observe(viewLifecycleOwner, Observer {
+        mViewModel.mImageUploadProcess.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 STATUS.LOADING -> {
                     showHideView(mBinding.progressBarPhotos.progressBarFrame, true)
@@ -111,7 +110,6 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
                 }
                 STATUS.LOADED -> {
                     showHideView(mBinding.progressBarPhotos.progressBarFrame, false)
-                    showToast("Image added")
                     mBinding.buttonAddPhoto.apply {
                         backgroundTintList =
                             ContextCompat.getColorStateList(requireContext(), R.color.colorRed)
@@ -149,11 +147,6 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
         })
     }
 
-    override fun onPause() {
-        super.onPause()
-        mViewModel.saveChunk()
-    }
-
     fun openGallery() {
         startActivityForResult(Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), PICK_IMAGE)
     }
@@ -162,7 +155,7 @@ class LetTheCarWorkCarDetailsLastFragment : BaseFragment<LetTheCarWorkCarDetails
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             data?.data?.let {
-                mViewModel.addPhoto(it.toString(), it)
+                mViewModel.addPhoto(it.toString())
             }
         }
     }
