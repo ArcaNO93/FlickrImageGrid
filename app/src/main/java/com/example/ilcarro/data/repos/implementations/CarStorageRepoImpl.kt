@@ -1,22 +1,23 @@
 package com.example.ilcarro.data.repos.implementations
 
-import android.util.Log
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.car.ui.addCarUI.*
 import com.example.ilcarro.data.dto.general.Features
 import com.example.ilcarro.data.repos.interfaces.CarStorageRepo
+import com.example.ilcarro.utils.CloudinaryImageUploader
+import io.reactivex.Observable
 import javax.inject.Inject
 
 @ActivityScope
 class CarStorageRepoImpl @Inject constructor(
-    private var newCar: AddCarUI
+    private var newCar: AddCarUI,
+    private var imageUploader: CloudinaryImageUploader
 ): CarStorageRepo {
 
     override fun addCarUILocationChunk(locationChunk: AddCarUILocationChunk) {
         newCar.country = locationChunk.country
         newCar.city = locationChunk.city
         newCar.street = locationChunk.street
-        Log.d("tag", newCar.toString())
     }
 
     override fun addCarUICarDetailsFirstChunk(carDetailsFirstChunk: AddCarUICarDetailsFirstChunk) {
@@ -26,7 +27,6 @@ class CarStorageRepoImpl @Inject constructor(
         newCar.engine = carDetailsFirstChunk.engine
         newCar.fuel = carDetailsFirstChunk.fuel
         newCar.gear = carDetailsFirstChunk.gear
-        Log.d("tag", newCar.toString())
     }
 
     override fun addCarUIDetailsSecondChunk(carDetailsSecondChunk: AddCarUICarDetailsSecondChunk) {
@@ -38,7 +38,6 @@ class CarStorageRepoImpl @Inject constructor(
         newCar.doors = carDetailsSecondChunk.doors
         newCar.seats = carDetailsSecondChunk.seats
         newCar.carClass = carDetailsSecondChunk.carClass
-        Log.d("tag", newCar.toString())
     }
 
     override fun addCarUIDetailsLastChunk(carDetailsLastChunk: AddCarUICarDetailsLastChunk) {
@@ -46,12 +45,19 @@ class CarStorageRepoImpl @Inject constructor(
         newCar.features = carDetailsLastChunk.features.map { Features(it) } as MutableList<Features>
         newCar.pricePerDay = carDetailsLastChunk.pricePerDay
         newCar.images = carDetailsLastChunk.images
-        Log.d("tag", newCar.toString())
+    }
+
+    override fun uploadImage(image: String) {
+        imageUploader.uploadImage(image, newCar)
+    }
+
+    override fun fetchImageUploadResult(): Observable<String> {
+        return imageUploader.mUploadImageProcess
     }
 
     override fun clearRepo() {
         newCar = AddCarUI()
     }
 
-    override fun getAddCarUI() = newCar
+    override fun fetchDataFromRepo() = newCar
 }

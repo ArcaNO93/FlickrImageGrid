@@ -9,6 +9,9 @@
         <variable
             name="viewModel"
             type="com.example.ilcarro.ui.viewModels.mainFlow.LetTheCarWorkCarDetailsLastViewModel" />
+        <variable
+            name="fragment"
+            type="com.example.ilcarro.ui.fragments.mainFlow.LetTheCarWorkCarDetailsLastFragment" />
     </data>
 
     <ScrollView
@@ -124,10 +127,6 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:text="@string/button_text_plus"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/photos_layout"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             android:onClick="@{() -> viewModel.addFeature(feature)}"
                             tools:ignore="HardcodedText" />
                     </FrameLayout>
@@ -195,26 +194,53 @@
                     android:text="Add photos of your car:"
                     tools:ignore="HardcodedText" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <LinearLayout
                     android:id="@+id/photos_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
+                    android:weightSum="4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/photos_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="@string/let_the_car_work_transmission_hint_text">
+                    app:layout_constraintEnd_toEndOf="parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/photos_enter"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:inputType="numberDecimal" />
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <include
+                            android:id="@+id/progress_bar_photos"
+                            layout="@layout/progress_bar"
+                            android:visibility="gone"/>
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/photos_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button_add_photo"
+                            style="@style/CustomMaterialButton"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:text="@string/button_text_plus"
+                            android:onClick="@{() -> fragment.openGallery()}"
+                            tools:ignore="HardcodedText" />
+                    </FrameLayout>
+
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_next"
@@ -229,13 +255,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/photos_layout"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:onClick="@{() -> viewModel.addCar()}"
                     tools:ignore="HardcodedText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
-                android:id="@+id/progress_bar"
+                android:id="@+id/progress_bar_main"
                 layout="@layout/progress_bar"
                 android:visibility="gone"/>
 

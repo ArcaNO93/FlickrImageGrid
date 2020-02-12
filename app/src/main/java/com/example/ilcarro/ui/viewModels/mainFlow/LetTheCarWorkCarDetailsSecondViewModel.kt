@@ -8,7 +8,6 @@ import com.example.ilcarro.R
 import com.example.ilcarro.business.implementations.CarProcessingUseCasesImpl
 import com.example.ilcarro.business.implementations.CarStorageUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUICarDetailsSecondChunk
 import com.example.ilcarro.utils.Event
 import com.example.ilcarro.utils.Mapper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,7 +24,7 @@ class LetTheCarWorkCarDetailsSecondViewModel @Inject constructor(
         false
     }
 
-    var mCarInfoSecondChunk = Mapper.toAddCarUICarDetailsSecondChunk(mCarStorageUseCases.getAddCarUI())
+    var mCarInfoSecondChunk = Mapper.toAddCarUICarDetailsSecondChunk(mCarStorageUseCases.fetchDataFromRepo())
 
     private val destination = MutableLiveData<Event<Int>>()
 

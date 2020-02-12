@@ -1,21 +1,16 @@
 package com.example.ilcarro.ui.viewModels.mainFlow
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.ilcarro.R
 import com.example.ilcarro.business.implementations.CarProcessingUseCasesImpl
 import com.example.ilcarro.business.implementations.CarStorageUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUICarDetailsLastChunk
-import com.example.ilcarro.data.dto.general.Features
-import com.example.ilcarro.utils.Event
-import com.example.ilcarro.utils.Mapper
-import com.example.ilcarro.utils.NetworkState
-import com.example.ilcarro.utils.ResponseHandler
+import com.example.ilcarro.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -26,13 +21,23 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
     private val mCarStorageUseCases: CarStorageUseCasesImpl
 ) : ViewModel() {
 
+    lateinit var mImageUri: Uri
+
     private var mCheckList: MutableList<Boolean> = MutableList(2) {
         false
     }
 
-    var mCarInfoLastChunk = Mapper.toAddCarUICarDetailsLastChunk(mCarStorageUseCases.getAddCarUI())
+    var mCarInfoLastChunk = Mapper.toAddCarUICarDetailsLastChunk(mCarStorageUseCases.fetchDataFromRepo())
 
     private val mDestination = MutableLiveData<Event<Int>>()
+
+    private val _mImageUploadProcess = MutableLiveData<State>()
+    val mImagesUrlsGettingProcess: LiveData<State>
+        get() = _mImageUploadProcess
+
+    private val _mImageUrl = MutableLiveData<Uri>()
+    val mImageUrl: LiveData<Uri>
+        get() = _mImageUrl
 
     private val _mFeatureLiveList = MutableLiveData<MutableList<String>>()
     val mFeatureLiveList: LiveData<MutableList<String>>
@@ -42,8 +47,8 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
     val mListValidationError: LiveData<String>
         get() = _mListValidationError
 
-    private val _mCarAddingStatus = MutableLiveData<NetworkState>()
-    val mCarAddingStatus: LiveData<NetworkState>
+    private val _mCarAddingStatus = MutableLiveData<State>()
+    val mCarAddingStatus: LiveData<State>
         get() = _mCarAddingStatus
 
     private val _mSubmitButtonClickability = MediatorLiveData<MutableList<Boolean>>()
@@ -58,15 +63,18 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
     val mPricePerDayValid: LiveData<Pair<Boolean, String?>>
         get() = _mPricePerDayValid
 
-    init {
+     init {
+         initUploadImageResult()
         _mSubmitButtonClickability.postValue(mCheckList)
-        _mSubmitButtonClickability.addSource(_mAboutValid) {
-            mCheckList[0] = it.first
-            _mSubmitButtonClickability.postValue(mCheckList)
-        }
-        _mSubmitButtonClickability.addSource(_mPricePerDayValid) {
-            mCheckList[1] = it.first
-            _mSubmitButtonClickability.postValue(mCheckList)
+        _mSubmitButtonClickability.apply {
+            addSource(_mAboutValid) {
+                mCheckList[0] = it.first
+                _mSubmitButtonClickability.postValue(mCheckList)
+            }
+            addSource(_mPricePerDayValid) {
+                mCheckList[1] = it.first
+                _mSubmitButtonClickability.postValue(mCheckList)
+            }
         }
     }
 
@@ -74,17 +82,14 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     fun addCar() {
-        mCarStorageUseCases.addCarUIDetailsLastChunk(mCarInfoLastChunk)
-        _mCarAddingStatus.postValue(NetworkState.LOADING)
-        mCarProcessingUseCases.addCar(mCarStorageUseCases.getAddCarUI())
+        _mCarAddingStatus.postValue(State.LOADING)
+        mCarProcessingUseCases.addCar(mCarStorageUseCases.fetchDataFromRepo())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                _mCarAddingStatus.postValue(NetworkState.LOADED)
-                mDestination.postValue(Event(R.id.profileFragment))
-                mCarStorageUseCases.clearRepo()
+                _mCarAddingStatus.postValue(State.LOADED)
             }, {
-                _mCarAddingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
+                _mCarAddingStatus.postValue(State.fail(ResponseHandler.parseException(it)))
             })
     }
 
@@ -97,7 +102,12 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
         })
     }
 
-    @SuppressLint("CheckResult")
+    fun addPhoto(image: String, imageUri: Uri) {
+        mImageUri = imageUri
+        _mImageUploadProcess.postValue(State.LOADING)
+        mCarStorageUseCases.uploadImage(image)
+    }
+
     fun removeFeature(feature: String) {
         _mFeatureLiveList.postValue(mCarStorageUseCases.removeFeature(feature))
     }
@@ -111,4 +121,19 @@ class LetTheCarWorkCarDetailsLastViewModel @Inject constructor(
             }, {
                 liveData.postValue(Pair(false, it.message))
             })
+
+    fun saveChunk() {
+        mCarStorageUseCases.addCarUIDetailsLastChunk(mCarInfoLastChunk)
+    }
+
+    @SuppressLint("CheckResult")
+    private fun initUploadImageResult() {
+        mCarStorageUseCases.fetchImageUploadResult().subscribe({
+            mCarInfoLastChunk.images.add(it)
+            _mImageUrl.postValue(mImageUri)
+            _mImageUploadProcess.postValue(State.LOADED)
+        },{
+            _mImageUploadProcess.postValue(State.fail(ResponseHandler.parseException(it)))
+        })
+    }
 }

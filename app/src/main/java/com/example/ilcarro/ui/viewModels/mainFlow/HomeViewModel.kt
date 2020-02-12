@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.ilcarro.business.implementations.GettersUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.car.ui.ShowCarUI
-import com.example.ilcarro.utils.NetworkState
+import com.example.ilcarro.utils.State
 import com.example.ilcarro.utils.ResponseHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -19,8 +19,8 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     @Inject
     lateinit var mGettersUseCases: GettersUseCasesImpl
 
-    private val _mLoadingStatus = MutableLiveData<NetworkState>()
-    val mLoadingStatus: LiveData<NetworkState>
+    private val _mLoadingStatus = MutableLiveData<State>()
+    val mLoadingStatus: LiveData<State>
         get() = _mLoadingStatus
 
     private val _mTopCars = MutableLiveData<List<ShowCarUI>>()
@@ -35,14 +35,14 @@ class HomeViewModel @Inject constructor() : ViewModel() {
     fun getTopCars() {
         if(_mErrorMessageShown.value == true)
             _mErrorMessageShown.postValue(false)
-        _mLoadingStatus.postValue(NetworkState.LOADING)
+        _mLoadingStatus.postValue(State.LOADING)
         mGettersUseCases.getBestBookedCars().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                _mLoadingStatus.postValue(NetworkState.LOADED)
+                _mLoadingStatus.postValue(State.LOADED)
                 _mTopCars.postValue(it)
             }, {
-                _mLoadingStatus.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
+                _mLoadingStatus.postValue(State.fail(ResponseHandler.parseException(it)))
                 _mErrorMessageShown.postValue(true)
         })
     }

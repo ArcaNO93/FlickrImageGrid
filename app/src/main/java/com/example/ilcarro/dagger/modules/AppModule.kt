@@ -3,8 +3,9 @@ package com.example.ilcarro.dagger.modules
 import android.content.Context
 import android.content.SharedPreferences
 import android.location.Geocoder
+import com.cloudinary.Cloudinary
+import com.cloudinary.android.MediaManager
 import com.example.ilcarro.dagger.scopes.GlobalScope
-import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUI
 import com.example.ilcarro.utils.ComponentProvider
 import dagger.Module
 import dagger.Provides
@@ -47,4 +48,14 @@ class AppModule {
     fun provideGeocoder(application: ComponentProvider): Geocoder =
         Geocoder(application, Locale.getDefault())
 
+    @Provides
+    @GlobalScope
+    fun provideMediaManager(application: ComponentProvider): MediaManager {
+        val config = HashMap<String, String>()
+        config["cloud_name"] = "arcano"
+        config["api_key"] = "285966566479262"
+        config["api_secret"] = "M5vHOZfvd4x_iNDWHMupCIzUlSE"
+        MediaManager.init(application, config)
+        return MediaManager.get()
+    }
 }

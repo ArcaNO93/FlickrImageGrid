@@ -7,7 +7,7 @@ import com.example.ilcarro.data.api.SearchUI
 import com.example.ilcarro.data.dto.car.Car
 import com.example.ilcarro.data.dto.car.ui.CarBigSearchUI
 import com.example.ilcarro.utils.Mapper
-import com.example.ilcarro.utils.NetworkState
+import com.example.ilcarro.utils.State
 import com.example.ilcarro.utils.ResponseHandler
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
@@ -24,12 +24,12 @@ class CarBigSearchDataSource @Inject constructor(val mCarSearch: CarBigSearchUI)
         mRetrofit.create(SearchUI::class.java)
     }
 
-    private val networkState = MutableLiveData<NetworkState>()
+    private val networkState = MutableLiveData<State>()
 
-    fun getNetworkState() : LiveData<NetworkState> = networkState
+    fun getNetworkState() : LiveData<State> = networkState
 
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Car>) {
-        networkState.postValue(NetworkState.LOADING)
+        networkState.postValue(State.LOADING)
         CompositeDisposable().add(
             service.bigSearch(
                 FIRST_PAGE,
@@ -38,7 +38,7 @@ class CarBigSearchDataSource @Inject constructor(val mCarSearch: CarBigSearchUI)
                 true
             ).subscribe({
                 callback.onResult(it.cars, null, FIRST_PAGE + 1)
-                networkState.postValue(NetworkState.LOADED)
+                networkState.postValue(State.LOADED)
             }, {
                 handleError(it)
             })
@@ -46,7 +46,7 @@ class CarBigSearchDataSource @Inject constructor(val mCarSearch: CarBigSearchUI)
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Car>) {
-        networkState.postValue(NetworkState.LOADING)
+        networkState.postValue(State.LOADING)
         CompositeDisposable().add(
             service.bigSearch(
                  FIRST_PAGE,
@@ -55,7 +55,7 @@ class CarBigSearchDataSource @Inject constructor(val mCarSearch: CarBigSearchUI)
                 true
             ).subscribe({
                 callback.onResult(it.cars, params.key + 1)
-                networkState.postValue(NetworkState.LOADED)
+                networkState.postValue(State.LOADED)
             }, {
                 handleError(it)
             })
@@ -67,5 +67,5 @@ class CarBigSearchDataSource @Inject constructor(val mCarSearch: CarBigSearchUI)
     }
 
     private fun handleError(exception: Throwable) =
-        networkState.postValue(NetworkState.fail(ResponseHandler.parseException(exception)))
+        networkState.postValue(State.fail(ResponseHandler.parseException(exception)))
 }

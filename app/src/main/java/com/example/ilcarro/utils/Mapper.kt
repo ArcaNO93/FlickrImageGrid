@@ -1,5 +1,6 @@
 package com.example.ilcarro.utils
 
+import android.annotation.SuppressLint
 import com.example.ilcarro.dagger.scopes.GlobalScope
 import com.example.ilcarro.data.dto.car.AddCarRequest
 import com.example.ilcarro.data.dto.car.Car
@@ -15,6 +16,7 @@ import com.example.ilcarro.data.dto.user.User
 import com.example.ilcarro.data.dto.user.ui.RegisterUserUI
 import com.example.ilcarro.data.dto.user.ui.UpdateUserUI
 import com.example.ilcarro.data.dto.user.ui.UserUI
+import io.reactivex.Single
 import javax.inject.Inject
 
 @GlobalScope
@@ -22,28 +24,29 @@ class Mapper @Inject constructor(
     private val geocoder: Geocoder
 ) {
 
+    @SuppressLint("CheckResult")
     fun toAddCarRequest(car: AddCarUI): AddCarRequest {
         val coordinates = geocoder.getCoordinates("${car.street},${car.city},${car.country}")
         return AddCarRequest(
-            make = car.make,
-            model = car.model,
-            year = car.year,
-            engine = car.engine,
-            fuel = car.fuel,
-            gear = car.gear,
-            wheelsDrive = car.wheelsDrive,
-            horsePower = car.horsePower.toInt(),
-            torque = car.torque.toDouble(),
-            doors = car.doors.toInt(),
-            seats = car.seats.toInt(),
-            fuelConsumption = car.fuelConsumption.toDouble(),
-            features = car.features,
-            carClass = car.carClass,
-            pricePerDay = car.pricePerDay.toDouble(),
-            distanceIncluded = car.distanceIncluded.toDouble(),
-            about = car.about,
-            pickUpPlace = PickUpPlace("", coordinates.first, coordinates.second),
-            images = car.images
+                make = car.make,
+                model = car.model,
+                year = car.year,
+                engine = car.engine,
+                fuel = car.fuel,
+                gear = car.gear,
+                wheelsDrive = car.wheelsDrive,
+                horsePower = car.horsePower.toInt(),
+                torque = car.torque.toDouble(),
+                doors = car.doors.toInt(),
+                seats = car.seats.toInt(),
+                fuelConsumption = car.fuelConsumption.toDouble(),
+                features = car.features,
+                carClass = car.carClass,
+                pricePerDay = car.pricePerDay.toDouble(),
+                distanceIncluded = car.distanceIncluded.toDouble(),
+                about = car.about,
+                pickUpPlace = PickUpPlace("", coordinates.first, coordinates.second),
+                images = car.images
         )
     }
 

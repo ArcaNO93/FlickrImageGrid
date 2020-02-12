@@ -7,13 +7,13 @@ enum class STATUS {
 }
 
 @Suppress("DataClassPrivateConstructor")
-data class NetworkState private constructor(
+data class State private constructor(
     val status: STATUS,
     val msg: String? = null
 ) {
     companion object {
-        val LOADING = NetworkState(STATUS.LOADING)
-        val LOADED = NetworkState(STATUS.LOADED)
-        fun fail(msg: String?) = NetworkState(STATUS.FAIL, msg)
+        val LOADING = State(STATUS.LOADING)
+        val LOADED = State(STATUS.LOADED)
+        fun fail(msg: String?) = State(STATUS.FAIL, msg)
     }
 }

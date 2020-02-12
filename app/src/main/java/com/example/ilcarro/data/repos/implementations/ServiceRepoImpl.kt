@@ -16,9 +16,9 @@ class ServiceRepoImpl @Inject constructor(
     private val mService: SharedPreferences
 ) : ServiceRepo {
 
-    val mEmmiter = BehaviorSubject.create<Boolean>()
+    private val mEmmiter = BehaviorSubject.create<Boolean>()
     val mIsLogged: Observable<Boolean> = mEmmiter
-    private val mShPrefChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
+    private val mShPrefChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if(key == "isLogged")
             mEmmiter.onNext(getIsLogged())
     }

@@ -1,7 +1,6 @@
 package com.example.ilcarro.ui.viewModels.userFlow
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +9,7 @@ import com.example.ilcarro.business.implementations.UserProcessingUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.user.ui.LoginUserUI
 import com.example.ilcarro.data.dto.user.ui.RegisterUserUI
-import com.example.ilcarro.utils.NetworkState
+import com.example.ilcarro.utils.State
 import com.example.ilcarro.utils.ResponseHandler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -28,12 +27,12 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
     val mButtonClickability: LiveData<MutableList<Boolean>>
         get() = _mButtonClickability
 
-    private val _mRegisterComplete: MutableLiveData<NetworkState> = MutableLiveData()
-    val mRegisterComplete: LiveData<NetworkState>
+    private val _mRegisterComplete: MutableLiveData<State> = MutableLiveData()
+    val mRegisterComplete: LiveData<State>
         get() = _mRegisterComplete
 
-    private val _mLoginComplete: MutableLiveData<NetworkState> = MutableLiveData()
-    val mLoginComplete: LiveData<NetworkState>
+    private val _mLoginComplete: MutableLiveData<State> = MutableLiveData()
+    val mLoginComplete: LiveData<State>
         get() = _mLoginComplete
 
     private val _mFirstNameValid = MutableLiveData<Pair<Boolean, String?>>()
@@ -78,15 +77,15 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun registerUser(registerUser: RegisterUserUI) {
-        _mRegisterComplete.postValue(NetworkState.LOADING)
+        _mRegisterComplete.postValue(State.LOADING)
         userProcessingUseCases.registerUser(registerUser)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                _mRegisterComplete.postValue(NetworkState.LOADED)
+                _mRegisterComplete.postValue(State.LOADED)
                 loginAfterRegister(LoginUserUI(registerUser.login, registerUser.password))
             }, {
-                _mRegisterComplete.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
+                _mRegisterComplete.postValue(State.fail(ResponseHandler.parseException(it)))
             })
     }
 
@@ -137,14 +136,14 @@ class RegisterViewModel @Inject constructor() : ViewModel() {
 
     @SuppressLint("CheckResult")
     private fun loginAfterRegister(loginUser: LoginUserUI) {
-        _mLoginComplete.postValue(NetworkState.LOADING)
+        _mLoginComplete.postValue(State.LOADING)
         userProcessingUseCases.loginUser(loginUser)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                _mLoginComplete.postValue(NetworkState.LOADED)
+                _mLoginComplete.postValue(State.LOADED)
             }, {
-                _mLoginComplete.postValue(NetworkState.fail(ResponseHandler.parseException(it)))
+                _mLoginComplete.postValue(State.fail(ResponseHandler.parseException(it)))
             })
     }
 }

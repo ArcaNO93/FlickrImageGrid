@@ -1,6 +1,8 @@
 package com.example.ilcarro.business.interfaces
 
 import com.example.ilcarro.data.dto.car.ui.addCarUI.*
+import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 
 interface CarStorageUseCases {
@@ -8,8 +10,10 @@ interface CarStorageUseCases {
     fun addCarUICarDetailsFirstChunk(carDetailsFirstChunk: AddCarUICarDetailsFirstChunk)
     fun addCarUIDetailsSecondChunk(carDetailsSecondChunk: AddCarUICarDetailsSecondChunk)
     fun addCarUIDetailsLastChunk(carDetailsLastChunk: AddCarUICarDetailsLastChunk)
-    fun getAddCarUI(): AddCarUI
+    fun fetchDataFromRepo(): AddCarUI
     fun addFeature(feature: String): Single<MutableList<String>>
     fun removeFeature(feature: String): MutableList<String>
+    fun uploadImage(image: String)
+    fun fetchImageUploadResult(): Observable<String>
     fun clearRepo()
 }

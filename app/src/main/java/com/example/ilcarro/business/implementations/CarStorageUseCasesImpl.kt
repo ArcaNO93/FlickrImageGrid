@@ -3,7 +3,6 @@ package com.example.ilcarro.business.implementations
 import com.example.ilcarro.business.interfaces.CarStorageUseCases
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.dto.car.ui.addCarUI.*
-import com.example.ilcarro.data.dto.general.Features
 import com.example.ilcarro.data.repos.implementations.CarStorageRepoImpl
 import com.example.ilcarro.utils.Validator
 import io.reactivex.Single
@@ -14,7 +13,7 @@ class CarStorageUseCasesImpl @Inject constructor(
     private val mCarStorageRepo: CarStorageRepoImpl
 ): CarStorageUseCases {
 
-    private var mFeatureList = getAddCarUI().features.map { it.feature } as MutableList<String>
+    private var mFeatureList = fetchDataFromRepo().features.map {it.feature} as MutableList<String>
 
     override fun addCarUILocationChunk(locationChunk: AddCarUILocationChunk) =
         mCarStorageRepo.addCarUILocationChunk(locationChunk)
@@ -30,8 +29,8 @@ class CarStorageUseCasesImpl @Inject constructor(
         mCarStorageRepo.addCarUIDetailsLastChunk(carDetailsLastChunk)
     }
 
-    override fun getAddCarUI() =
-        mCarStorageRepo.getAddCarUI()
+    override fun fetchDataFromRepo() =
+        mCarStorageRepo.fetchDataFromRepo()
 
     override fun addFeature(feature: String): Single<MutableList<String>> {
         return if (Validator.validateList(feature, mFeatureList)) {
@@ -45,6 +44,13 @@ class CarStorageUseCasesImpl @Inject constructor(
         mFeatureList.remove(feature)
         return mFeatureList
     }
+
+    override fun uploadImage(image: String) {
+        mCarStorageRepo.uploadImage(image)
+    }
+
+    override fun fetchImageUploadResult() =
+        mCarStorageRepo.fetchImageUploadResult()
 
     override fun clearRepo() =
         mCarStorageRepo.clearRepo()

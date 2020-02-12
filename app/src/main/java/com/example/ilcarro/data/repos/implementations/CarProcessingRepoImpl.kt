@@ -1,7 +1,10 @@
 package com.example.ilcarro.data.repos.implementations
 
+import android.annotation.SuppressLint
+import android.util.Log
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.data.api.CarProcessingAPI
+import com.example.ilcarro.data.dto.car.AddCarRequest
 import com.example.ilcarro.data.dto.car.ui.addCarUI.AddCarUI
 import com.example.ilcarro.data.repos.interfaces.CarProcessingRepo
 import com.example.ilcarro.utils.Mapper
@@ -22,11 +25,15 @@ class CarProcessingRepoImpl @Inject constructor(
 
     private val token = mServiceRepo.getToken()
 
-    override fun addCar(newCar: AddCarUI) =
-        Completable.fromSingle(mService.addCar(token, mapper.toAddCarRequest(newCar)))
+    override fun addCar(newCar: AddCarUI): Completable {
+        return Completable.fromSingle(mService.addCar(token, mapper.toAddCarRequest(newCar)))
+    }
 
-    override fun updateCar(car: AddCarUI) =
-        Completable.fromSingle(mService.updateCar(token, car.about, mapper.toAddCarRequest(car)))
+    @SuppressLint("CheckResult")
+    override fun updateCar(car: AddCarUI): Completable {
+        return Completable.fromSingle(mService.updateCar(token, car.about, mapper.toAddCarRequest(car)))
+    }
+
 
     override fun deleteCar(car: AddCarUI) =
         mService.deleteCar(token, car.about)

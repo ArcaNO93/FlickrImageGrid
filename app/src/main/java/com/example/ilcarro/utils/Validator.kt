@@ -1,7 +1,5 @@
 package com.example.ilcarro.utils
 
-import android.util.Log
-
 object Validator {
 
     var error: Throwable? = null
@@ -49,7 +47,7 @@ object Validator {
             return false
         }
         if(!fullName.matches(stringOnlyLettersRegex)) {
-            error = IllegalArgumentException("Field can include only letters")
+            error = IllegalArgumentException("Field can include only english letters")
             return false
         }
 
@@ -62,7 +60,7 @@ object Validator {
             return false
         }
         if(!fullName.matches(stringOnlyLettersAndNumbersRegex)) {
-            error = IllegalArgumentException("Field can include only letters and numbers")
+            error = IllegalArgumentException("Field can include only english letters and numbers")
             return false
         }
         return true
