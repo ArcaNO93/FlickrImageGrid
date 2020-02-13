@@ -22,20 +22,6 @@ class CarProcessingUseCasesImpl @Inject constructor(
     override fun deleteCar(car: AddCarUI) =
         mCarProcessingRepo.deleteCar(car)
 
-    fun validateCountry(country: String): Completable {
-        return if(Validator.validateIfEmpty(country))
-            Completable.complete()
-        else
-            Completable.error(Validator.error)
-    }
-
-    fun validateCity(city: String): Completable {
-        return if(Validator.validateIfLettersOnly(city))
-            Completable.complete()
-        else
-            Completable.error(Validator.error)
-    }
-
     fun validateIfEmpty(street: String): Completable {
         return if(Validator.validateIfEmpty(street))
             Completable.complete()

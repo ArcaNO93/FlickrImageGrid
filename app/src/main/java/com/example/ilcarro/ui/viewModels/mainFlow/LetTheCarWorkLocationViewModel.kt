@@ -1,5 +1,6 @@
 package com.example.ilcarro.ui.viewModels.mainFlow
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,6 +11,8 @@ import com.example.ilcarro.business.implementations.CarStorageUseCasesImpl
 import com.example.ilcarro.dagger.scopes.ActivityScope
 import com.example.ilcarro.utils.Event
 import com.example.ilcarro.utils.Mapper
+import com.example.ilcarro.utils.ResponseHandler
+import com.example.ilcarro.utils.State
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -24,9 +27,14 @@ class LetTheCarWorkLocationViewModel @Inject constructor(
         false
     }
 
-    var mCarInfoLocationChunk = Mapper.toAddCarUILocationChunk(mCarStorageUseCases.fetchDataFromRepo())
+    var mCarInfoLocationChunk =
+        Mapper.toAddCarUILocationChunk(mCarStorageUseCases.fetchDataFromRepo())
 
     private val mDestination = MutableLiveData<Event<Int>>()
+
+    private val _mFetchGeodataProgress = MediatorLiveData<State>()
+    val mFetchGeodataProgress: LiveData<State>
+        get() = _mFetchGeodataProgress
 
     private val _mButtonClickability = MediatorLiveData<MutableList<Boolean>>()
     val mButtonClickability: LiveData<MutableList<Boolean>>
@@ -46,54 +54,47 @@ class LetTheCarWorkLocationViewModel @Inject constructor(
 
     init {
         _mButtonClickability.postValue(mCheckList)
-        _mButtonClickability.addSource(_mCountryValid) {
-            mCheckList[0] = it.first
-            _mButtonClickability.postValue(mCheckList)
-        }
-        _mButtonClickability.addSource(_mCityValid) {
-            mCheckList[1] = it.first
-            _mButtonClickability.postValue(mCheckList)
-        }
-        _mButtonClickability.addSource(_mStreetValid) {
-            mCheckList[2] = it.first
-            _mButtonClickability.postValue(mCheckList)
+        _mButtonClickability.apply {
+            addSource(_mCountryValid) {
+                mCheckList[0] = it.first
+                _mButtonClickability.postValue(mCheckList)
+            }
+            addSource(_mCityValid) {
+                mCheckList[1] = it.first
+                _mButtonClickability.postValue(mCheckList)
+            }
+            addSource(_mStreetValid) {
+                mCheckList[2] = it.first
+                _mButtonClickability.postValue(mCheckList)
+            }
         }
     }
 
     fun getDestination(): LiveData<Event<Int>> = mDestination
 
+    @SuppressLint("CheckResult")
     fun addCarUILocationChunk() {
         mCarStorageUseCases.addCarUILocationChunk(mCarInfoLocationChunk)
-        mDestination.postValue(Event(R.id.action_to_car_details_first))
+        _mFetchGeodataProgress.postValue(State.LOADING)
+        mCarStorageUseCases.fetchPlaceID()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                _mFetchGeodataProgress.postValue(State.LOADED)
+                mCarStorageUseCases.addPlaceID(it.results[0].place_id)
+                mDestination.postValue(Event(R.id.action_to_car_details_first))
+            }, {
+                _mFetchGeodataProgress.postValue(State.fail("Error while fetching geodata:\n${ResponseHandler.parseException(it)}"))
+            })
     }
 
-    fun validateCountry(country: String) =
-        mCarProcessingUseCases.validateCountry(country)
+    fun validateIfEmpty(string: String, liveData: MutableLiveData<Pair<Boolean, String?>>) =
+        mCarProcessingUseCases.validateIfEmpty(string)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                _mCountryValid.postValue(Pair(true, ""))
+                liveData.postValue(Pair(true, ""))
             }, {
-                _mCountryValid.postValue(Pair(false, it.message))
-            })
-
-    fun validateCity(city: String) =
-        mCarProcessingUseCases.validateCity(city)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _mCityValid.postValue(Pair(true, ""))
-            }, {
-                _mCityValid.postValue(Pair(false, it.message))
-            })
-
-    fun validateStreet(street: String) =
-        mCarProcessingUseCases.validateIfEmpty(street)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _mStreetValid.postValue(Pair(true, ""))
-            }, {
-                _mStreetValid.postValue(Pair(false, it.message))
+                liveData.postValue(Pair(false, it.message))
             })
 }

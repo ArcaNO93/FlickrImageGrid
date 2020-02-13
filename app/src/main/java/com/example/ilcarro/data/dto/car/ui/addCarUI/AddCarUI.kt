@@ -2,6 +2,7 @@ package com.example.ilcarro.data.dto.car.ui.addCarUI
 
 import com.example.ilcarro.dagger.scopes.GlobalScope
 import com.example.ilcarro.data.dto.general.Features
+import com.example.ilcarro.data.dto.general.PickUpPlace
 import javax.inject.Inject
 
 @GlobalScope
@@ -23,6 +24,7 @@ data class AddCarUI(
     var pricePerDay: String,
     var distanceIncluded: String,
     var about: String,
+    var pickUpPlace: PickUpPlace,
     var country: String,
     var city: String,
     var street: String,
@@ -46,6 +48,7 @@ data class AddCarUI(
         "",
         "",
         "",
+        PickUpPlace("",0.0,0.0),
         "",
         "",
         "",

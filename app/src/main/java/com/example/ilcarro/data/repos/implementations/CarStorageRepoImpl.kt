@@ -1,18 +1,50 @@
 package com.example.ilcarro.data.repos.implementations
 
+import android.util.Log
 import com.example.ilcarro.dagger.scopes.ActivityScope
+import com.example.ilcarro.data.api.GeolocationAPI
 import com.example.ilcarro.data.dto.car.ui.addCarUI.*
 import com.example.ilcarro.data.dto.general.Features
+import com.example.ilcarro.data.dto.general.PickUpPlace
+import com.example.ilcarro.data.dto.geolocation.GeolocationResponse
 import com.example.ilcarro.data.repos.interfaces.CarStorageRepo
 import com.example.ilcarro.utils.CloudinaryImageUploader
+import com.example.ilcarro.utils.Geocoder
 import io.reactivex.Observable
+import io.reactivex.Single
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @ActivityScope
 class CarStorageRepoImpl @Inject constructor(
     private var newCar: AddCarUI,
-    private var imageUploader: CloudinaryImageUploader
+    private var imageUploader: CloudinaryImageUploader,
+    mRetrofit: Retrofit,
+    private val mGeocoder: Geocoder
 ): CarStorageRepo {
+
+    private lateinit var coordinates: Pair<Double, Double>
+    private val mService: GeolocationAPI = mRetrofit
+        .newBuilder()
+        .baseUrl("https://maps.googleapis.com/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(
+            OkHttpClient()
+                .newBuilder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .build()
+        )
+        .build()
+        .create(GeolocationAPI::class.java)
 
     override fun addCarUILocationChunk(locationChunk: AddCarUILocationChunk) {
         newCar.country = locationChunk.country
@@ -60,4 +92,14 @@ class CarStorageRepoImpl @Inject constructor(
     }
 
     override fun fetchDataFromRepo() = newCar
+
+    override fun fetchPlaceID(): Single<GeolocationResponse> {
+        coordinates = mGeocoder.getCoordinates("${newCar.street},${newCar.city},${newCar.country}")
+        val latLng = "${coordinates.first},${coordinates.second}"
+        return mService.fetchPlaceIDByLatLng(latLng, "AIzaSyDSZiVQ_cAoDgeXNlkjKj5oGwIovd0coXY")
+    }
+
+    override fun addPlaceID(placeID: String) {
+        newCar.pickUpPlace = PickUpPlace(placeID, coordinates.first, coordinates.second)
+    }
 }

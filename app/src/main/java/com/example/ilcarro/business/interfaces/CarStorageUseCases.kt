@@ -1,7 +1,7 @@
 package com.example.ilcarro.business.interfaces
 
 import com.example.ilcarro.data.dto.car.ui.addCarUI.*
-import io.reactivex.Completable
+import com.example.ilcarro.data.dto.geolocation.GeolocationResponse
 import io.reactivex.Observable
 import io.reactivex.Single
 
@@ -15,5 +15,7 @@ interface CarStorageUseCases {
     fun removeFeature(feature: String): MutableList<String>
     fun uploadImage(image: String)
     fun fetchImageUploadResult(): Observable<String>
+    fun fetchPlaceID(): Single<GeolocationResponse>
+    fun addPlaceID(placeID: String)
     fun clearRepo()
 }

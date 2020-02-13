@@ -52,6 +52,12 @@ class CarStorageUseCasesImpl @Inject constructor(
     override fun fetchImageUploadResult() =
         mCarStorageRepo.fetchImageUploadResult()
 
+    override fun fetchPlaceID() =
+        mCarStorageRepo.fetchPlaceID()
+
+    override fun addPlaceID(placeID: String) =
+        mCarStorageRepo.addPlaceID(placeID)
+
     override fun clearRepo() =
         mCarStorageRepo.clearRepo()
 }

@@ -14,16 +14,16 @@
             type="com.example.ilcarro.ui.fragments.mainFlow.LetTheCarWorkCarDetailsLastFragment" />
     </data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <ScrollView
         android:id="@+id/car_details_last"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
         tools:context=".ui.fragments.mainFlow.LetTheCarWorkCarDetailsFirstFragment">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -264,6 +264,8 @@
                 layout="@layout/progress_bar"
                 android:visibility="gone"/>
 
-        </FrameLayout>
-    </ScrollView>
+        </ScrollView>
+
+    </FrameLayout>
+
 </layout>
